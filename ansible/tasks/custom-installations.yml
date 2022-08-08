@@ -33,4 +33,5 @@
   ansible.builtin.git:
     repo: "https://github.com/pyenv/pyenv.git"
     dest: "$HOME/.pyenv"
+  become_user: "{{ ansible_user }}"
   when: pyenv_stats.stat.exists == False
