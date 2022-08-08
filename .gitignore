@@ -1,6 +1,5 @@
 .DS_Store
 logs
-installers
 .vscode
 plugged
 *.sh.zwc
