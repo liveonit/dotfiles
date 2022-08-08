@@ -66,7 +66,6 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # Add custom script stowed to ~/bin and ~/vntana_bin to path
 export PATH="$HOME/scripts:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # FD
 FD_OPTIONS="--follow --exclude .git --exclude node_modules"
@@ -76,8 +75,6 @@ export FZF_DEFAULT_OPTS='--no-height'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-# Rancher
-export PATH="$HOME/.rd/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"

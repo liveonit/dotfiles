@@ -1,5 +1,9 @@
-- name: Update npm
-  shell: sudo npm install npm@latest -g
+- name: Get nvm environment and update npm
+  shell: |
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+    sudo npm install npm@latest -g
+    echo "$(node --version)"
 
 - name: Install npm packages globally.
   npm:
