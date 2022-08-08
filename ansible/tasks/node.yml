@@ -22,3 +22,4 @@
     - vscode-langservers-extracted
     - bash-language-server
     - vim-language-server
+    - neovim

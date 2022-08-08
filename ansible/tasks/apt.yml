@@ -129,5 +129,6 @@
       - tldr # The tldr pages are a community effort to simplify the beloved man pages with practical examples.
       - openssh-client # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
       - openssh-server # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
+      - ruby-neovim
     state: present
     update_cache: true

@@ -1,20 +1,22 @@
-- name: Install pyenv
-  shell: echo "$(python --version)"
-# - name: Python install base packages
-#   shell: |
-#     python3 -m pip install -U pip
-#     pip3 install --upgrade setuptools
-#     pip3 install --user pynvim
-#     pip3 install fawkes
-#     pip3 install autopep8
-#     pip3 install black
-#     pip3 install yamllint
-#     pip3 install vim-vint
-#     pip3 install gitlint
-#     pip3 install codespell
-#     pip3 install proselint
-#     pip3 install flake8
-#     pip3 install neovim
-#     pip3 install awscli
-#     pip3 install youtube-dl
-#     pip3 install rich
+- name: Python install base packages
+  shell: |
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+    python3 -m pip install -U pip
+    pip3 install --upgrade setuptools
+    pip3 install --user pynvim
+    pip3 install fawkes
+    pip3 install autopep8
+    pip3 install black
+    pip3 install yamllint
+    pip3 install vim-vint
+    pip3 install gitlint
+    pip3 install codespell
+    pip3 install proselint
+    pip3 install flake8
+    pip3 install neovim
+    pip3 install awscli
+    pip3 install youtube-dl
+    pip3 install rich
