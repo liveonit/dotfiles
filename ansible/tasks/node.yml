@@ -12,6 +12,7 @@
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     npm install -g "{{ item }}"
   loop:
+    - yarn
     - babel-cli # Babel command line.
     - gifify # Convert any video file to an optimized animated GIF
     - http-server # A simple zero-configuration command-line http server
