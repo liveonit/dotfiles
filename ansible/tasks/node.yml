@@ -10,7 +10,7 @@
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    "sudo npm install -g {{ item }}"
+    npm install -g "{{ item }}"
   loop:
     - babel-cli # Babel command line.
     - gifify # Convert any video file to an optimized animated GIF
