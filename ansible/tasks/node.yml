@@ -5,12 +5,11 @@
     sudo npm install npm@latest -g
     nvm install stable
     nvm alias default stable
-    echo "$(node --version)"
 
 - name: Install npm packages globally.
-  npm:
-    name: "{{ item }}"
-    global: yes
+  shell: |
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+    "npm i -g {{ item }}"
   loop:
     - babel-cli # Babel command line.
     - gifify # Convert any video file to an optimized animated GIF
