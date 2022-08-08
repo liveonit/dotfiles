@@ -10,5 +10,5 @@ The operating system needs to have installed ansible.
 Staying on this `ubuntu` directory, run
 
 ```bash
-ansible-playbook -vvv dotfiles/ansible/setup.yml --ask-become-pass
+ansible-playbook -vvv ansible/setup.yml --ask-become-pass
 ```

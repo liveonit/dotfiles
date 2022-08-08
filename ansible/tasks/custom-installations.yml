@@ -28,7 +28,6 @@
   stat:
     path: $HOME/.pyenv
   register: pyenv_stats
-  become_user: "{{ ansible_user }}"
 
 - name: Install penv
   ansible.builtin.git:
