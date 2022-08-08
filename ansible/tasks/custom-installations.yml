@@ -1,0 +1,36 @@
+- name: check is lsd installed
+  shell: command -v lsd
+  register: lsd_exists
+  ignore_errors: yes
+
+- name: Copy lsd src
+  copy:
+    src: "{{ playbook_dir }}/installers/lsd_0.22.0_amd64.deb"
+    dest: "/tmp/lsd_0.22.0_amd64.deb"
+  when: lsd_exists is failed
+
+- name: Install lsd
+  shell: sudo dpkg -i /tmp/lsd_0.22.0_amd64.deb
+  when: lsd_exists is failed
+
+- name: Check that the $HOME/.nvm exists
+  stat:
+    path: $HOME/.nvm
+  register: nvm_stats
+
+- name: Install NVM
+  shell: |
+    sudo apt install curl
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+  when: nvm_stats.stat.exists == False
+
+- name: Check that the $HOME/.pyenv exists
+  stat:
+    path: $HOME/.pyenv
+  register: pyenv_stats
+
+- name: Install penv
+  ansible.builtin.git:
+    repo: "https://github.com/pyenv/pyenv.git"
+    dest: "$HOME/.pyenv"
+  when: pyenv_stats.stat.exists == False

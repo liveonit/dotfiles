@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        progress: plain
+    platform: linux/amd64
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    container_name: ubuntu
+    restart: on-failure
+    volumes:
+      - "./:/home/admin/dotfiles"

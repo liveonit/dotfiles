@@ -1,0 +1,25 @@
+- name: Install ZSH
+  apt: name=zsh
+
+- name: Change shell to zsh
+  shell: chsh -s $(which zsh)
+
+- name: Check that the .oh-my-zsh exists
+  stat:
+    path: $HOME/.oh-my-zsh
+  register: oh_my_zsh_stats
+
+- name: Oh-My-Zsh
+  shell: "curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > $HOME/.oh-my-installer && chmod +x $HOME/.oh-my-installer && $HOME/.oh-my-installer"
+  when: oh_my_zsh_stats.stat.exists == False
+
+- name: Check that the /usr/local/bin/oh-my-posh exists
+  stat:
+    path: /usr/local/bin/oh-my-posh
+  register: oh_my_posh_stats
+
+- name: Install oh-my-posh
+  shell: |
+    wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+    chmod +x /usr/local/bin/oh-my-posh
+  when: oh_my_posh_stats.stat.exists == False

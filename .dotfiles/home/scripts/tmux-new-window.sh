@@ -1,0 +1,17 @@
+#/usr/bin/env bash
+if [ -z "$1" ]; then
+    window=$(folders.sh)
+    window_name=$(basename "$window" | tr . _)
+    if [ -z "$window"]; then
+        exit 0
+    fi
+    if ! tmux has-window -t "$window_name" 2>/dev/null; then
+        tmux new-window -n "$window_name" -c "$window" -d
+    fi
+else
+    if ! tmux has-window -t "$1" 2>/dev/null; then
+        tmux new-window -n "$1" -c "$PWD" -d
+    fi
+fi
+
+TERM=xterm-256color tmux select-window -t "$window_name"

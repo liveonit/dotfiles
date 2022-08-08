@@ -1,0 +1,24 @@
+- name: Update npm
+  shell: sudo npm install npm@latest -g
+
+- name: Install npm packages globally.
+  npm:
+    name: "{{ item }}"
+    global: yes
+  loop:
+    - babel-cli # Babel command line.
+    - gifify # Convert any video file to an optimized animated GIF
+    - http-server # A simple zero-configuration command-line http server
+    - json-server # Small JSON file server for REST API mock ➜ touch db.json; json-server --watch db.json
+    - nodemon # Simple monitor script for use during development of a node.js app.
+    - npm-check # Check for outdated, incorrect, and unused dependencies. ➜ npm-check -g
+    - npm-check-updates # Find newer versions of dependencies ➜ ncu
+    - prettier # Prettier is an opinionated code formatter
+    - typescript # TypeScript is a language for application scale JavaScript development
+    - typesync # Install missing TypeScript typings for dependencies in your package.json.
+    - write-good # Linter for English prose
+    - "@ansible/ansible-language-server"
+    - typescript-language-server
+    - vscode-langservers-extracted
+    - bash-language-server
+    - vim-language-server
