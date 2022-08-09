@@ -134,5 +134,7 @@
       - openssh-server # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
       - ruby-neovim
       - kubectl
+      - fd-find
+      - ripgrep
     state: present
     update_cache: true
