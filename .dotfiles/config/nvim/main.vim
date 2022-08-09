@@ -68,7 +68,7 @@ set foldexpr=nvim_treesitter#foldexpr() " Use Treesitter to handle folds
 syntax on                       " Enable syntax highlighting
 
 " Python provider configuration
-let g:python3_host_prog = '/Users/gmonne/.pyenv/shims/python3'
+let g:python3_host_prog = '~/.pyenv/shims/python'
 " Remove Python2 support
 let g:loaded_python_provider = 0
 
