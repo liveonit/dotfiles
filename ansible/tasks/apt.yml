@@ -50,9 +50,9 @@
     $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   when: not result.stat.exists
 
-- name: add neovim repository
-  shell: |
-    sudo add-apt-repository ppa:neovim-ppa/unstable
+- name: Add neovim ppa repository
+  ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/unstable
 
 - name: add mongo repository
   shell: |
@@ -133,5 +133,6 @@
       - openssh-client # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
       - openssh-server # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
       - ruby-neovim
+      - kubectl
     state: present
     update_cache: true

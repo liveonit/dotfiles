@@ -4,6 +4,10 @@
 - name: Change shell to zsh
   shell: chsh -s $(which zsh)
 
+- name: Change shell to zsh
+  shell: chsh -s $(which zsh)
+  become: false
+
 - name: Check that the .oh-my-zsh exists
   stat:
     path: $HOME/.oh-my-zsh
