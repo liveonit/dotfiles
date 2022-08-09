@@ -1,6 +1,6 @@
 - hosts: localhost
   become: yes
-  remote_user: admin
+  remote_user: liveofit
   environment:
     HOME: "/home/{{ ansible_user }}"
   pre_tasks:
