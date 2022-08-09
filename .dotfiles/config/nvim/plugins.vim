@@ -9,7 +9,7 @@ Plug 'mickael-menu/zk-nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'MunifTanjim/nui.nvim'
-"  Plug 'ThePrimeagen/harpoon'
+Plug 'ThePrimeagen/harpoon'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'folke/trouble.nvim'
