@@ -1,3 +1,4 @@
 - name: Stow dotfiles
   shell: |
     cd {{ playbook_dir }}/../.dotfiles && ./install
+  become: false
