@@ -15,3 +15,5 @@
     - include: tasks/python.yml
     - include: tasks/zsh-setup.yml
     - include: tasks/dotfiles.yml
+    - name: Change shell to zsh
+      shell: chsh -s $(which zsh)
