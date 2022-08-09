@@ -238,5 +238,8 @@ nnoremap <silent> <s-tab> :BufferLineCyclePrev<CR>
 nnoremap <silent><leader><right> :BufferLineMoveNext<CR>
 nnoremap <silent><leader><left> :BufferLineMovePrev<CR>
 
+" Reload luasnip snippets
+nnoremap <leader><leader>s :lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})<CR>
+
 " Replace u in visual mode to be the same as y
 vnoremap u y

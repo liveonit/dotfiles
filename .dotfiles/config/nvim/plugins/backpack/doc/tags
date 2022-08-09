@@ -1,0 +1,6 @@
+backpack	backpack.txt	/*backpack*
+backpack.contents	backpack.txt	/*backpack.contents*
+backpack.credits	backpack.txt	/*backpack.credits*
+backpack.manifest	backpack.txt	/*backpack.manifest*
+backpack.pre-requirements	backpack.txt	/*backpack.pre-requirements*
+backpack.setup	backpack.txt	/*backpack.setup*

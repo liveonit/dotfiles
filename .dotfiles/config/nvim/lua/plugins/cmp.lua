@@ -1,5 +1,6 @@
 -- CMP --
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
 local source_mapping = {buffer = "[BUF]", nvim_lsp = "[LSP]", nvim_lua = "[LUA]", path = "[PATH]", vsnip = "[SNIP]"}
@@ -14,6 +15,11 @@ local feedkey = function(key, mode)
 end
 
 cmp.setup {
+    snippet = {
+        expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+        end
+    },
     completion = {keyword_length = 4, autocomplete = false},
     mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 'c'}),
@@ -26,6 +32,8 @@ cmp.setup {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
             elseif has_words_before() then
                 cmp.complete()
             else
@@ -35,13 +43,15 @@ cmp.setup {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end
         end, {"i", "s"})
     }),
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'nvim_lua'}, {name = 'path'},
+        {name = 'nvim_lsp'}, {name = 'nvim_lua'}, {name = "luasnip"}, {name = 'path'},
         {name = 'buffer', default = 5, keyword_length = 5}
     }),
     experimental = {native_menu = false, ghost_text = true},

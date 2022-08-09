@@ -1,5 +1,7 @@
 require('plugins.neo-tree')
+require('plugins.backpack')
 require('plugins.neoscroll')
+require('plugins.luasnip')
 require('plugins.cmp')
 require('plugins.harpoon')
 require('plugins.gitsigns')
