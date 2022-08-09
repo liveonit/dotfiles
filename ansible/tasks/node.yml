@@ -5,6 +5,7 @@
     sudo npm install npm@latest -g
     nvm install stable
     nvm alias default stable
+  become: false
 
 - name: Install npm packages globally.
   shell: |
@@ -30,3 +31,4 @@
     - bash-language-server
     - vim-language-server
     - neovim
+  become: false
