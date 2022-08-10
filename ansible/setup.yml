@@ -15,5 +15,8 @@
     - include: tasks/python.yml
     - include: tasks/zsh-setup.yml
     - include: tasks/dotfiles.yml
-    - name: Change shell to zsh
-      shell: chsh -s $(which zsh)
+    - name: change user shell to zsh
+      become: yes
+      user:
+        name: "{{ ansible_user }}"
+        shell: /usr/bin/zsh
