@@ -20,3 +20,5 @@
       user:
         name: "{{ ansible_user }}"
         shell: /usr/bin/zsh
+
+//TODO: run tasks depending on the operating system

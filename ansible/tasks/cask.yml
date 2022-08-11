@@ -1,0 +1,29 @@
+- name: Tap a Homebrew repository, state present
+  community.general.homebrew_tap:
+    name: homebrew/cask-versions,homebrew/cask-fonts,homebrew/cask-drivers
+    state: present
+
+- name: Install cask
+  community.general.homebrew_cask:
+    name: alfred
+    state: present
+  loop:
+    - xquartz
+    - alacritty
+    - calibre
+    - figma
+    - firefox
+    - iterm2
+    - kindle
+    - kitty
+    - postman
+    - slack
+    - spotify
+    - telegram-desktop
+    - the-unarchiver
+    - visual-studio-code
+    - vlc
+    - vlc-webplugin
+    - ngrok
+    - font-fira-code-nerd-font
+    - font-hack-nerd-font
