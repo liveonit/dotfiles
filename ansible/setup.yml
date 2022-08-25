@@ -10,9 +10,15 @@
         state: present
   tasks:
     - include: tasks/apt.yml
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - include: tasks/brew.yml
+      when: ansible_distribution == 'MacOSX'
+    - include: tasks/cask.yml
+      when: ansible_distribution == 'MacOSX'
     - include: tasks/custom-installations.yml
     - include: tasks/node.yml
     - include: tasks/python.yml
+    - include: tasks/cargo.yml
     - include: tasks/zsh-setup.yml
     - include: tasks/dotfiles.yml
     - name: change user shell to zsh
@@ -20,5 +26,3 @@
       user:
         name: "{{ ansible_user }}"
         shell: /usr/bin/zsh
-
-//TODO: run tasks depending on the operating system

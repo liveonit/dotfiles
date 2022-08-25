@@ -1,11 +1,6 @@
   " Change the map leader.
   let mapleader=" "
 
-  " Open a new tmux window using tmux-windownizer
-  nnoremap <silent> <C-n> :silent !tmux new-window tmux-sessionizer.sh<CR>
-  nnoremap <silent> <C-p> :silent !tmux new-window tmux-sessions.sh<CR>
-  nnoremap <silent> <C-t> :silent !tmux new-window tmux-toggle.sh<CR>
-
   " Git commands
   nnoremap <silent> <leader>gs :Git<CR>
   nnoremap <silent> <leader>gp :Gitsigns preview_hunk<CR>
@@ -33,13 +28,21 @@
   nnoremap <silent> <leader>em :e ~/.config/nvim/mappings.vim<CR>
 
   " Shortcut to save the current buffer
-  nnoremap <silent> <leader>s :w<CR>
+  nnoremap <silent> <C-s> :w<CR>
   inoremap <silent> <C-s> <Esc>:w<CR>
   vnoremap <silent> <C-s> <Esc>:w<CR>
-  nnoremap <silent> <C-s> :w<CR>
+
+  " Shortcut to quit the current buffer
+  nnoremap <silent> <C-q> :q<CR>
+  inoremap <silent> <C-q> <Esc>:q<CR>
+  vnoremap <silent> <C-q> <Esc>:q<CR>
 
   " Shortcut to save and quit the curren buffer.
   nnoremap <silent> <leader>wq :wq<CR>
+
+  " Simpler splits
+  nnoremap <silent> <leader>v :vsplit<CR>
+  nnoremap <slient> <leader>h :hsplit<CR>
 
   " Shortcut to give execute permissions to a file
   nnoremap <silent> <leader>cx :!chmod +x %<CR>
@@ -77,7 +80,7 @@
   nnoremap <silent> <leader>3 :lua require("harpoon.ui").nav_file(3)<CR>
   nnoremap <silent> <leader>4 :lua require("harpoon.ui").nav_file(4)<CR>
   nnoremap <silent> <leader>, :lua require("harpoon.ui").toggle_quick_menu()<CR>
-  nnoremap <silent> t1 :lua require("harpoon.term").gotoTerminal(1)<CR>
+  nnoremap <silent> t1 :lua require("harpoon.term").gotol(1)<CR>
   nnoremap <silent> t2 :lua require("harpoon.term").gotoTerminal(2)<CR>
   nnoremap <silent> t3 :lua require("harpoon.term").gotoTerminal(3)<CR>
   nnoremap <silent> t4 :lua require("harpoon.term").gotoTerminal(4)<CR>
@@ -110,10 +113,6 @@
   vnoremap K :m '<-2<CR>gv=gv
   nnoremap <leader>k :m .-2<CR>==
   nnoremap <leader>j :m .+1<CR>==
-
-  " Simpler splits
-  nnoremap <silent> <leader>v :vsplit<CR>
-  nnoremap <slient> <leader>h :hsplit<CR>
 
   " Better block tabbing
   vnoremap <silent> < <gv
@@ -186,7 +185,7 @@
   nnoremap <silent> <leader>o :SymbolsOutline<CR>
 
   " Toggle statusline and ruler
-  nnoremap <silent> <leader>h :call ToggleHiddenAll()<CR>
+  "  nnoremap <silent> <leader>h :call ToggleHiddenAll()<CR>
 
   " Go to previous buffer
   nnoremap <silent> <leader><leader> <C-^>

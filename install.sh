@@ -30,14 +30,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "brew successfully installed"
     fi
 
-    ansible-galaxy collection install community.general
-
     # === Install cargo ===
     curl https://sh.rustup.rs -sSf | sh
 else
     echo "Unsuported operating system, the OS should be Ubuntu or MacOs."
     exit 1
 fi
-
+ansible-galaxy collection install community.general
 # Run ansible playbook
 ansible-playbook -vvv ansible/setup.yml --ask-become-pass

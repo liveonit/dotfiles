@@ -24,6 +24,7 @@
     - htop # Improved top
     - lua # Powerful, lightweight programming language
     - luarocks # LuaRocks is the package manager for Lua modules.
+    - stylua
     - --HEAD neovim # NeoVim
     - python # Interpreted, interactive, object-oriented programming language
     - readline # Library for command-line editing
@@ -63,3 +64,4 @@
     - mysql-client # MySql cli to interact with MySql db
     - kubectl # Cli to interact and manage k8s clusters
     - openssh # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
+    - rust

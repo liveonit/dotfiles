@@ -34,6 +34,7 @@
       - libffi-dev
       - liblzma-dev
       - cargo
+      - exa
     state: present
 
 - name: "Check if docker.gpg"
