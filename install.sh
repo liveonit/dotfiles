@@ -37,11 +37,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # === Install cargo ===
     # === Install brew ===
-    if ! command -v brew &>/dev/null; then
+    if test -f "~/"; then
         curl https://sh.rustup.rs -sSf | sh
+        source ~/.zshenv
     fi
     if ! command -v cargo &>/dev/null; then
-        echo "brew could not be found"
+        echo "cargo could not be found"
         exit 1
     else
         echo "cargo successfully installed"
