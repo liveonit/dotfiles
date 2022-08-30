@@ -30,6 +30,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "brew successfully installed"
     fi
 
+    pyhton3 -m pip install --upgrade pip
+    pyhton3 -m pip install --user setuptools
+    pyhton3 -m pip install --user ansible
+    export PATH="/path/to/Library/Python/3.8/bin:$PATH"
+
     # === Install cargo ===
     curl https://sh.rustup.rs -sSf | sh
 else
