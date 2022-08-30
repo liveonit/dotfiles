@@ -8,6 +8,7 @@
       apt:
         update_cache: true
         state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tasks:
     - include: tasks/apt.yml
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
