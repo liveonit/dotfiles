@@ -15,7 +15,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     xcode-select --install
 
     # === Install TMUX Plugin Manager ===
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    if [ ! -f "$HOME/.tmux/plugins/tpm" ]; then
+        echo "=== Installing tmux-plugins ==="
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
 
     # === Install brew ===
     if ! command -v brew &>/dev/null; then

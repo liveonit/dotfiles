@@ -14,18 +14,19 @@
     - coreutils # GNU File, Shell, and Text utilities
     - curl # Get a file from an HTTP, HTTPS or FTP server
     - direnv # Load/unload environment variables based on $PWD
-    - docker # Pack, ship and run any application as a lightweight container
-    - docker-machine # Create Docker hosts locally and on cloud providers
     - editorconfig # Maintain consistent coding style between multiple editors
     - gcc # GNU compiler collection
     - glow # Render markdown on the CLI
     - go # The Go programming language
+    - automake
+    - docker # Pack, ship and run any application as a lightweight container
+    - docker-machine # Create Docker hosts locally and on cloud providers
     - grex # Command-line tool for generating regular expressions
     - htop # Improved top
     - lua # Powerful, lightweight programming language
     - luarocks # LuaRocks is the package manager for Lua modules.
     - stylua
-    - --HEAD neovim # NeoVim
+    - neovim # NeoVim
     - python # Interpreted, interactive, object-oriented programming language
     - readline # Library for command-line editing
     - reattach-to-user-namespace # Reattach process (e.g., tmux) to background
