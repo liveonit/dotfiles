@@ -7,6 +7,7 @@
     - include: tasks/brew.yml
       become: no
     - include: tasks/cask.yml
+      become: no
     - include: tasks/custom-installations.yml
     - include: tasks/node.yml
     - include: tasks/python.yml
