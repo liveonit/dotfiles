@@ -36,7 +36,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="~/Library/Python/3.8/bin:$PATH"
 
     # === Install cargo ===
-    if [ ! -f "~/.cargo/env" ]; then
+    if [ ! -f "$HOME/.cargo/env" ]; then
         echo "=== Installing cargo ==="
         curl https://sh.rustup.rs -sSf | sh
     fi
