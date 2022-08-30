@@ -24,7 +24,6 @@
     - prettier # Prettier is an opinionated code formatter
     - typescript # TypeScript is a language for application scale JavaScript development
     - typesync # Install missing TypeScript typings for dependencies in your package.json.
-    - write-good # Linter for English prose
     - "@ansible/ansible-language-server"
     - typescript-language-server
     - vscode-langservers-extracted
