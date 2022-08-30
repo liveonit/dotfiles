@@ -37,6 +37,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # === Install cargo ===
     if [ ! -f "~/.cargo/env" ]; then
+        echo "=== Installing cargo ==="
         curl https://sh.rustup.rs -sSf | sh
     fi
     source ~/.zshenv
