@@ -33,13 +33,13 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     python3 -m pip install --upgrade pip
     python3 -m pip install --user setuptools
     python3 -m pip install --user ansible
-    export PATH="/path/to/Library/Python/3.8/bin:$PATH"
+    export PATH="~/Library/Python/3.8/bin:$PATH"
 
     # === Install cargo ===
     if [ ! -f "~/.cargo/env" ]; then
         curl https://sh.rustup.rs -sSf | sh
-        source ~/.zshenv
     fi
+    source ~/.zshenv
     if ! command -v cargo &>/dev/null; then
         echo "cargo could not be found"
         exit 1
