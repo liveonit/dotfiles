@@ -8,6 +8,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     # Install ansible and add community.general module
     sudo apt install ansible
+    ansible-galaxy collection install community.general
+    ansible-playbook -vvv ansible/setup_ubuntu.yml --ask-become-pass
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # === Install Xcode Developer Tools ===
     xcode-select --install
@@ -47,11 +49,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     else
         echo "cargo successfully installed"
     fi
-
+    ansible-galaxy collection install community.general
+    ansible-playbook -vvv ansible/setup_mac.yml --ask-become-pass
 else
     echo "Unsuported operating system, the OS should be Ubuntu or MacOs."
     exit 1
 fi
-ansible-galaxy collection install community.general
-# Run ansible playbook
-ansible-playbook -vvv ansible/setup.yml --ask-become-pass

@@ -8,14 +8,8 @@
       apt:
         update_cache: true
         state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
     - include: tasks/apt.yml
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-    - include: tasks/brew.yml
-      when: ansible_distribution == 'MacOSX'
-      become: no
     - include: tasks/cask.yml
-      when: ansible_distribution == 'MacOSX'
     - include: tasks/custom-installations.yml
     - include: tasks/node.yml
     - include: tasks/python.yml
