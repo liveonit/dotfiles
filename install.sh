@@ -21,13 +21,13 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 
     # === Install brew ===
-    if ! command -v brew &>/dev/null; then
+    if [ ! -f "/opt/homebrew/bin/brew" ]; then
         echo "=== Installing brew ==="
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
         eval "$(/opt/homebrew/bin/brew shellenv)"
-        source $HOME/.zprofile
     fi
+    source $HOME/.zprofile
     if ! command -v brew &>/dev/null; then
         echo "brew could not be found"
         exit 1
