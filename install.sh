@@ -30,13 +30,23 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "brew successfully installed"
     fi
 
-    pyhton3 -m pip install --upgrade pip
-    pyhton3 -m pip install --user setuptools
-    pyhton3 -m pip install --user ansible
+    python3 -m pip install --upgrade pip
+    python3 -m pip install --user setuptools
+    python3 -m pip install --user ansible
     export PATH="/path/to/Library/Python/3.8/bin:$PATH"
 
     # === Install cargo ===
-    curl https://sh.rustup.rs -sSf | sh
+    # === Install brew ===
+    if ! command -v brew &>/dev/null; then
+        curl https://sh.rustup.rs -sSf | sh
+    fi
+    if ! command -v cargo &>/dev/null; then
+        echo "brew could not be found"
+        exit 1
+    else
+        echo "cargo successfully installed"
+    fi
+
 else
     echo "Unsuported operating system, the OS should be Ubuntu or MacOs."
     exit 1
