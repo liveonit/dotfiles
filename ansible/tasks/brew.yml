@@ -61,7 +61,6 @@
     - shellcheck # ShellCheck finds bugs in your shell scripts.
     - tldr # The tldr pages are a community effort to simplify the beloved man pages with practical examples.
     - tree-sitter # Tree-sitter is a parser generator tool and an incremental parsing library.
-    - ansible # Ansible is the defining automation technology,
     - mysql-client # MySql cli to interact with MySql db
     - kubectl # Cli to interact and manage k8s clusters
     - openssh # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
