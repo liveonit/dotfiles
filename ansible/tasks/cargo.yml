@@ -1,3 +1,2 @@
 - name: Install "argc" Rust package
   shell: cargo install --git https://github.com/sigoden/argc.git --tag v0.8.2
-  become: false
