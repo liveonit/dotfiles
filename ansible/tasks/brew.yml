@@ -65,3 +65,4 @@
     - kubectl # Cli to interact and manage k8s clusters
     - openssh # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
     - rust
+    - jandedobbeleer/oh-my-posh/oh-my-posh
