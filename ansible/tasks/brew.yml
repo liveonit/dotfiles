@@ -66,3 +66,4 @@
     - openssh # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
     - rust
     - jandedobbeleer/oh-my-posh/oh-my-posh
+    - exa

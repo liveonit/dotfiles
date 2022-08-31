@@ -5,7 +5,7 @@
 
 - name: Install cask
   community.general.homebrew_cask:
-    name: alfred
+    name: {{ item }}
     state: present
   loop:
     - xquartz
