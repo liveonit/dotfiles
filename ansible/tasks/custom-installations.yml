@@ -28,11 +28,10 @@
   stat:
     path: $HOME/.pyenv
   register: pyenv_stats
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Install penv
   ansible.builtin.git:
     repo: "https://github.com/pyenv/pyenv.git"
     dest: "$HOME/.pyenv"
   become: false
-  when: pyenv_stats.stat.exists == False and (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
+  when: pyenv_stats.stat.exists == False
