@@ -35,6 +35,7 @@
       - liblzma-dev
       - cargo
       - exa
+      - zsh
     state: present
 
 - name: "Check if docker.gpg"
