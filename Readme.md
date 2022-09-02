@@ -1,4 +1,4 @@
-# Liveofit Dotfiles
+# Liveonit Dotfiles
 
 ## Requirements
 
@@ -7,24 +7,24 @@ The operating system needs to have installed git to clone this project.
 
 ## Run
 
-### Ubuntu
+Clone this repo on your home or projects folder and move to the root dir of this project. Once you are there, you should change the `remote_user` on `ansible/setup_mac.yml` or `ansible/setup_ubuntu.yml` depending on your `OS`.  
 
-Clone this repo on your home or projects folder and move to the root dir of this project. Once you are there run
-
-```bash
-sh ./install.sh   
+```yaml
+- hosts: localhost
+  become: yes
+  remote_user: liveofit # <<<==== You should set the name of your user
 ```
 
-### MacOS
-
-Clone this repo on your home or projects folder and move to the root dir of this project. Once you are there run
+And then just run
 
 ```bash
-ansible-playbook -vvv ansible/setup_macos.yml --ask-become-pass
+./install.sh   
 ```
 
-## Post install
+## Post Install
 
-Once the base software and configurations are installed on your operating system, you are in conditions of setup your Vim environment, to do that you have to open NVIM or VIM that is only an alias of NVIM, and in the editor run the command `:PlugInstall`, this command should install all the required plugins to work with NVIM. If you have some problem on the NVIM configuration you can test the dependencies just running :checkhealth
+To get all the `iterm2` configuration, after the installation it's necessary to go to the `iterm2` Preferences (shortcut `CMD + ,`) and then go to Profile section, on this section select the `customDynamicProfile`
 
-**TIP:** to run a command you should be on `NORMAL` nvim mode if you are on `INSERT` or `VISUAL` mode just press `ESC` and then to introduce a command press `:` followed by the command.
+![Iterm select profile image](./docs/images/itermSelectProfile.png)
+
+As plus you can open VIM and at the first start it should load nvim-treesitter languages and everything should be working fine, if you have some problem you can execute mannually the `:PlugInstall` (to install plugins) command or `:healthcheck` (to check the vim status).
