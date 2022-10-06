@@ -1,8 +1,5 @@
 # *** *** Plugins *** ***
 
-# Load Antigen plugin manager
-source ~/.antigen/antigen.zsh
-
 # Load the oh-my-zsh library
 antigen use oh-my-zsh
 

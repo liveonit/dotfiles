@@ -2,7 +2,7 @@
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
         "bash", "css", "dockerfile", "go", "gomod", "gowork", "graphql", "html", "http", "javascript", "jsdoc", "json",
-        "json5", "jsonc", "lua", "make", "markdown", "norg", "python", "regex", "rust", "ruby", "solidity", "toml",
+        "json5", "jsonc", "lua", "make", "markdown", "python", "regex", "rust", "ruby",
         "tsx", "typescript", "vim", "yaml"
     },
     highlight = {enable = true, use_languagetree = true, additional_vim_regex_highlighting = {"markdown"}},
