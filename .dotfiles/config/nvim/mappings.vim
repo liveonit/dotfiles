@@ -85,8 +85,6 @@
   nnoremap <silent> t3 :lua require("harpoon.term").gotoTerminal(3)<CR>
   nnoremap <silent> t4 :lua require("harpoon.term").gotoTerminal(4)<CR>
 
-  " Replace all the occurances of what you have visually selected.
-  vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>//g<left><left><c-r>=GetVisual()<cr>
   " Replace the text object under the current cursor using lsp.
   nnoremap <leader>r :lua require('lsp_rename').lsp_rename()<CR>
 

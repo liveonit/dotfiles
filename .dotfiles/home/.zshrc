@@ -1,4 +1,5 @@
 #install plugins
+source "$HOME/zsh/antigen_install.zsh"
 source "$HOME/zsh/antigen.sh"
 
 # Add custom script stowed to ~/bin and ~/vntana_bin to path
