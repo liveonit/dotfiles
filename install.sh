@@ -34,6 +34,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
+  if [ ! -f "$HOME/.zprofile" ]; then
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
   source $HOME/.zprofile
   if ! command -v brew &>/dev/null; then
     echo "brew could not be found"
