@@ -45,7 +45,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   python3 -m pip install --upgrade pip
   python3 -m pip install --user setuptools
   python3 -m pip install --user ansible
-  export PATH="~/Library/Python/3.8/bin:$PATH"
+  PY_VERSION=$(python3 --version | sed 's/[[:alpha:]|(|[:space:]]//g' | sed 's/^\([0-9]*\.[0-9]*\).*$/\1/')
+  export PATH="~/Library/Python/$PY_VERSION/bin:$PATH"
 
   # === Install cargo ===
   if [ ! -f "$HOME/.cargo/env" ]; then
