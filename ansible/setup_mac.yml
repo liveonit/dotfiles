@@ -4,15 +4,15 @@
   environment:
     HOME: "/users/{{ ansible_user }}"
   tasks:
-    # - include: tasks/brew.yml
-    #   become: no
-    # - include: tasks/cask.yml
-    #   become: no
-    # - include: tasks/custom-installations.yml
-    # - include: tasks/node.yml
-    # - include: tasks/python.yml
-    # - include: tasks/cargo.yml
-    # - include: tasks/zsh-setup.yml
+    - include: tasks/brew.yml
+      become: no
+    - include: tasks/cask.yml
+      become: no
+    - include: tasks/custom-installations.yml
+    - include: tasks/node.yml
+    - include: tasks/python.yml
+    - include: tasks/cargo.yml
+    - include: tasks/zsh-setup.yml
     - include: tasks/dotfiles.yml
     - name: change user shell to zsh
       become: yes
