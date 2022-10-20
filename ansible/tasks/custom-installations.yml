@@ -35,3 +35,8 @@
     dest: "$HOME/.pyenv"
   become: false
   when: pyenv_stats.stat.exists == False
+
+  - name: Install pyenv-virtualenv
+  community.general.homebrew:
+    name: "pyenv-virtualenv"
+    state: present

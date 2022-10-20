@@ -63,7 +63,7 @@ alias gpf='git push --force-with-lease'
 alias gpp='PATCHNAME=`git branch 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/\1/"`-`date "+%Y-%m-%d-%H%M.patch"`; git diff --full-index master > ../patches/$PATCHNAME'
 alias gpu='git push -u origin HEAD'
 alias gpv='git push --no-verify'
-alias grb='git rebase master'
+alias grb='git rebase'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i '
 alias grbs='git rebase --skip'
@@ -78,6 +78,8 @@ alias gu='git up'
 alias gw='git whatchanged'
 alias gwp='git whatchanged -p'
 alias lg='lazygit'
+alias npmi='npm_install_centralized.sh'
+alias yarni='yarn_install_centralized.sh'
 
 # Vim
 if type nvim >/dev/null 2>&1; then
