@@ -1,3 +1,7 @@
+" Defaults
+unlet! skip_defaults_vim
+runtime defaults.vim
+
 " Filetype
 filetype on
 filetype plugin on
@@ -37,7 +41,7 @@ set number                              " Add line numbers
 set numberwidth=4                       " Set number width to 4 (default: 2)
 set pumheight=10                        " Pop up menu height
 set re=0                                " Stop old regex engine to avoid performance loss.
-set norelativenumber                    " Un-set relative numbers
+set relativenumber                    " Un-set relative numbers
 set ruler                               " Enable line and column display
 set scrolloff=8                         " Make vim start scrolling 8 lines from the end
 set shortmess=F                         " Don't pass messages to |ins-completion-menu|
@@ -64,9 +68,6 @@ set shiftwidth=2                        " Visual mode indentation (match tabstop
 set foldmethod=expr                     " Kind of fold used for the current window.
 set foldexpr=nvim_treesitter#foldexpr() " Use Treesitter to handle folds
 
-" Syntax
-syntax on                       " Enable syntax highlighting
-
 " Python provider configuration
 let g:python3_host_prog = '~/.pyenv/shims/python'
 " Remove Python2 support
@@ -78,15 +79,15 @@ let g:vim_markdown_fenced_languages = ['go', 'html', 'python', 'console=sh', 'ba
 " Fix issue with SQL Complete
 let g:ftplugin_sql_omni_key = '<C-0>'
 
-
-
 augroup GUX
   autocmd!
   autocmd BufWritePre * :call TrimWhitespace()
   autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx EslintFixAll
   autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx Prettier
-  " Run auto-format on go files.
-  autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+  " Run auto-format.
+  autocmd BufWritePre *.sh lua vim.lsp.buf.format({ async = true })
+  autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })
+  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx lua vim.lsp.buf.format({ async = true })
   " Remove line numbers in terminal mode.
   autocmd TermOpen * setlocal listchars= nonumber norelativenumber nocursorline
   autocmd TermOpen * startinsert

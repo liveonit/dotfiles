@@ -68,3 +68,5 @@
     - jandedobbeleer/oh-my-posh/oh-my-posh
     - exa
     - ripgrep
+    - fd
+    - vivid

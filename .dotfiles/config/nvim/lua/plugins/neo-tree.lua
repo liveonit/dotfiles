@@ -58,7 +58,7 @@ require("neo-tree").setup({
     },
     window = { -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
         -- possible options. These can also be functions that return these options.
-        position = "current", -- left, right, float, current
+        position = "left", -- left, right, float, current
         -- Mappings for tree window. See `:h nep-tree-mappings` for a list of built-in commands.
         -- You can also create your own commands by providing a function instead of a string.
         mappings = {

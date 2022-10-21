@@ -1,8 +1,12 @@
--- Configure tokyonight --
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_comments = true
-vim.g.tokyonight_italic_keywords = false
-vim.g.tokyonight_italic_functions = false
-vim.g.tokyonight_transparent = true
+require("tokyonight").setup({
+  style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+  transparent = true, -- Enable this to disable setting the background color
+  styles = {
+    comments = { italic = true },
+    keywords = { italic = false },
+    functions = { italic = false },
+    sidebars = "transparent", -- style for sidebars, see below
+    floats = "transparent", -- style for floating windows
+  }
+})
 vim.cmd [[colorscheme tokyonight ]]
-
