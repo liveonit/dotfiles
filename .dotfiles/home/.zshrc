@@ -101,3 +101,10 @@ source "$HOME/zsh/aliases.zsh"
 source "$HOME/zsh/prompt.zsh"
 source "$HOME/zsh/history.zsh"
 source "$HOME/zsh/mappings.zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ignaciobarreto/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ignaciobarreto/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ignaciobarreto/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ignaciobarreto/google-cloud-sdk/completion.zsh.inc'; fi
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True

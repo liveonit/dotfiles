@@ -9,6 +9,5 @@ bindkey '^ ' autosuggest-accept
 # # =============
 bindkey -s '^p' ' tls^M'
 bindkey -s '^n' ' tns^M'
-bindkey -s '^w' ' tnw^M'
-bindkey -s '^r' ' hexec.sh^M'
+bindkey -s '^e' ' hexec.sh^M'
 bindkey -s '^h' ' history.sh^M'
