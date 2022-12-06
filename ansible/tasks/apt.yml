@@ -36,6 +36,7 @@
       - cargo
       - exa
       - zsh
+      - snapd
     state: present
 
 - name: "Check if docker.gpg"
