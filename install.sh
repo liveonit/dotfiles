@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SOURCE_DIR=$(dirname $(readlink -f $(which "$0")))
 

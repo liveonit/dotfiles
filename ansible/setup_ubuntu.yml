@@ -1,6 +1,6 @@
 - hosts: localhost
   become: yes
-  remote_user: liveofit
+  remote_user: liveonit
   environment:
     HOME: "/home/{{ ansible_user }}"
   tasks:

@@ -3,3 +3,4 @@ logs
 .vscode
 plugged
 *.sh.zwc
+.antigen
