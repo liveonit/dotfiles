@@ -40,3 +40,4 @@
   community.general.homebrew:
     name: "pyenv-virtualenv"
     state: present
+  when: ansible_distribution == 'MacOSX'
