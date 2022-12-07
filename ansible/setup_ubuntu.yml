@@ -9,7 +9,6 @@
         update_cache: true
         state: present
     - include: tasks/apt.yml
-    - include: tasks/cask.yml
     - include: tasks/custom-installations.yml
     - include: tasks/node.yml
     - include: tasks/python.yml
