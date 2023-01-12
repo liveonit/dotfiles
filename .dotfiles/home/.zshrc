@@ -102,9 +102,25 @@ source "$HOME/zsh/prompt.zsh"
 source "$HOME/zsh/history.zsh"
 source "$HOME/zsh/mappings.zsh"
 
+# Create base zk notebook
+if [ ! -d "$HOME/Notes/.zk" ]; then
+  mkdir -p $HOME/Notes
+  zk init --no-input $HOME/Notes
+  echo "rm = \"zk list --interactive --quiet --format path --delimiter0 $@ | xargs -0 rm -vf --\"" >> $HOME/Notes/.zk/config.toml
+  echo "ZK notebook successfully initialized 📒🚀"
+fi
+
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/ignaciobarreto/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ignaciobarreto/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ignaciobarreto/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ignaciobarreto/google-cloud-sdk/completion.zsh.inc'; fi
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+source <(kubectl completion zsh)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+alias kubeclr='sed -i "" -e "s/^current-context:.*$/current-context:/" ~/.kube/config'

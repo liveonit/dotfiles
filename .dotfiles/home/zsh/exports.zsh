@@ -122,3 +122,6 @@ export FS_UL="4m"
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_ITERM2=true
 export ZSH_TMUX_CONFIG=$HOME/.tmux.conf
+
+# Configure ZK notes directory
+export ZK_NOTEBOOK_DIR=~/Notes

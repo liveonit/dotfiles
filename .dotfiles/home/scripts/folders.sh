@@ -5,7 +5,6 @@
 # scripts. For example, to generate new tmux windows or sessions.
 {
     find ~ -mindepth 1 -maxdepth 1 -type d &
-    find ~/Documents -mindepth 1 -maxdepth 1 -type d &
-    find ~/Documents/projects -mindepth 1 -maxdepth 4 -type d ! -path '*/.git' ! -path '*/.git/*' ! -path '*/.node_modules' ! -path '*/.node_modules/*' | grep -E ".*/projects/*" &
+    find ~/projects -mindepth 1 -maxdepth 4 -type d ! -path '*/.git' ! -path '*/.git/*' ! -path '*/.node_modules' ! -path '*/.node_modules/*' | grep -E ".*/projects/*" &
     find ~/Documents/facu -mindepth 1 -maxdepth 4 -type d ! -path '*/.git' ! -path '*/.git/*' ! -path '*/.node_modules' ! -path '*/.node_modules/*' | grep -E ".*/facu/*" &
 } | sort -u | fzf-tmux -p 90%,90%

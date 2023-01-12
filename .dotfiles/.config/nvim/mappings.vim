@@ -40,20 +40,6 @@
   " Shortcut to save and quit the curren buffer.
   nnoremap <silent> <leader>wq :wq<CR>
 
-  " Simpler splits
-  nnoremap <silent> <leader>v :vsplit<CR>
-  nnoremap <slient> <leader>h :hsplit<CR>
-
-  " Shortcut to give execute permissions to a file
-  nnoremap <silent> <leader>cx :!chmod +x %<CR>
-
-  " Shortcut to source NVIM configuration
-  nnoremap <leader>sc :source ~/.config/nvim/init.vim<CR>
-
-
-  " Replay the last command change
-  nnoremap <leader>@ @:<CR>
-
   " Close split but keep buffer
   nnoremap <silent> <leader>qs <C-w>q<CR>
 
@@ -66,12 +52,17 @@
   " Save the current buffers and close vim
   nnoremap <silent> <leader>qw :xa<CR>
 
-  " Save everything except the current buffer
-  command! BufOnly execute '%bdelete|edit #|normal `"'
-  nnoremap <silent> <leader>q1 :BufOnly<CR>
+  " Toggle the maximization of a Window
+  nnoremap <silent> <leader>mh :TSBufToggle highlight<CR>
 
-  " Remap Q to quit and q to command
-  nnoremap Q q
+  " Shortcut to give execute permissions to a file
+  nnoremap <silent> <leader>cx :!chmod +x %<CR>
+
+  " Shortcut to source NVIM configuration
+  nnoremap <leader>sc :source ~/.config/nvim/init.vim<CR>
+
+  " Replay the last command change
+  nnoremap <leader>@ @:<CR>
 
   " Harpoon mappings
   nnoremap <silent> <C-h> :lua require("harpoon.mark").add_file()<CR>
@@ -163,10 +154,6 @@
 
   " Reset lualine.
   nnoremap <silent> <leader>/ :lua require("lualine").setup()<CR>
-
-  " Toggle the maximization of a Window
-  nnoremap <silent> <leader>mm :lua require"toggle".toggle_window()<CR>
-  nnoremap <silent> <leader>mh :TSBufToggle highlight<CR>
 
   " Open the Symbols Outline panel
   nnoremap <silent> <leader>o :SymbolsOutline<CR>

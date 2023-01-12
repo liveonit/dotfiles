@@ -8,5 +8,5 @@ stow -t ~ home
 
 # Install config files
 rm -rf ~/.config
-mkdir ~/.config && stow -t ~/.config config
+mkdir ~/.config && stow -t ~/.config .config
 
