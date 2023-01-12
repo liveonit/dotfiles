@@ -3,10 +3,10 @@
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError"})
-vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "DiagnosticSignWarn"})
-vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSignInfo"})
-vim.fn.sign_define("DiagnosticSignHint", {text = "", texthl = "DiagnosticSignHint"})
+vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 require("neo-tree").setup({
     default_source = "filesystem",
@@ -23,6 +23,15 @@ require("neo-tree").setup({
     open_files_in_last_window = true, -- false = open files in top left window
     log_level = "info", -- "trace", "debug", "info", "warn", "error", "fatal"
     log_to_file = false, -- true, false, "/path/to/file.log", use :NeoTreeLogs to show the file
+    event_handlers = {
+        {
+            event = "file_opened",
+            handler = function(file_path)
+                --auto close
+                require("neo-tree").close_all()
+            end
+        }
+    },
     default_component_configs = {
         indent = {
             indent_size = 2,
@@ -38,8 +47,8 @@ require("neo-tree").setup({
             expander_expanded = "",
             expander_highlight = "NeoTreeExpander"
         },
-        icon = {folder_closed = "", folder_open = "", folder_empty = "", default = "*"},
-        name = {trailing_slash = false, use_git_status_colors = true},
+        icon = { folder_closed = "", folder_open = "", folder_empty = "", default = "*" },
+        name = { trailing_slash = false, use_git_status_colors = true },
         git_status = {
             symbols = {
                 -- Change type
@@ -84,12 +93,14 @@ require("neo-tree").setup({
     },
     renderers = {
         directory = {
-            {"indent"}, {"icon"}, {"current_filter"}, {"name"}, {"clipboard"}, {"diagnostics", errors_only = true},
-            {"git_status"}
+            { "indent" }, { "icon" }, { "current_filter" }, { "name" }, { "clipboard" },
+            { "diagnostics", errors_only = true },
+            { "git_status" }
         },
         file = {
-            {"indent"}, {"icon"}, {"name", use_git_status_colors = true}, {"bufnr"}, {"clipboard"}, {"diagnostics"},
-            {"git_status"}
+            { "indent" }, { "icon" }, { "name", use_git_status_colors = true }, { "bufnr" }, { "clipboard" },
+            { "diagnostics" },
+            { "git_status" }
         }
     },
     nesting_rules = {},
@@ -171,7 +182,7 @@ require("neo-tree").setup({
     },
     buffers = {
         bind_to_cwd = false,
-        window = {mappings = {["-"] = "navigate_up", ["."] = "set_root", ["x"] = "buffer_delete"}}
+        window = { mappings = { ["-"] = "navigate_up", ["."] = "set_root", ["x"] = "buffer_delete" } }
     },
     git_status = {
         window = {
@@ -180,10 +191,23 @@ require("neo-tree").setup({
                 ["gu"] = "git_unstage_file",
                 ["ga"] = "git_add_file",
                 ["gr"] = "git_revert_file",
-                ["gc"] = "git_commit",
+                ["gc"] = "git_default",
                 ["gp"] = "git_push",
                 ["gg"] = "git_commit_and_push"
             }
         }
     }
+})
+
+
+vim.api.nvim_create_augroup("neotree", {})
+vim.api.nvim_create_autocmd("UIEnter", {
+    desc = "Open Neotree automatically",
+    group = "neotree",
+    callback = function()
+        if vim.fn.argc() == 0 then
+            vim.cmd "bd"
+            vim.cmd "Neotree"
+        end
+    end,
 })
