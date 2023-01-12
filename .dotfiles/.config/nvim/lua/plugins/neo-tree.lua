@@ -172,7 +172,7 @@ require("neo-tree").setup({
         search_limit = 50, -- max number of search results when using filters
         follow_current_file = true, -- This will find and focus the file in the active buffer every time
         -- the current file is changed while the tree is open.
-        hijack_netrw_behavior = "disabled", -- netrw disabled, opening a directory opens neo-tree
+        hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_current",-- netrw disabled, opening a directory opens within the
         -- window like netrw would, regardless of window.position
@@ -197,17 +197,4 @@ require("neo-tree").setup({
             }
         }
     }
-})
-
-
-vim.api.nvim_create_augroup("neotree", {})
-vim.api.nvim_create_autocmd("UIEnter", {
-    desc = "Open Neotree automatically",
-    group = "neotree",
-    callback = function()
-        if vim.fn.argc() == 0 then
-            vim.cmd "bd"
-            vim.cmd "Neotree"
-        end
-    end,
 })
