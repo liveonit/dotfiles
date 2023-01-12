@@ -64,7 +64,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # Switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
-
 # Add custom script stowed to ~/bin and ~/vntana_bin to path
 export PATH="$HOME/scripts:$PATH"
 
@@ -75,7 +74,6 @@ export FZF_DEFAULT_OPTS='--no-height'
 # nvm (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -101,15 +99,6 @@ source "$HOME/zsh/aliases.zsh"
 source "$HOME/zsh/prompt.zsh"
 source "$HOME/zsh/history.zsh"
 source "$HOME/zsh/mappings.zsh"
-
-# Create base zk notebook
-if [ ! -d "$HOME/Notes/.zk" ]; then
-  mkdir -p $HOME/Notes
-  zk init --no-input $HOME/Notes
-  echo "rm = \"zk list --interactive --quiet --format path --delimiter0 $@ | xargs -0 rm -vf --\"" >> $HOME/Notes/.zk/config.toml
-  echo "ZK notebook successfully initialized 📒🚀"
-fi
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/ignaciobarreto/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ignaciobarreto/google-cloud-sdk/path.zsh.inc'; fi

@@ -122,9 +122,6 @@
 
   " Configure Telescope
   nnoremap <silent> <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>
-  nnoremap <silent> <leader>fr <cmd>lua require'telescope.builtin'.buffers({ show_all_buffers = true })<CR>
-  nnoremap <silent> <leader>fg <cmd>Telescope git_files<CR>
-  nnoremap <silent> <leader>ex <cmd>Telescope file_browser<CR>
   nnoremap <silent> <leader>rg <cmd>lua require'telescope.builtin'.live_grep()<CR>
   nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
   nnoremap <silent> <leader>ft <cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>
