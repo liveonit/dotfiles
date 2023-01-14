@@ -30,4 +30,6 @@
     - bash-language-server
     - vim-language-server
     - neovim
+    - pyright
+    - dockerfile-language-server-nodejs
   become: false

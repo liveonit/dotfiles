@@ -48,6 +48,7 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'williamboman/nvim-lsp-installer'
 
 " Don't configure any plugin under this line.
 call plug#end()

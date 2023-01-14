@@ -10,19 +10,22 @@ function M.on_attach(client, bufnr)
     end
 
     -- Mappings.
-    local opts = {noremap = true, silent = true}
+    local opts = { noremap = true, silent = true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'go', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<space>ll', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', 'gp', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    buf_set_keymap('n', 'rn', vim.lsp.buf.rename, opts)
+    buf_set_keymap('n', 'ca', vim.lsp.buf.code_action, opts)
+
 
     -- Set some key bindings conditional on server capabilities
     if client.server_capabilities.document_formatting then
@@ -43,14 +46,14 @@ function M.on_attach(client, bufnr)
             autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
             autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
           augroup END
-      ]])
+      ]] )
     end
 
     -- lsp-signature
     require("lsp_signature").on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         hint_prefix = " ",
-        handler_opts = {border = "rounded"}
+        handler_opts = { border = "rounded" }
     }, bufnr)
 end
 
@@ -89,7 +92,7 @@ TSPrebuild.on_attach = function(client, bufnr)
         treesitter.set_query(lang, query_name, query_string)
     end
 
-    local prebuild_languages = {"typescript", "javascript", "tsx"}
+    local prebuild_languages = { "typescript", "javascript", "tsx" }
     for _, lang in ipairs(prebuild_languages) do
         prebuild_query(lang, "highlights")
         prebuild_query(lang, "injections")
@@ -103,25 +106,25 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.documentationFormat = {'markdown', 'plaintext'}
+capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
 capabilities.textDocument.completion.completionItem.preselectSupport = true
 capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
 capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
 capabilities.textDocument.completion.completionItem.deprecatedSupport = true
 capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-capabilities.textDocument.completion.completionItem.tagSupport = {valueSet = {1}}
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
 capabilities.textDocument.completion.completionItem.relativeSupport = {
-    properties = {'documentation', 'detail', 'additionalTextEdits'}
+    properties = { 'documentation', 'detail', 'additionalTextEdits' }
 }
 
 -- Borders --
 local border = {
-    {"╭", "FloatBorder"}, {"─", "FloatBorder"}, {"╮", "FloatBorder"}, {"│", "FloatBorder"},
-    {"╯", "FloatBorder"}, {"─", "FloatBorder"}, {"╰", "FloatBorder"}, {"│", "FloatBorder"}
+    { "╭", "FloatBorder" }, { "─", "FloatBorder" }, { "╮", "FloatBorder" }, { "│", "FloatBorder" },
+    { "╯", "FloatBorder" }, { "─", "FloatBorder" }, { "╰", "FloatBorder" }, { "│", "FloatBorder" }
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = border})
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = border})
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
     update_in_insert = false,
@@ -129,55 +132,68 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     virtual_text = true
 })
 update_in_insert = false, -- Ansible --
-nvim_lsp.ansiblels.setup {
-    cmd = {"ansible-language-server", "--stdio"},
-    filetypes = {"yaml", "yml", "yaml.ansible", "ansible"},
-    on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities
-}
+    nvim_lsp.ansiblels.setup {
+        cmd = { "ansible-language-server", "--stdio" },
+        filetypes = { "yaml", "yml", "yaml.ansible", "ansible" },
+        on_attach = M.on_attach,
+        flags = { debounce_text_changes = 150 },
+        capabilities = capabilities
+    }
+
+-- NVIM lsp installer --
+require("nvim-lsp-installer").setup({
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+})
+
 -- Bash --
 nvim_lsp.bashls.setup {
-    cmd = {"bash-language-server", "start"},
+    cmd = { "bash-language-server", "start" },
     on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150},
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities
 }
 -- CSS --
 nvim_lsp.cssls.setup {
-    cmd = {"vscode-css-language-server", "--stdio"},
+    cmd = { "vscode-css-language-server", "--stdio" },
     capabilities = capabilities,
     on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = { debounce_text_changes = 150 }
 }
 -- Docker --
 nvim_lsp.dockerls.setup {
-    cmd = {"docker-langserver", "--stdio"},
-    filetypes = {"Dockerfile", "dockerfile"},
+    cmd = { "docker-langserver", "--stdio" },
+    filetypes = { "Dockerfile", "dockerfile" },
     on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150},
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities
 }
 -- ESLint --
 nvim_lsp.eslint.setup {
-    cmd = {"vscode-eslint-language-server", "--stdio"},
+    cmd = { "vscode-eslint-language-server", "--stdio" },
     on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150},
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities
 }
 -- Go --
 nvim_lsp.gopls.setup {
-    cmd = {"gopls"},
+    cmd = { "gopls" },
     on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150},
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities
 }
 -- HTML --
 nvim_lsp.html.setup {
-    cmd = {"vscode-html-language-server", "--stdio"},
+    cmd = { "vscode-html-language-server", "--stdio" },
     capabilities = capabilities,
     on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = { debounce_text_changes = 150 }
 }
 
 -- Lua --
@@ -185,7 +201,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
     settings = {
         Lua = {
             runtime = {
@@ -196,49 +212,47 @@ require'lspconfig'.sumneko_lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'}
+                globals = { 'vim' }
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true)
             },
             -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {enable = false}
+            telemetry = { enable = false }
         }
     }
 }
+
 -- Typescript --
 nvim_lsp.tsserver.setup {
-    cmd = {"typescript-language-server", "--stdio"},
+    cmd = { "typescript-language-server", "--stdio" },
     capabilities = capabilities,
     -- on_attach = TSPrebuild.on_attach,
     on_attach = M.on_attach,
     on_init = function(client)
         client.config.flags.debounce_text_changes = 150
     end,
-    flags = {debounce_text_changes = 150}
+    flags = { debounce_text_changes = 150 }
 }
 
 -- Vim --
 nvim_lsp.vimls.setup {
-    cmd = {"vim-language-server", "--stdio"},
+    cmd = { "vim-language-server", "--stdio" },
     capabilities = capabilities,
     on_attach = M.on_attach,
-    flags = {debounce_text_changes = 150}
+    flags = { debounce_text_changes = 150 }
 }
 
 -- Python --
-nvim_lsp.pyright.setup {cmd = {"pyright-langserver", "--stdio"}, capabilities = capabilities}
-
--- Solidity --
-nvim_lsp.solang.setup {}
+nvim_lsp.pyright.setup { cmd = { "pyright-langserver", "--stdio" }, capabilities = capabilities }
 
 -- EFM Lang server --
 nvim_lsp.efm.setup {
-    init_options = {documentFormatting = true},
-    filetypes = {"lua"},
+    init_options = { documentFormatting = true },
+    filetypes = { "lua" },
     settings = {
-        rootMarkers = {".git/"},
+        rootMarkers = { ".git/" },
         languages = {
             lua = {
                 {
@@ -251,27 +265,31 @@ nvim_lsp.efm.setup {
 }
 
 -- Terraform --
-nvim_lsp.terraformls.setup {cmd = {"terraform-ls", "serve"}}
+nvim_lsp.terraformls.setup { cmd = { "terraform-ls", "serve" } }
 
 -- Rust --
 nvim_lsp.rust_analyzer.setup({
     on_attach = on_attach,
     settings = {
         ["rust-analyzer"] = {
-            assist = {importGranularity = "module", importPrefix = "self"},
-            cargo = {loadOutDirsFromCheck = true},
-            procMacro = {enable = true}
+            assist = { importGranularity = "module", importPrefix = "self" },
+            cargo = { loadOutDirsFromCheck = true },
+            procMacro = { enable = true }
         }
     }
 })
 
+nvim_lsp.grammarly.setup {
+    filetypes = { "html", "markdown", "markdown.pandoc", "text", "txt" }
+}
+
 -- Change diagnostics signs
-vim.fn.sign_define("DiagnosticSignError", {text = "", texthl = "DiagnosticSignError"})
-vim.fn.sign_define("DiagnosticSignWarn", {text = "", texthl = "DiagnosticSignWarn"})
-vim.fn.sign_define("DiagnosticSignInformation", {text = "", texthl = "DiagnosticSignInfo"})
-vim.fn.sign_define("DiagnosticSignHint", {text = "", texthl = "DiagnosticSignHint"})
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 -- global config for diagnostic
-vim.diagnostic.config({underline = false, virtual_text = true, signs = true, severity_sort = true})
+vim.diagnostic.config({ underline = false, virtual_text = true, signs = true, severity_sort = true })
 
 return M
