@@ -126,8 +126,6 @@
   nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
   nnoremap <silent> <leader>ft <cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>
   nnoremap <silent> <leader>?  <cmd>Telescope current_buffer_fuzzy_find<CR>
-  nnoremap <silent> <leader>fn <cmd>lua require'telescope.builtin'.find_files({ search_dirs = { "~/.notes" }, hidden = true})<CR>
-  nnoremap <silent> <leader>rn <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '-g', '!.git'}, search_dirs = {"~/.notes"}, hidden = true})<CR>
 
   " Apply quotes under the selected word
   nnoremap <silent> <leader>;q bi"<ESC>ea"<ESC>

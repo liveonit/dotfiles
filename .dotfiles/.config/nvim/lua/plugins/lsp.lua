@@ -5,6 +5,7 @@ local M = {}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 function M.on_attach(client, bufnr)
+
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -12,27 +13,25 @@ function M.on_attach(client, bufnr)
     -- Mappings.
     local opts = { noremap = true, silent = true }
 
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'go', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>ll', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', 'gh', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', 'gp', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-    buf_set_keymap('n', 'rn', vim.lsp.buf.rename, opts)
-    buf_set_keymap('n', 'ca', vim.lsp.buf.code_action, opts)
-
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
     -- Set some key bindings conditional on server capabilities
     if client.server_capabilities.document_formatting then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+        vim.keymap.set("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
     end
     if client.server_capabilities.document_range_formatting then
-        buf_set_keymap("x", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR><ESC>", opts)
+        vim.keymap.set("x", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR><ESC>", opts)
     end
 
     -- The blow command will highlight the current variable and its usages in the buffer
@@ -131,14 +130,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     signs = true,
     virtual_text = true
 })
-update_in_insert = false, -- Ansible --
-    nvim_lsp.ansiblels.setup {
-        cmd = { "ansible-language-server", "--stdio" },
-        filetypes = { "yaml", "yml", "yaml.ansible", "ansible" },
-        on_attach = M.on_attach,
-        flags = { debounce_text_changes = 150 },
-        capabilities = capabilities
-    }
 
 -- NVIM lsp installer --
 require("nvim-lsp-installer").setup({
@@ -152,10 +143,20 @@ require("nvim-lsp-installer").setup({
     }
 })
 
+-- Ansible --
+nvim_lsp.ansiblels.setup {
+    cmd = { "ansible-language-server", "--stdio" },
+    filetypes = { "yaml", "yml", "yaml.ansible", "ansible" },
+    on_attach = M.on_attach,
+    flags = { debounce_text_changes = 150 },
+    capabilities = capabilities
+}
+
 -- Bash --
 nvim_lsp.bashls.setup {
     cmd = { "bash-language-server", "start" },
     on_attach = M.on_attach,
+    filetypes = { "sh" },
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities
 }
@@ -202,6 +203,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 nvim_lsp.sumneko_lua.setup {
+    on_attach = M.on_attach,
     settings = {
         Lua = {
             runtime = {
@@ -245,10 +247,15 @@ nvim_lsp.vimls.setup {
 }
 
 -- Python --
-nvim_lsp.pyright.setup { cmd = { "pyright-langserver", "--stdio" }, capabilities = capabilities }
+nvim_lsp.pyright.setup {
+    on_attach = M.on_attach,
+    cmd = { "pyright-langserver", "--stdio" },
+    capabilities = capabilities
+}
 
 -- EFM Lang server --
 nvim_lsp.efm.setup {
+    on_attach = M.on_attach,
     init_options = { documentFormatting = true },
     filetypes = { "lua" },
     settings = {
@@ -265,11 +272,14 @@ nvim_lsp.efm.setup {
 }
 
 -- Terraform --
-nvim_lsp.terraformls.setup { cmd = { "terraform-ls", "serve" } }
+nvim_lsp.terraformls.setup {
+    on_attach = M.on_attach,
+    cmd = { "terraform-ls", "serve" }
+}
 
 -- Rust --
 nvim_lsp.rust_analyzer.setup({
-    on_attach = on_attach,
+    on_attach = M.on_attach,
     settings = {
         ["rust-analyzer"] = {
             assist = { importGranularity = "module", importPrefix = "self" },
@@ -280,6 +290,7 @@ nvim_lsp.rust_analyzer.setup({
 })
 
 nvim_lsp.grammarly.setup {
+    on_attach = M.on_attach,
     filetypes = { "html", "markdown", "markdown.pandoc", "text", "txt" }
 }
 

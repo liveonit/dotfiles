@@ -71,4 +71,6 @@
     - fd
     - vivid
     - zk
-    - ltex-ls
+    - colima
+    - derailed/k9s/k9s
+

@@ -3,7 +3,7 @@ local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 local lspkind = require 'lspkind'
-local source_mapping = {buffer = "[BUF]", nvim_lsp = "[LSP]", nvim_lua = "[LUA]", path = "[PATH]", vsnip = "[SNIP]"}
+local source_mapping = { buffer = "[BUF]", nvim_lsp = "[LSP]", nvim_lua = "[LUA]", path = "[PATH]", vsnip = "[SNIP]" }
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -20,15 +20,15 @@ cmp.setup {
             require("luasnip").lsp_expand(args.body)
         end
     },
-    completion = {keyword_length = 4, autocomplete = false},
+    completion = { keyword_length = 4, autocomplete = false },
     mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 'c'}),
-        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 'c'}),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+        ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+        -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.close(),
-        ['<C-y>'] = cmp.mapping.confirm {behavior = cmp.ConfirmBehavior.Insert, select = true},
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+        ['<C-y>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -39,7 +39,7 @@ cmp.setup {
             else
                 fallback()
             end
-        end, {"i", "s"}),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -48,13 +48,13 @@ cmp.setup {
             else
                 fallback()
             end
-        end, {"i", "s"})
+        end, { "i", "s" })
     }),
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'nvim_lua'}, {name = "luasnip"}, {name = 'path'},
-        {name = 'buffer', default = 5, keyword_length = 5}
+        { name = 'nvim_lsp' }, { name = 'nvim_lua' }, { name = "luasnip" }, { name = 'path' },
+        { name = 'buffer', default = 5, keyword_length = 5 }
     }),
-    experimental = {native_menu = false, ghost_text = true},
+    experimental = { native_menu = false, ghost_text = true },
     formatting = {
         format = function(entry, vim_item)
             vim_item.kind = lspkind.presets.default[vim_item.kind]
@@ -64,26 +64,26 @@ cmp.setup {
             return vim_item
         end
     },
-    window = {documentation = ""}
+    window = { documentation = "" }
 }
 
 -- Use buffer source for `/`.
-cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+cmp.setup.cmdline('/', { sources = { { name = 'buffer' } } })
 
 -- User cmdline & path source for `:`
-cmp.setup.cmdline(':', {sources = cmp.config.sources({{name = 'path'}, {name = 'cmdline'}})})
+cmp.setup.cmdline(':', { sources = cmp.config.sources({ { name = 'path' }, { name = 'cmdline' } }) })
 
 -- Configure autopairs
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
 -- Use cmp as a flexible omnifunc manager
 _G.vimrc = _G.vimrc or {}
 _G.vimrc.cmp = _G.vimrc.cmp or {}
 _G.vimrc.cmp.lsp = function()
-    cmp.complete({config = {sources = {{name = 'nvim_lsp'}}}})
+    cmp.complete({ config = { sources = { { name = 'nvim_lsp' } } } })
 end
 _G.vimrc.cmp.snippet = function()
-    cmp.complete({config = {sources = {{name = 'vsnip'}}}})
+    cmp.complete({ config = { sources = { { name = 'vsnip' } } } })
 end
 
 vim.cmd([[
