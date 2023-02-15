@@ -79,7 +79,7 @@ alias yarni='yarn_install_centralized.sh'
 # Vim
 if type nvim >/dev/null 2>&1; then
   alias vim='nvim'
-  alias v='vim .'
+  alias v="vim $PWD"
 fi
 
 # Tmux

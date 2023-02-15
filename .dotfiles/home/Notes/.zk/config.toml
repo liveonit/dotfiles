@@ -15,10 +15,10 @@
 #default-title = "Untitled"
 
 # Template used to generate a note's filename, without extension.
-#filename = "{{id}}"
+filename = "{{id}}-{{format-date now}}-{{slug title}}"
 
 # The file extension used for the notes.
-#extension = "md"
+extension = "md"
 
 # Template used to generate a note's content.
 # If not an absolute path, it is relative to .zk/templates/
@@ -52,29 +52,58 @@ template = "default.md"
 # A dictionary of variables you can use for any custom values when generating
 # new notes. They are accessible in templates with {{extra.<key>}}
 [extra]
+author-email = "ibarretorey@gmail.com"
+author-name = "Ignacio Barreto"
 
-#key = "value"
+[group.general]
+paths = ["general/*"]
 
+[group.daily]
+# Directories listed here will automatically use this group when creating notes.
+paths = ["journal/daily"]
 
-# GROUP OVERRIDES
-#
-# You can override global settings from [note] and [extra] for a particular
-# group of notes by declaring a [group."<name>"] section.
-#
-# Specify the list of directories which will automatically belong to the group
-# with the optional `paths` property.
-#
-# Omitting `paths` is equivalent to providing a single path equal to the name of
-# the group. This can be useful to quickly declare a group by the name of the
-# directory it applies to.
+[group.daily.note]
+# %Y-%m-%d is actually the default format, so you could use {{format-date now}} instead.
+filename = "daily-{{format-date now '%Y-%m-%d'}}"
+extension = "md"
+template = "daily.md"
 
-#[group."<NAME>"]
-#paths = ["<DIR1>", "<DIR2>"]
-#[group."<NAME>".note]
-#filename = "{{format-date now}}"
-#[group."<NAME>".extra]
-#key = "value"
+[group.weekly]
+paths = ["journal/weekly"]
 
+[group.weekly.note]
+filename = "weekly-{{format-date now '%Y-%m-%d'}}"
+extension = "md"
+template = "weekly.md"
+
+[group.monthly]
+paths = ["journal/monthly"]
+
+[group.monthly.note]
+filename = "monthly-{{format-date now '%Y-%m'}}"
+extension = "md"
+template = "monthly.md"
+
+[group.dev]
+paths = ["dev/*"]
+
+[group.dev.ts]
+paths = ["dev/typescript"]
+
+[group.dev.general]
+paths = ["dev/general"]
+
+[group.dev.arch]
+paths = ["dev/architecture"]
+
+[group.dev.cc]
+paths = ["dev/celan_code"]
+
+[group.dev.dba]
+paths = ["dev/dba"]
+
+[group.dev.ads]
+paths = ["dev/algorithms_and_data_sctuctures"]
 
 # MARKDOWN SETTINGS
 [format.markdown]
@@ -103,7 +132,7 @@ multiword-tags = false
 
 # Default editor used to open notes. When not set, the EDITOR or VISUAL
 # environment variables are used.
-#editor = "vim"
+editor = "nvim"
 
 # Pager used to scroll through long output. If you want to disable paging
 # altogether, set it to an empty string "".
@@ -114,7 +143,7 @@ multiword-tags = false
 
 # bat is a great tool to render Markdown document with syntax highlighting.
 #https://github.com/sharkdp/bat
-#fzf-preview = "bat -p --color always {-1}"
+fzf-preview = "bat -p --color always {-1}"
 
 
 # LSP
@@ -196,3 +225,15 @@ hist = "zk list --format path --delimiter0 --quiet $@ | xargs -t -0 git log --pa
 # Edit this configuration file.
 #conf = '$EDITOR "$ZK_NOTEBOOK_DIR/.zk/config.toml"'
 rm = "zk list --interactive --quiet --format path --delimiter0  | xargs -0 rm -vf --"
+
+daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/daily"'
+weekly = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/weekly"'
+monthly = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/monthly"'
+
+dev_ts = 'zk new --no-input "$ZK_NOTEBOOK_DIR/dev/typescript"'
+dev_gen = 'zk new --no-input "$ZK_NOTEBOOK_DIR/dev/general"'
+dev_arch = 'zk new --no-input "$ZK_NOTEBOOK_DIR/dev/architecture"'
+dev_cc = 'zk new --no-input "$ZK_NOTEBOOK_DIR/dev/clean_code"'
+dev_dba = 'zk new --no-input "$ZK_NOTEBOOK_DIR/dev/dba"´'
+dev_ads = 'zk new --no-input "$ZK_NOTEBOOK_DIR/dev/algorithms_and_data_sctuctures"'
+

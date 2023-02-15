@@ -124,4 +124,4 @@ export ZSH_TMUX_ITERM2=true
 export ZSH_TMUX_CONFIG=$HOME/.tmux.conf
 
 # Configure ZK notes directory
-export ZK_NOTEBOOK_DIR=~/Notes
+export ZK_NOTEBOOK_DIR=~/dotfiles/.dotfiles/home/Notes
