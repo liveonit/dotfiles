@@ -49,6 +49,7 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'gen740/SmoothCursor.nvim'
 
 " Don't configure any plugin under this line.
 call plug#end()

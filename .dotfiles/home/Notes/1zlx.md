@@ -376,13 +376,6 @@ Cool, right?
 
 A faster way to move around up is to combine counts with `j` and `k`. You can enable relative line numbers to get an idea of how many lines you need to jump up, or down (You can find it in user settings under _line numbers_).
 
-## Moving Semantically
-
-In addition to the previous motions which don’t really take into account the meaning of your code, Vim offers additional bindings that take your code semantics into consideration:
-
-- Use `gd` to **g**o to **d**efinition of whatever is under your cursor.
-- Use `gf` to **g**o to a **f**ile in an import.
-
 ## And Some More Nifty Core Motions
 
 These are yet more motions that can come in handy from time to time:

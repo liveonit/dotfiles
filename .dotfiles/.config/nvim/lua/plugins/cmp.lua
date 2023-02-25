@@ -64,7 +64,9 @@ cmp.setup {
             return vim_item
         end
     },
-    window = { documentation = "" }
+    window = {
+        documentation = cmp.config.window.bordered()
+    }
 }
 
 -- Use buffer source for `/`.

@@ -20,7 +20,7 @@ set conceallevel=0                      " Makes `` visible on markdown files.
 set confirm                             " Makes it easier to
 set exrc                                " Source coniguration every time I enter a new project
 set fileencoding=utf-8                  " Use utf-8 as encoding type for files.
-set guicursor=                          " Set the guicursor to always be a block
+set guicursor+=
 set hidden                              " Keeps any buffer available
 set hlsearch                            " Highlight search
 set incsearch                           " Incremental search
@@ -102,8 +102,8 @@ augroup GUX
   " Auto format Rust files with rustfmt
   autocmd BufWritePost *.rs Silent rustfmt %
   " Use 4 spaces for tabs on certain files.
-  autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd FileType lua setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType lua setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
   " Reload ultisnip snippets stored in *.snippets folders
   autocmd BufWritePost *.snippets :CmpUltisnipsReloadSnippets
   " Avoid opening the diagnostics on a quickfix list
