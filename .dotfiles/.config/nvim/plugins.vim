@@ -50,6 +50,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'gen740/SmoothCursor.nvim'
+Plug 'RRethy/vim-illuminate'
+Plug 'jackMort/ChatGPT.nvim'
 
 " Don't configure any plugin under this line.
 call plug#end()

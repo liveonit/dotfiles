@@ -5,3 +5,4 @@ plugged
 *.sh.zwc
 .antigen
 ansible/*-log.*
+*secret*

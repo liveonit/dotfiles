@@ -28,3 +28,4 @@ To get all the `iterm2` configuration, after the installation it's necessary to 
 ![Iterm select profile image](./docs/images/itermSelectProfile.png)
 
 As plus you can open VIM and at the first start it should load nvim-treesitter languages and everything should be working fine, if you have some problem you can execute mannually the `:PlugInstall` (to install plugins) command or `:healthcheck` (to check the vim status).
+

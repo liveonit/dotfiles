@@ -108,17 +108,17 @@
   vnoremap <silent> > >gv
 
   " Disable arrow keys
-  noremap <up> <nop>
-  noremap <right> <nop>
-  noremap <down> <nop>
-  noremap <left> <nop>
+  " noremap <up> <nop>
+  " noremap <right> <nop>
+  " noremap <down> <nop>
+  " noremap <left> <nop>
 
   " Move C-u to C-j
   " nnoremap <C-j> <C-d>zz
-  nnoremap <C-j> <cmd>lua require'neoscroll'.scroll(12, true, 150)<CR>
-  nnoremap <C-k> <cmd>lua require'neoscroll'.scroll(-12, true, 150)<CR>
-  vnoremap <C-j> <cmd>lua require'neoscroll'.scroll(12, true, 150)<CR>
-  vnoremap <C-k> <cmd>lua require'neoscroll'.scroll(-12, true, 150)<CR>
+  nnoremap <C-j> <cmd>lua require'neoscroll'.scroll(30, true, 150)<CR>
+  nnoremap <C-k> <cmd>lua require'neoscroll'.scroll(-30, true, 150)<CR>
+  vnoremap <C-j> <cmd>lua require'neoscroll'.scroll(30, true, 150)<CR>
+  vnoremap <C-k> <cmd>lua require'neoscroll'.scroll(-30, true, 150)<CR>
 
   " Configure Telescope
   nnoremap <silent> <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>
@@ -141,8 +141,8 @@
   nnoremap <silent> <leader>cc m`lb~``
 
   " Move between illuminated words.
-  nnoremap <silent> <leader>n :lua require("illuminate").next_reference{wrap=true}<CR>
-  nnoremap <silent> <leader>p :lua require("illuminate").next_reference{reverse=true,wrap=true}<CR>
+  nnoremap <silent> <leader>n :lua require("illuminate").goto_next_reference{wrap=true}<CR>
+  nnoremap <silent> <leader>p :lua require("illuminate").goto_prev_reference{wrap=true}<CR>
 
   " Toggle concealing characters.
   nnoremap <silent> <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>

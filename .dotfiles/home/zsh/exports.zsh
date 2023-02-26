@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+ROOT=$(dirname $(readlink -f $(which "$0")))
+
+if [ -f "$ROOT/secrets.zsh" ]; then
+  source "$ROOT/secrets.zsh"
+fi
+
 # Configure default ansible config file
 export ANSIBLE_CONFIG=~/.ansible.cfg
 
@@ -125,3 +131,5 @@ export ZSH_TMUX_CONFIG=$HOME/.tmux.conf
 
 # Configure ZK notes directory
 export ZK_NOTEBOOK_DIR=~/dotfiles/.dotfiles/home/Notes
+
+
