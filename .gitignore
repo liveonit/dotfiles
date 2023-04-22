@@ -6,3 +6,4 @@ plugged
 .antigen
 ansible/*-log.*
 *secret*
+*.log

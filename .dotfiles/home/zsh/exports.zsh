@@ -31,6 +31,7 @@ export PATH=$PATH:${HOME}/.local/bin
 # Fix perl locale issue
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Fix OpenSSL link issue
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
@@ -132,4 +133,5 @@ export ZSH_TMUX_CONFIG=$HOME/.tmux.conf
 # Configure ZK notes directory
 export ZK_NOTEBOOK_DIR=~/dotfiles/.dotfiles/home/Notes
 
-
+# Set default JAVA runtime version
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk@11/11.0.18/libexec/openjdk.jdk/Contents/Home

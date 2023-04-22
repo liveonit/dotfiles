@@ -11,6 +11,6 @@ while IFS=";" read -u3 var val; do
       fileLines=("$val" "${fileLines[@]}")
 done 3<$HISTFILE
 
-command=$(printf "%s\n" "${fileLines[@]}" | fzf-tmux -p 80%,60% --reverse)
+command=$(printf "%s\n" "${fileLines[@]}" | fzf-tmux -p 80%,60%)
 
 echo "$command"

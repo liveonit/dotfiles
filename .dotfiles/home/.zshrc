@@ -88,10 +88,10 @@ export BAT_PAGER="less -R"
 export PATH="~/.dotfiles/scripts:$PATH"
 
 # Configure aws autocomplete
-export PATH=/usr/local/bin/aws_completer:$PATH
+export PATH=/Users/ignaciobarreto/.pyenv/shims/aws_completer:$PATH
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C '/Users/ignaciobarreto/.pyenv/shims/aws_completer' aws
 
 # Normal files to source
 source "$HOME/zsh/exports.zsh"
@@ -113,3 +113,4 @@ source <(kubectl completion zsh)
 alias k=kubectl
 complete -o default -F __start_kubectl k
 alias kubeclr='sed -i "" -e "s/^current-context:.*$/current-context:/" ~/.kube/config'
+export PATH=/Users/ignaciobarreto/.meteor:$PATH
