@@ -4,13 +4,18 @@ name: distritv
 root: ~/projects/distriTV
 on_project_start: docker-compose up -d
 windows:
-  - editor:
+  - api:
+      layout: even-horizontal
+      panes:
+        - vim services/api
+        - docker compose logs -f api
+  - front:
       layout: even-horizontal
       panes:
         - vim services/dashboard
-        - vim services/api
-  - logs:
+        - docker compose logs -f dashboard
+  - term:
       layout: even-horizontal
       panes:
-        - docker compose logs -f api
-        - docker compose logs -f dashboard
+        - zsh
+        - gitui

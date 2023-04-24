@@ -1,9 +1,20 @@
+# /Users/ignaciobarreto/.config/tmuxinator/dotfiles.yml
+
 name: dotfiles
-root: ~/dotfiles/
+root: ~/dotfiles
 windows:
-  - Vim: vim ~/dotfiles
-  - Dotfiles: clear
-  - Projects: cd ~/projects; clear
-  - Dektop: cd ~/Desktop; clear
-  - Downloads: cd ~/Downloads; clear
-  - Terminal: cd; clear
+  - dotfiles:
+      layout: even-horizontal
+      panes:
+        - vim
+        - vim .dotfiles/.config/nvim
+  - zsh:
+      layout: even-horizontal
+      panes:
+        - vim .dotfiles/home
+        - vim .dotfiles/home/scripts
+  - term:
+      layout: even-horizontal
+      panes:
+        - zsh
+        - gitui
