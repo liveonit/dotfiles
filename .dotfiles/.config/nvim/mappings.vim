@@ -127,6 +127,11 @@
   nnoremap <silent> <leader>ft <cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>
   nnoremap <silent> <leader>?  <cmd>Telescope current_buffer_fuzzy_find<CR>
 
+  " Find in specific folders or files with ripgrep
+  " https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+  nnoremap <silent> <leader>fs <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>
+
+
   " Apply quotes under the selected word
   nnoremap <silent> <leader>;q bi"<ESC>ea"<ESC>
 
@@ -211,3 +216,10 @@ nnoremap <leader><leader>s :lua require("luasnip.loaders.from_lua").load({paths 
 
 " Replace u in visual mode to be the same as y
 vnoremap u y
+
+" Trouble mappings
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>

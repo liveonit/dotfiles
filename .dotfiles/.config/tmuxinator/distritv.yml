@@ -7,12 +7,12 @@ windows:
   - api:
       layout: even-horizontal
       panes:
-        - vim services/api
+        - cd services/api && vim
         - docker compose logs -f api
   - front:
       layout: even-horizontal
       panes:
-        - vim services/dashboard
+        - cd services/dashboard && vim
         - docker compose logs -f dashboard
   - term:
       layout: even-horizontal
