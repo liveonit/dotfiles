@@ -1,22 +1,6 @@
   " Change the map leader.
   let mapleader=" "
 
-  " Git commands
-  nnoremap <silent> <leader>gs :Git<CR>
-  nnoremap <silent> <leader>gp :Gitsigns preview_hunk<CR>
-
-  " Movement commands
-  nnoremap <silent> <leader>gb :BufferLinePick<CR>
-  nnoremap <silent> <leader>b1 :BufferLineGoToBuffer 1<CR>
-  nnoremap <silent> <leader>b2 :BufferLineGoToBuffer 2<CR>
-  nnoremap <silent> <leader>b3 :BufferLineGoToBuffer 3<CR>
-  nnoremap <silent> <leader>b4 :BufferLineGoToBuffer 4<CR>
-  nnoremap <silent> <leader>b5 :BufferLineGoToBuffer 5<CR>
-  nnoremap <silent> <leader>b6 :BufferLineGoToBuffer 6<CR>
-  nnoremap <silent> <leader>b7 :BufferLineGoToBuffer 7<CR>
-  nnoremap <silent> <leader>b8 :BufferLineGoToBuffer 8<CR>
-  nnoremap <silent> <leader>b9 :BufferLineGoToBuffer 9<CR>
-
   " Switch to normal mode inside terminal mode
   tnoremap <silent> jk <C-\><C-n>
 
@@ -82,10 +66,6 @@
   " Select and copy the current line.
   nnoremap y y$
 
-  " Keep search centered
-  nnoremap <silent>n nzzzv
-  nnoremap <silent>N Nzzzv
-
   " Undo break points
   inoremap , ,<C-g>u
   inoremap . .<C-g>u
@@ -126,7 +106,6 @@
   nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
   nnoremap <silent> <leader>ft <cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>
   nnoremap <silent> <leader>?  <cmd>Telescope current_buffer_fuzzy_find<CR>
-
   " Find in specific folders or files with ripgrep
   " https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
   nnoremap <silent> <leader>fs <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>
@@ -141,9 +120,6 @@
   " Get current path
   nnoremap <silent> <leader>pwd :let @+ = expand("%:p")<CR>\|:echo expand("%:p")<CR>
   nnoremap <silent> <leader>zf v%zf
-
-  " Capitalize the first letter of the word under the cursor.
-  nnoremap <silent> <leader>cc m`lb~``
 
   " Move between illuminated words.
   nnoremap <silent> <leader>nn :lua require("illuminate").goto_next_reference{wrap=true}<CR>
@@ -223,3 +199,5 @@ nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
 nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+
+nnoremap <silent> <leader>h  <cmd>WhichKey<cr>

@@ -51,7 +51,7 @@ set smartindent
 set splitbelow                          " Split panes to the bottom
 set splitright                          " Split panes to the right
 set termguicolors                       " Use terminal GUI colors.
-set timeoutlen=1000                     " Update the time between multiple key presses
+set timeoutlen=500                     " Update the time between multiple key presses
 set ttyfast                             " Speed up scrolling on vim
 set undodir=~/.vim/undodir              " Sets the location of the undo dir.
 set undofile                            " Used with plugins. Need for research.
@@ -68,6 +68,7 @@ set shiftwidth=2                        " Visual mode indentation (match tabstop
 set foldmethod=expr                     " Kind of fold used for the current window.
 set foldexpr=nvim_treesitter#foldexpr() " Use Treesitter to handle folds
 
+set notimeout
 " Use a line cursor within insert mode and a block cursor everywhere else.
 "
 " Using iTerm2? Go-to preferences / profile / colors and disable the smart bar
