@@ -22,4 +22,5 @@
     pip3 install awscli
     pip3 install youtube-dl
     pip3 install rich
+    pip3 install ansible-lint
   become: false

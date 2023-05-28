@@ -50,8 +50,7 @@ alias ghi='git hist'
 alias gho='$(git remote -v | grep github | sed -e "s/.*git\:\/\/\([a-z]\.\)*/\1/" -e "s/\.git$//g" -e "s/.*@\(.*\)$/\1/g" | tr ":" "/" | tr -d "\011" | sed -e "s/^/open http:\/\//g")'
 alias gl='git pull'
 alias glr='git pull --rebase'
-alias glu='git config user.name "Stefan Imhoff" && git config user.email "stefan@imhoff.name";'
-alias glx='git config user.name "Stefan Imhoff" && git config user.email "stefan.imhoff@xing.com";'
+alias gliveonit='git config user.name "liveonit" && git config user.email "ibarretorey@gmail.com";'
 alias gmb='git merge-base master HEAD'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
@@ -73,8 +72,6 @@ alias gu='git up'
 alias gw='git whatchanged'
 alias gwp='git whatchanged -p'
 alias lg='lazygit'
-alias npmi='npm_install_centralized.sh'
-alias yarni='yarn_install_centralized.sh'
 
 # Vim
 if type nvim >/dev/null 2>&1; then

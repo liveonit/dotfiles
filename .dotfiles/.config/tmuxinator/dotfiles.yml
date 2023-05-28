@@ -17,4 +17,4 @@ windows:
       layout: even-horizontal
       panes:
         - zsh
-        - gitui
+        - lg

@@ -55,6 +55,7 @@ Plug 'RRethy/vim-illuminate'
 Plug 'jackMort/ChatGPT.nvim'
 " https://github.com/folke/which-key.nvim
 Plug 'folke/which-key.nvim'
+Plug 'f-person/git-blame.nvim'
 
 " Don't configure any plugin under this line.
 call plug#end()
