@@ -39,12 +39,12 @@
       - snapd
     state: present
 
-- name: "Check if docker.gpg"
+- name: Check if docker.gpg
   stat:
     path: "/etc/apt/keyrings/docker.gpg"
   register: result
 
-- name: add docker respository
+- name: Add docker respository
   shell: |
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -57,13 +57,13 @@
   ansible.builtin.apt_repository:
     repo: ppa:neovim-ppa/unstable
 
-- name: add mongo repository
+- name: Add mongo repository
   shell: |
     wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
     touch /etc/apt/sources.list.d/mongodb-org-5.0.list
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 
-- name: add terraform apt repository
+- name: Add terraform apt repository
   shell: |
     wget -O- https://apt.releases.hashicorp.com/gpg | \
       gpg --dearmor | \
@@ -75,13 +75,13 @@
       https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
       sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-- name: add helm repository
+- name: Add helm repository
   shell: |
     curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
     sudo apt-get install apt-transport-https --yes
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 
-- name: add kubectl apt repository
+- name: Add kubectl apt repository
   shell: |
     sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
     echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list

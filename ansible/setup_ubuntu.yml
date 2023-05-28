@@ -5,9 +5,10 @@
     HOME: "/home/{{ ansible_user }}"
   tasks:
     - name: Update Apt
-      apt:
-        update_cache: true
-        state: present
+      become: yes
+      user:
+        name: "{{ ansible_user }}"
+        shell: /usr/bin/zsh
     - include: tasks/apt.yml
     - include: tasks/custom-installations.yml
     - include: tasks/node.yml
