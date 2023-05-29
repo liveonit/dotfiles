@@ -1,5 +1,7 @@
 - name: Python install base packages
-  shell: |
+  args:
+    executable: /bin/zsh
+  ansible.builtin.shell: |
     [ ! -d "$(pyenv root)/plugins/pyenv-virtualenv" ] && git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
     if which pyenv-virtualenv-init >/dev/null; then eval "$(pyenv virtualenv-init -)"; fi
     export PYENV_ROOT="$HOME/.pyenv"
