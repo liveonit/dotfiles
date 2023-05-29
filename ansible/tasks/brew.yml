@@ -1,9 +1,9 @@
 - name: Update and upgrade homebrew packages
   community.general.homebrew:
-    update_homebrew: yes
-    upgrade_all: yes
+    update_homebrew: true
+    upgrade_all: true
 
-- name: Install base homebrew packages
+- name: Install base/common homebrew packages
   community.general.homebrew:
     name: "{{ item }}"
     state: present
@@ -29,7 +29,6 @@
     - neovim # NeoVim
     - python # Interpreted, interactive, object-oriented programming language
     - readline # Library for command-line editing
-    - reattach-to-user-namespace # Reattach process (e.g., tmux) to background
     - rsync # Utility that provides fast incremental file transfer
     - ssh-copy-id # Add a public key to a remote machine's authorized_keys file
     - tmux # Terminal multiplexer
@@ -71,6 +70,13 @@
     - fd
     - vivid
     - zk
-    - colima
     - derailed/k9s/k9s
     - lazygit
+
+- name: Install base/macos homebrew packages
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - reattach-to-user-namespace # Reattach process (e.g., tmux) to background
+  when: ansible_distribution == 'MacOSX'

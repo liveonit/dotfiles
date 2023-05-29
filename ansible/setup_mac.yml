@@ -1,21 +1,30 @@
 - hosts: localhost
-  become: yes
+  name: Setup MacOS
+  become: true
   remote_user: ignaciobarreto
   environment:
     HOME: "/users/{{ ansible_user }}"
   tasks:
-    - include: tasks/brew.yml
-      become: no
-    - include: tasks/cask.yml
-      become: no
-    - include: tasks/custom-installations.yml
-    - include: tasks/node.yml
-    - include: tasks/python.yml
-    - include: tasks/cargo.yml
-    - include: tasks/zsh-setup.yml
-    - include: tasks/dotfiles.yml
-    - name: change user shell to zsh
-      become: yes
-      user:
+    - name: Install brew applications
+      ansible.builtin.include_tasks: tasks/brew.yml
+      become: false
+    - name: Install cask applications
+      ansible.builtin.include_tasks: tasks/cask.yml
+      become: false
+    - name: Run custom installations
+      ansible.builtin.include_tasks: tasks/custom-installations.yml
+    - name: Install node environment and its packages
+      ansible.builtin.include_tasks: tasks/node.yml
+    - name: Install python environment and its packages
+      ansible.builtin.include_tasks: tasks/python.yml
+    - name: Install cargo applications
+      ansible.builtin.include_tasks: tasks/cargo.yml
+    - name: Configure zsh terminal
+      ansible.builtin.include_tasks: tasks/zsh-setup.yml
+    - name: Link dotfiles configuration files
+      ansible.builtin.include_tasks: tasks/dotfiles.yml
+    - name: Change user shell to zsh
+      become: true
+      ansible.builtin.user:
         name: "{{ ansible_user }}"
         shell: /bin/zsh
