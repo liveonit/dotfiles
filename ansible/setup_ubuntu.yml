@@ -20,6 +20,9 @@
       ansible.builtin.include_tasks: tasks/python.yml
     - name: Install cargo packages
       ansible.builtin.include_tasks: tasks/cargo.yml
+      args:
+        apply:
+          become: true
     - name: Configure zsh terminal
       ansible.builtin.include_tasks: tasks/zsh-setup.yml
     - name: Link dotfiles configuration files
