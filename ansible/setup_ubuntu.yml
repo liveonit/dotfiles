@@ -7,10 +7,11 @@
   tasks:
     - name: Install apt base packages
       ansible.builtin.include_tasks: tasks/apt.yml
-      become: true
+      args:
+        apply:
+          become: true
     - name: Install brew applications
       ansible.builtin.include_tasks: tasks/brew.yml
-      become: false
     - name: Run custom installations
       ansible.builtin.include_tasks: tasks/custom-installations.yml
     - name: Install node environment and its packages

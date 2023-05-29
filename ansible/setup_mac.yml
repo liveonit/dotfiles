@@ -7,10 +7,8 @@
   tasks:
     - name: Install brew applications
       ansible.builtin.include_tasks: tasks/brew.yml
-      become: false
     - name: Install cask applications
       ansible.builtin.include_tasks: tasks/cask.yml
-      become: false
     - name: Run custom installations
       ansible.builtin.include_tasks: tasks/custom-installations.yml
     - name: Install node environment and its packages
