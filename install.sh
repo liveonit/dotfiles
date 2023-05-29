@@ -6,6 +6,14 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Upgrade all apt packages
   sudo apt update && sudo apt upgrade
 
+  # Install linux brew
+  if ! command -v brew &> /dev/null; then
+    echo "Installing Linux/brew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.zprofile
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+
   # Install ansible and add community.general module
   sudo apt install ansible
   ansible-galaxy collection install community.general
