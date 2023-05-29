@@ -1,5 +1,7 @@
 - name: Get nvm environment and update npm
-  shell: |
+  args:
+    executable: /bin/zsh
+  ansible.builtin.shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
     npm install npm@latest -g
@@ -8,9 +10,15 @@
   become: false
 
 - name: Install npm packages globally.
-  shell: |
+  args:
+    executable: /bin/zsh
+  ansible.builtin.shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    echo "$(which node)"
+    echo "$(which npm)"
+    echo "$(node --version)"
+    echo "$(npm --version)"
     npm install -g "{{ item }}"
   loop:
     - yarn
