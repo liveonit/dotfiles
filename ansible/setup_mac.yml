@@ -1,6 +1,6 @@
 - hosts: localhost
   name: Setup MacOS
-  become: true
+  become: false
   remote_user: ignaciobarreto
   environment:
     HOME: "/users/{{ ansible_user }}"

@@ -1,6 +1,6 @@
 - hosts: localhost
   name: Setup Ubuntu
-  become: true
+  become: false
   remote_user: liveonit
   environment:
     HOME: "/home/{{ ansible_user }}"
