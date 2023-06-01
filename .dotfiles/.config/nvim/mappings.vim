@@ -101,8 +101,7 @@
   vnoremap <C-k> <cmd>lua require'neoscroll'.scroll(-30, true, 150)<CR>
 
   " Configure Telescope
-  nnoremap <silent> <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>
-  nnoremap <silent> <leader>rg <cmd>lua require'telescope.builtin'.live_grep()<CR>
+  nnoremap <silent> <leader>fg <cmd>lua require'telescope.builtin'.live_grep()<CR>
   nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
   nnoremap <silent> <leader>ft <cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>
   nnoremap <silent> <leader>?  <cmd>Telescope current_buffer_fuzzy_find<CR>
@@ -110,6 +109,10 @@
   " https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
   nnoremap <silent> <leader>fs <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>
 
+  " Browse files
+  nnoremap <silent> <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>
+  nnoremap <silent> <leader>fe <cmd>Telescope file_browser 'cwd=<C-R>=expand("%:p:h")'<CR>
+  nnoremap <silent> <leader>fc <cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>
 
   " Apply quotes under the selected word
   nnoremap <silent> <leader>;q bi"<ESC>ea"<ESC>
@@ -139,10 +142,6 @@
 
   " Go to previous buffer
   nnoremap <silent> <leader><leader> <C-^>
-
-  " Open Neo-Tree
-  nnoremap <silent> - :lua require("user.functions").neotree_open_current()<CR>
-  nnoremap <silent> = :Neotree source=buffers<CR>
 
 " ZK mappings
 " Create a new note after asking for its title.

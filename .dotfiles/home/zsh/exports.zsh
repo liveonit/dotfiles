@@ -29,8 +29,7 @@ export PATH=$PATH:${HOME}/.cargo/bin
 export PATH=$PATH:${HOME}/.local/bin
 
 # Fix perl locale issue
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+export LC_CTYPE=UTF-8
 export LANG=en_US.UTF-8
 
 # Fix OpenSSL link issue

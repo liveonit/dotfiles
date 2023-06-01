@@ -6,7 +6,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafi/vim-venom'
 Plug 'mickael-menu/zk-nvim'
-Plug 'nvim-neo-tree/neo-tree.nvim', { 'branch': 'v2.x' }
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'MunifTanjim/nui.nvim'
 Plug 'ThePrimeagen/harpoon'
@@ -52,10 +51,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'gen740/SmoothCursor.nvim'
 Plug 'RRethy/vim-illuminate'
-Plug 'jackMort/ChatGPT.nvim'
 " https://github.com/folke/which-key.nvim
 Plug 'folke/which-key.nvim'
 Plug 'f-person/git-blame.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 
 " Don't configure any plugin under this line.
 call plug#end()

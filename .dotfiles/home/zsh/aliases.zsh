@@ -76,7 +76,7 @@ alias lg='lazygit'
 # Vim
 if type nvim >/dev/null 2>&1; then
   alias vim='nvim'
-  alias v="vim ."
+  alias v="vim"
 fi
 
 # Tmux

@@ -126,6 +126,8 @@ augroup GUX
   autocmd BufWritePost *.snippets :CmpUltisnipsReloadSnippets
   " Avoid opening the diagnostics on a quickfix list
   autocmd DiagnosticChanged * lua vim.diagnostic.setqflist({open = false })
+
+  autocmd VimEnter * :Telescope file_browser cwd=<C-R>=expand("%:p:h")
 augroup END
 
 " Flash the selection when highlighting.
