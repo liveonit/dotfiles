@@ -16,13 +16,13 @@ telescope.setup({
       "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case"
     },
     mappings = {
-      i = { ["?"] = action_layout.toggle_preview,["<C-t>"] = trouble.open_with_trouble },
+      i = { ["?"] = action_layout.toggle_preview, ["<C-t>"] = trouble.open_with_trouble },
       n = { ["<C-t>"] = trouble.open_with_trouble }
     },
     prompt_prefix = " ",
     selection_caret = " ",
     entry_prefix = "  ",
-    initial_mode = "insert",
+    initial_mode = "normal",
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -51,7 +51,7 @@ telescope.setup({
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker
   },
   extensions = {
-   file_browser = {
+    file_browser = {
       -- path
       -- cwd
       cwd_to_path = false,

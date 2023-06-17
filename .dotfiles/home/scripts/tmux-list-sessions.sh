@@ -15,7 +15,7 @@ then
   exit 1
 else
   session=$(echo "$tmuxSessions" | awk '{print $1}' | tr -d ':' |\
-  fzf-tmux -p 80%,60% \
+  fzf-tmux \
     --header 'Press CTRL-X to delete a session.' \
     --bind 'ctrl-x:execute-silent(tmux kill-session -t {+})+reload(tmux list-sessions | awk '"'"'{print $1}'"'"' | tr -d ':')')
 

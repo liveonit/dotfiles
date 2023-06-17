@@ -117,10 +117,7 @@
   " Apply quotes under the selected word
   nnoremap <silent> <leader>;q bi"<ESC>ea"<ESC>
 
-  " Configure keybindings for Trouble
-  nnoremap <silent> <leader>t :TroubleToggle<CR>
-
-  " Get current path
+    " Get current path
   nnoremap <silent> <leader>pwd :let @+ = expand("%:p")<CR>\|:echo expand("%:p")<CR>
   nnoremap <silent> <leader>zf v%zf
 
@@ -193,6 +190,7 @@ nnoremap <leader><leader>s :lua require("luasnip.loaders.from_lua").load({paths 
 vnoremap u y
 
 " Trouble mappings
+nnoremap <silent> <leader>t :TroubleToggle<CR>
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
