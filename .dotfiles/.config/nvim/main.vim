@@ -127,7 +127,14 @@ augroup GUX
   " Avoid opening the diagnostics on a quickfix list
   autocmd DiagnosticChanged * lua vim.diagnostic.setqflist({open = false })
 
-  autocmd VimEnter * :Telescope file_browser cwd=<C-R>=expand("%:p:h")
+  autocmd VimEnter * call OpenFileBrowserOnStart()
+
+  function! OpenFileBrowserOnStart()
+    if argc() == 0 || (argc() == 1 && isdirectory(argv()[0]))
+        execute 'Telescope file_browser cwd=<C-R>=expand("%:p:h")<CR>'
+    endif
+  endfunction
+
 augroup END
 
 " Flash the selection when highlighting.
