@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-config=$(kubectl config get-contexts | awk '{print $2}' | tail -n '+2' | fzf-tmux -p 80%,40%)
+config=$(kubectl config get-contexts | awk '{print $2}' | tail -n '+2' | fzf-tmux)
 
 if [ -z "$config" ]; then exit 0; fi
 
