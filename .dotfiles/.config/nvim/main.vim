@@ -11,7 +11,7 @@ set autoindent                          " Inherit indentation from previous line
 set autoread                            " Reload the file when external changes are detected
 set autowriteall                        " Work with buffers
 set backspace=indent,eol,start          " Fixes common backspace problems.
-set cc=100,120                          " Set a 100 and 120 column border
+set cc=80                               " Set a 80 column border
 set cindent
 set clipboard=unnamedplus               " Using system clipboard
 set cmdheight=1                         " Give more space for displaying messages
@@ -99,31 +99,32 @@ let g:ftplugin_sql_omni_key = '<C-0>'
 
 augroup GUX
   autocmd!
-  autocmd BufWritePre * :call TrimWhitespace()
-  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx EslintFixAll
-  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx Prettier
-  " Run auto-format.
-  autocmd BufWritePre *.sh lua vim.lsp.buf.format({ async = true })
-  autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })
-  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx lua vim.lsp.buf.format({ async = true })
+  " autocmd BufWritePre * :call TrimWhitespace()
+  " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx EslintFixAll
+  " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx Prettier
+  " " Run auto-format.
+  " autocmd BufWritePre *.sh lua vim.lsp.buf.format({ async = true })
+  " autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })
+  " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx lua vim.lsp.buf.format({ async = true })
+ " " Syntax highlight
+  " autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  " autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+  " " Auto format lua files.
+  " autocmd BufWritePre *.lua lua vim.lsp.buf.format(nil, 100)
+  " " Auto format Rust files with rustfmt
+  " autocmd BufWritePost *.rs Silent rustfmt %
+
+
+
+
   " Remove line numbers in terminal mode.
   autocmd TermOpen * setlocal listchars= nonumber norelativenumber nocursorline
   autocmd TermOpen * startinsert
   autocmd BufLeave term://* stopinsert
-  " Syntax highlight
-  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-  " Support comments on JSON files.
-  autocmd FileType json syntax match Comment +\/\/.\+$+
-  " Auto format lua files.
-  autocmd BufWritePre *.lua lua vim.lsp.buf.format(nil, 100)
-  " Auto format Rust files with rustfmt
-  autocmd BufWritePost *.rs Silent rustfmt %
+
   " Use 4 spaces for tabs on certain files.
   autocmd FileType python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
   autocmd FileType lua setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-  " Reload ultisnip snippets stored in *.snippets folders
-  autocmd BufWritePost *.snippets :CmpUltisnipsReloadSnippets
   " Avoid opening the diagnostics on a quickfix list
   autocmd DiagnosticChanged * lua vim.diagnostic.setqflist({open = false })
 
