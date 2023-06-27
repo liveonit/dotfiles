@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 config=$(gcloud config configurations list |\
           tail -n +2 |\

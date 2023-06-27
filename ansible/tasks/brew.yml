@@ -70,6 +70,9 @@
       - derailed/k9s/k9s
       - lazygit
       - gum
+      - bash-language-server
+      - shfmt
+      - shellcheck
     state: present
 
 - name: Install base/macos homebrew packages

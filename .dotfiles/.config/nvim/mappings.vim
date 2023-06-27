@@ -48,18 +48,6 @@
   " Replay the last command change
   nnoremap <leader>@ @:<CR>
 
-  " Harpoon mappings
-  nnoremap <silent> <C-h> :lua require("harpoon.mark").add_file()<CR>
-  nnoremap <silent> <leader>1 :lua require("harpoon.ui").nav_file(1)<CR>
-  nnoremap <silent> <leader>2 :lua require("harpoon.ui").nav_file(2)<CR>
-  nnoremap <silent> <leader>3 :lua require("harpoon.ui").nav_file(3)<CR>
-  nnoremap <silent> <leader>4 :lua require("harpoon.ui").nav_file(4)<CR>
-  nnoremap <silent> <leader>, :lua require("harpoon.ui").toggle_quick_menu()<CR>
-  nnoremap <silent> t1 :lua require("harpoon.term").gotoTerminal(1)<CR>
-  nnoremap <silent> t2 :lua require("harpoon.term").gotoTerminal(2)<CR>
-  nnoremap <silent> t3 :lua require("harpoon.term").gotoTerminal(3)<CR>
-  nnoremap <silent> t4 :lua require("harpoon.term").gotoTerminal(4)<CR>
-
   " Replace the text object under the current cursor using lsp.
   nnoremap <leader>r :lua require('lsp_rename').lsp_rename()<CR>
 
@@ -108,9 +96,10 @@
   " Find in specific folders or files with ripgrep
   " https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
   nnoremap <silent> <leader>fs <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>
-
   " Browse files
   nnoremap <silent> <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>
+  nnoremap <silent> <leader>fd <cmd>lua require'telescope.builtin'.git_files()<CR>
+  nnoremap <silent> <leader>fh <cmd>lua require'telescope.builtin'.oldfiles()<CR>
   nnoremap <silent> <leader>fe <cmd>Telescope file_browser 'cwd=<C-R>=expand("%:p:h")'<CR>
   nnoremap <silent> <leader>fc <cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>
 
@@ -140,36 +129,6 @@
   " Go to previous buffer
   nnoremap <silent> <leader><leader> <C-^>
 
-" ZK mappings
-" Create a new note after asking for its title.
-nnoremap <silent> <leader>zn :ZkNew { title = vim.fn.input('Title: ')}<CR>
-" Open notes.
-nnoremap <silent> <leader>zo :ZkNotes { sort = { 'modified' } }<CR>
-" Open notes associated with selected tasks.
-nnoremap <silent> <leader>zt :ZkTags<CR>
-" Search for the notes matching a given query.
-nnoremap <silent> <leader>zf :ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>
-" Search for the notes matching the current visual selection.
-vnoremap <silent> <leader>zf :'<,'>ZkMatch<CR>
-" Preview a linked note
-nnoremap <silent> <leader>zk :lua vim.lsp.buf.hover()<CR>
-" See the most recent notes
-nnoremap <silent> <leader>zr :ZkRecent<CR>
-" Create a new private note
-nnoremap <silent> <leader>zp :ZkPrivate<CR>
-" Create a new private note on a new dir.
-nnoremap <silent> <leader>zd :ZkPrivateDir<CR>
-" Push the note changes to GitHub
-nnoremap <leader>zs :ZkSync<CR>
-" Follow the link under the cursor.
-nnoremap <silent> <leader>zg :lua vim.lsp.buf.definition()<CR>
-
-" Add an `x` to complete a task.
-nnoremap <silent> <leader>xx :call ToggleComplete()<CR>
-
-" Toogle keeping the line centered.
-nnoremap <silent> <leader>zz :call VCenterCursor()<CR>
-
 " Change camelCase to snake_case
 vnoremap <leader>cs :'<,'>SnakeCase<CR>
 " Convert snake_case to camelCase
@@ -179,22 +138,10 @@ vnoremap  <leader>cc :'<,'>CamelCase<CR>
 nnoremap <silent> <tab> :BufferLineCycleNext<CR>
 nnoremap <silent> <s-tab> :BufferLineCyclePrev<CR>
 
-" These commands will move the current buffer backwards or forwards in the bufferline
-nnoremap <silent><leader><right> :BufferLineMoveNext<CR>
-nnoremap <silent><leader><left> :BufferLineMovePrev<CR>
-
 " Reload luasnip snippets
 nnoremap <leader><leader>s :lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/snippets"})<CR>
 
 " Replace u in visual mode to be the same as y
 vnoremap u y
-
-" Trouble mappings
-nnoremap <silent> <leader>t :TroubleToggle<CR>
-nnoremap <leader>xx <cmd>TroubleToggle<cr>
-nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
-nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
-nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 
 nnoremap <silent> <leader>h  <cmd>WhichKey<cr>

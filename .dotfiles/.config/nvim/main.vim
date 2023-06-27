@@ -99,16 +99,17 @@ let g:ftplugin_sql_omni_key = '<C-0>'
 
 augroup GUX
   autocmd!
-  " autocmd BufWritePre * :call TrimWhitespace()
-  " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx EslintFixAll
-  " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx Prettier
+  autocmd BufWritePre * :call TrimWhitespace()
+  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx EslintFixAll
+  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx Prettier
   " " Run auto-format.
   " autocmd BufWritePre *.sh lua vim.lsp.buf.format({ async = true })
   " autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })
   " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx lua vim.lsp.buf.format({ async = true })
  " " Syntax highlight
-  " autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-  " autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  autocmd BufNewFile,BufFilePre,BufRead *.sh set filetype=bash
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
   " " Auto format lua files.
   " autocmd BufWritePre *.lua lua vim.lsp.buf.format(nil, 100)
   " " Auto format Rust files with rustfmt

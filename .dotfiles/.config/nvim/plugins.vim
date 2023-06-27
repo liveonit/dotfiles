@@ -14,11 +14,12 @@ Plug 'hrsh7th/cmp-path' " source for filesystem paths
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip' " lua completion source for nvim-cmp
 Plug 'hrsh7th/nvim-cmp' " A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and 'sourced'.
-
+Plug 'jose-elias-alvarez/null-ls.nvim' " Extra language servers
 " LSP Support
 Plug 'neovim/nvim-lspconfig' " Required
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
 
 Plug 'karb94/neoscroll.nvim' " a smooth scrolling neovim plugin written in lua
 Plug 'sindrets/diffview.nvim' " Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
@@ -27,6 +28,7 @@ Plug 'nvim-telescope/telescope.nvim' " Is a highly extendable fuzzy finder over 
 Plug 'nvim-telescope/telescope-live-grep-args.nvim' " Live grep args picker for telescope.nvim. 
 Plug 'nvim-treesitter/nvim-treesitter' " Sintax highlight
 Plug 'nvim-treesitter/nvim-treesitter-textobjects' " dependency for nvim-treesitter
+Plug 'romgrk/nvim-treesitter-context'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' } " A vim plugin wrapper for prettier, pre-configured with custom default prettier settings.
 Plug 'tpope/vim-commentary' " Comment stuff out
 Plug 'tpope/vim-fugitive' " Git plugin for Vim
