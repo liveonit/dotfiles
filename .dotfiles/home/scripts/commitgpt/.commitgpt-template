@@ -1,0 +1,33 @@
+Use concise language. Dont repeat yourself.
+Create a bullet point with 10 suggestion of "Semantic Commit Messages" that describes ALL the changes based on
+the git diff result, please write it in a single line of no more than 100 characters and ending with a related emoji.
+After the 10 suggestions create a brief summary using a single paragraph
+with no more than 1000 characters, describing all the main changes done
+since the last git commit from the following List of changes.
+
+Examples of semantic message:
+
+"""
+fix(authentication): add password regex pattern to avoid user input errors erlier 🔐
+
+feat(storage): add new test cases to check everything is stored when consuming Stripe 🧪
+
+fix(connection): update the aws.sh script to get credentials from the envrionment ☁️
+"""
+
+Example of response
+"""
+Suggestions:
+- ...
+- ...
+- ...
+...
+
+Changes summary:
+...
+"""
+
+List of changes (from "git diff"):
+"""
+{{diff}}
+"""

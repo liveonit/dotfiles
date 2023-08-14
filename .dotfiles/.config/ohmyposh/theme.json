@@ -61,22 +61,6 @@
       "type": "prompt"
     },
     {
-      "alignment": "right",
-      "segments": [
-        {
-          "foreground": "#7dcfff",
-          "properties": {
-            "command": "dotenv -f ~/.config/ohmyposh/.env get OHMYPOSH_KUBERNETES_CONTEXT",
-            "shell": "zsh",
-            "tenplate": "{{ .Output }}"
-          },
-          "style": "plain",
-          "type": "command"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
       "alignment": "left",
       "newline": true,
       "segments": [

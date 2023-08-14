@@ -87,12 +87,6 @@ export BAT_PAGER="less -R"
 # Add scripts to path
 export PATH="~/.dotfiles/scripts:$PATH"
 
-# Configure aws autocomplete
-export PATH=/Users/ignaciobarreto/.pyenv/shims/aws_completer:$PATH
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
-complete -C '/Users/ignaciobarreto/.pyenv/shims/aws_completer' aws
-
 # Normal files to source
 source "$HOME/zsh/exports.zsh"
 source "$HOME/zsh/aliases.zsh"

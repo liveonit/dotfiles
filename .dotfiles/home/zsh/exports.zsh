@@ -134,3 +134,11 @@ export ZK_NOTEBOOK_DIR=~/dotfiles/.dotfiles/home/Notes
 
 # Set default JAVA runtime version
 export JAVA_HOME=/opt/homebrew/Cellar/openjdk@11/11.0.18/libexec/openjdk.jdk/Contents/Home
+
+# Configure aws autocomplete
+export PATH=/usr/local/bin/aws_completer:$PATH
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
+
+
