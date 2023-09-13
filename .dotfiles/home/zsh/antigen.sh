@@ -5,8 +5,6 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo
 antigen bundle brew
-antigen bundle docker
-antigen bundle docker-compose
 antigen bundle dotenv
 antigen bundle fzf
 antigen bundle git
@@ -23,7 +21,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zdharma-continuum/fast-syntax-highlighting
 antigen bundle hlissner/zsh-autopair
-antigen bundle buonomo/yarn-completion
+antigen bundle chrisands/zsh-yarn-completions
 antigen bundle lukechilds/zsh-better-npm-completion
 antigen bundle mattberther/zsh-pyenv
 

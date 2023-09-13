@@ -3,7 +3,7 @@
 " Hint: Make sure you use single quotes.
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " Show color square at the end of a color reference 
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " Show color square at the end of a color reference
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " UI theme
 Plug 'folke/trouble.nvim' " A pretty list for showing diagnostics, references, telescope results, quickfix and location lists
 Plug 'hrsh7th/cmp-buffer' " source for buffer words.
@@ -19,13 +19,14 @@ Plug 'jose-elias-alvarez/null-ls.nvim' " Extra language servers
 Plug 'neovim/nvim-lspconfig' " Required
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
+
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
 
 Plug 'karb94/neoscroll.nvim' " a smooth scrolling neovim plugin written in lua
 Plug 'sindrets/diffview.nvim' " Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
 Plug 'nvim-lualine/lualine.nvim' " A blazing fast and easy to configure Neovim statusline written in Lua.
 Plug 'nvim-telescope/telescope.nvim' " Is a highly extendable fuzzy finder over lists.
-Plug 'nvim-telescope/telescope-live-grep-args.nvim' " Live grep args picker for telescope.nvim. 
+Plug 'nvim-telescope/telescope-live-grep-args.nvim' " Live grep args picker for telescope.nvim.
 Plug 'nvim-treesitter/nvim-treesitter' " Sintax highlight
 Plug 'nvim-treesitter/nvim-treesitter-textobjects' " dependency for nvim-treesitter
 Plug 'romgrk/nvim-treesitter-context'

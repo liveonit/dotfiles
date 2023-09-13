@@ -136,9 +136,9 @@ export ZK_NOTEBOOK_DIR=~/dotfiles/.dotfiles/home/Notes
 export JAVA_HOME=/opt/homebrew/Cellar/openjdk@11/11.0.18/libexec/openjdk.jdk/Contents/Home
 
 # Configure aws autocomplete
-export PATH=/usr/local/bin/aws_completer:$PATH
+export PATH=/Users/ignaciobarreto/.pyenv/shims/aws_completer:$PATH
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C '/Users/ignaciobarreto/.pyenv/shims/aws_completer' aws
 
 

@@ -1,6 +1,6 @@
 - name: Tap a Homebrew repository, state present
   community.general.homebrew_tap:
-    name: homebrew/cask-versions,homebrew/cask-fonts,homebrew/cask-drivers
+    name: homebrew/cask-versions,homebrew/cask-fonts
     state: present
 
 - name: Install cask
