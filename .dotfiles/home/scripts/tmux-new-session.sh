@@ -18,7 +18,6 @@ if [ -z "$1" ]; then
       tmux switch-client -t "=$safe_folder_name"
     fi
 else
-    echo "llego aca 9"
     # Create new session if it doesn't exist
     if ! tmux has-session -t "=$1" 2>/dev/null; then
       tmux new-session -s "$1" -d

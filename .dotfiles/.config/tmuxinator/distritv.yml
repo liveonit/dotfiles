@@ -2,8 +2,9 @@
 
 name: distritv
 root: ~/projects/distriTV
-on_project_start: docker-compose up -d
+on_project_start: cd services && pnpm i && cd - && docker-compose up -d --build
 windows:
+  - root: vim
   - api:
       layout: even-horizontal
       panes:
@@ -14,8 +15,10 @@ windows:
       panes:
         - cd services/dashboard && vim
         - docker compose logs -f dashboard
+  - validation: cd services/packages/validation && vim
+  - lib: cd services/packages/lib && vim
   - term:
       layout: even-horizontal
       panes:
         - zsh
-        - gitui
+        - lg

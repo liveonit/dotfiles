@@ -1,11 +1,14 @@
 " Specify a directory for plugins call plug#begin('~/.config/nvim/plugged')
 " Configure your plugins here.
 " Hint: Make sure you use single quotes.
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " Show color square at the end of a color reference
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " UI theme
 Plug 'folke/trouble.nvim' " A pretty list for showing diagnostics, references, telescope results, quickfix and location lists
+
+" CMP and LSP Support
 Plug 'hrsh7th/cmp-buffer' " source for buffer words.
 Plug 'hrsh7th/cmp-cmdline' " source for vim's cmdline.
 Plug 'hrsh7th/cmp-nvim-lsp' " source for neovim's built-in language server client.
@@ -14,13 +17,11 @@ Plug 'hrsh7th/cmp-path' " source for filesystem paths
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip' " lua completion source for nvim-cmp
 Plug 'hrsh7th/nvim-cmp' " A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and 'sourced'.
-Plug 'jose-elias-alvarez/null-ls.nvim' " Extra language servers
-" LSP Support
 Plug 'neovim/nvim-lspconfig' " Required
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-
-Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+Plug 'rafamadriz/friendly-snippets'
 
 Plug 'karb94/neoscroll.nvim' " a smooth scrolling neovim plugin written in lua
 Plug 'sindrets/diffview.nvim' " Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
@@ -35,7 +36,6 @@ Plug 'tpope/vim-commentary' " Comment stuff out
 Plug 'tpope/vim-fugitive' " Git plugin for Vim
 Plug 'tribela/vim-transparent'
 Plug 'windwp/nvim-autopairs' " A super powerful autopair plugin for Neovim that supports multiple characters.
-Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' } " A snazzy 💅 buffer line (with tabpage integration) for Neovim built using lua.
 Plug 'junegunn/fzf' " fzf is a general-purpose command-line fuzzy finder.
 Plug 'junegunn/fzf.vim'
@@ -43,11 +43,17 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'gen740/SmoothCursor.nvim'
 Plug 'RRethy/vim-illuminate' " automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching
 Plug 'folke/which-key.nvim' " displays a popup with possible key bindings of the command you started typing
-Plug 'f-person/git-blame.nvim' " git blame plugin for Neovim written in Lua
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-lua/plenary.nvim' " required by file-browser
 Plug 'nvim-telescope/telescope-file-browser.nvim' " is a file browser extension for telescope.nvim
-Plug 'tpope/vim-dadbod' " for interacting with databases
-Plug 'kristijanhusak/vim-dadbod-ui' " Simple UI for vim-dadbod. It allows simple navigation through databases and allows saving queries for later use.
+Plug 'github/copilot.vim'
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'SmiteshP/nvim-navic'
 
 " Don't configure any plugin under this line.
 call plug#end()
