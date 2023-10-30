@@ -108,3 +108,10 @@ alias k=kubectl
 complete -o default -F __start_kubectl k
 alias kubeclr='sed -i "" -e "s/^current-context:.*$/current-context:/" ~/.kube/config'
 export PATH=/Users/ignaciobarreto/.meteor:$PATH
+
+# bun completions
+[ -s "/Users/ignaciobarreto/.bun/_bun" ] && source "/Users/ignaciobarreto/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

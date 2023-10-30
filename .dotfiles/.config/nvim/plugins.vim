@@ -54,6 +54,7 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'SmiteshP/nvim-navic'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 " Don't configure any plugin under this line.
 call plug#end()

@@ -1,8 +1,6 @@
 " Change the map leader.
 let mapleader=" "
 
-" Switch to normal mode inside terminal mode
-tnoremap <silent> jk <C-\><C-n>
 " Shortcut to edit mappings.
 nnoremap <silent> <leader>ei :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>ec :e ~/.config/nvim/main.vim<CR>
