@@ -56,6 +56,9 @@ Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'SmiteshP/nvim-navic'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
+
+Plug 'nvim-pack/nvim-spectre'
+
 " Don't configure any plugin under this line.
 call plug#end()
 
