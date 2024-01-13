@@ -48,10 +48,3 @@ require("nvim-treesitter.configs").setup({
 });
 
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
-require('treesitter-context').setup({
-    enable = true,
-    throttle = true,
-    max_lines = 0,
-    patterns = {default = {'class', 'function', 'method'}}
-})
