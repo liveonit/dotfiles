@@ -1,8 +1,11 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
+
+ROOT=$(dirname $(readlink -f $(which "$0")))
+
 if [ -z "$1" ]; then
-    window=$(folders.sh)
+    window=$($ROOT/helpers/folders.sh)
     window_name=$(basename "$window" | tr . _)
-    if [ -z "$window"]; then
+    if [ -z "$window" ]; then
         exit 0
     fi
     if ! tmux has-window -t "$window_name" 2>/dev/null; then

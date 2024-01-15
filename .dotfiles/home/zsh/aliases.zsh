@@ -80,9 +80,9 @@ if type nvim >/dev/null 2>&1; then
 fi
 
 # Tmux
-alias tns=tmux-new-session.sh
-alias tls=tmux-list-sessions.sh
-alias tnw=tmux-new-window.sh
+alias tns=tmux-new-session
+alias tls=tmux-list-sessions
+alias tnw=tmux-new-window
 
 # Tmuxinator
 alias mux="tmuxinator"

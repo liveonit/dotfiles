@@ -9,6 +9,6 @@ bindkey '^ ' autosuggest-accept
 # # =============
 bindkey -s '^p' 'tls^M'
 bindkey -s '^n' 'tns^M'
-bindkey -s '^e' 'hexec.sh^M'
-bindkey -s '^h' 'history.sh^M'
-bindkey -s '^g' '. get-process.sh^M'
+bindkey -s '^e' '. hexec^M'
+bindkey -s '^h' '. history^M'
+bindkey -s '^g' '. get-process^M'

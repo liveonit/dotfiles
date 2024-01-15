@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-folder=$(find $PWD -mindepth 1 -maxdepth 5 -type d | fzf) && cd $folder
+folder=$(find $PWD -mindepth 1 -maxdepth 5 -type d | fzf)
+cd $folder

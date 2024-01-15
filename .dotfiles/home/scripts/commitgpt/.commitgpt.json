@@ -1,6 +1,0 @@
-{
-  "apiKey": "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",
-  "model": "text-davinci-003",
-  "temperature": 0.7,
-  "maxTokens": 2048
-}

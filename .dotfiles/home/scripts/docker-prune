@@ -1,8 +1,24 @@
 #!/usr/bin/env bash
 
-echo "Stopping containers"
-docker stop `docker ps -aq`
-echo "Removing containers"
-docker rm `docker ps -aq`
-echo "Removing volumes"
-docker volume rm `docker volume ls -q`
+ROOT=$(dirname $(readlink -f $(which "$0")))
+
+source $ROOT/helpers/print.sh
+
+echo `info "Stopping containers"`
+if [ "`docker ps -aq`" ]; then
+  docker rm `docker ps -aq`
+fi
+
+echo `info "Removing containers"`
+if [ "`docker ps -aq`" ]; then
+  docker rm `docker ps -aq`
+fi
+
+echo `info "Removing volumes"`
+if [ "`docker volume ls -q`" ]; then
+  docker volume rm `docker volume ls -q`
+fi
+
+echo `info "Removing networks"`
+docker network rm `docker network ls -q`
+

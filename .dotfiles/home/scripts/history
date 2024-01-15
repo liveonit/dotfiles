@@ -2,7 +2,7 @@
 
 ROOT=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/print.sh
+source $ROOT/helpers/print.sh
 
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 

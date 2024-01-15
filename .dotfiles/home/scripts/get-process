@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
+# Get suspended process and list them in fzf-tmux, to run the script in the
+# right session we should execute the script as follow: . ./get-process.sh
+
 ROOT=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/print.sh
+source $ROOT/helpers/print.sh
 
 JOBS=$(jobs | gawk '{
 if(match($0, /\[([0-9]+)\].*suspended  (.*)/, arr)) { printf "%s,%s\n", arr[1], arr[2] } }')

@@ -6,7 +6,7 @@ if [ -z "$config" ]; then exit 0; fi
 
 clear
 
-hr.sh '─'
+hr '─'
 
 kubectl config use-context $config
 
@@ -14,4 +14,4 @@ dotenv -f ~/.config/ohmyposh/.env set OHMYPOSH_KUBERNETES_CONTEXT=" $(echo $c
 
 printf "\nUsing $config context\n"
 
-hr.sh '─'
+hr '─'

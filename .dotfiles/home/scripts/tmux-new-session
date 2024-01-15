@@ -3,7 +3,7 @@ ROOT=$(dirname $(readlink -f $(which "$0")))
 
 if [ -z "$1" ]; then
     # Get new session
-    folder_name=$($ROOT/folders.sh)
+    folder_name=$($ROOT/helpers/folders.sh)
     safe_folder_name=$(printf "%s" "$folder_name" | tr '.' '_')
     if [ -z "$safe_folder_name" ]; then
         exit 0

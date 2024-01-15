@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function details() {
-  hr.sh '─'
+  hr '─'
 
   echo "Google Cloud Account"
   echo "--------------------"
@@ -9,7 +9,7 @@ function details() {
 
   printf "  GKE Cluster:\t`kubectl config current-context`\n"
 
-  hr.sh '─'
+  hr '─'
 }
 
 details | grep --color=auto -E "^|production|staging|assurance|development|test"
