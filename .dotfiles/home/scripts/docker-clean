@@ -2,9 +2,11 @@
 
 ROOT=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/helpers/print.sh
-
+source $ROOT/print.sh
 source $ROOT/docker-prune
+source $ROOT/check-requirements.sh
+
+! checkRequirements "docker";
 
 echo `info "Removing images"`
 if [ "`docker image ls -aq`" ]; then

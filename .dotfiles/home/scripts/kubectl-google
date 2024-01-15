@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+ROOT=$(dirname $(readlink -f $(which "$0")))
+
+source $ROOT/check-requirements.sh
+
+! checkRequirements grep awk sed gcloud kubectl;
+
+
 function details() {
   hr '─'
 

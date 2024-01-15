@@ -2,7 +2,11 @@
 
 ROOT=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/helpers/print.sh
+source $ROOT/print.sh
+
+source $ROOT/check-requirements.sh
+
+! checkRequirements "fzf";
 
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 
@@ -11,7 +15,7 @@ while IFS=";" read -u3 var val; do
   fileLines=("$val" "${fileLines[@]}")
 done 3<$HISTFILE
 
-command=$(printf "%s\n" "${fileLines[@]}" | fzf-tmux -p 80%,60%)
+command=$(printf "%s\n" "${fileLines[@]}" | fzf)
 
 echo $(green "Executing >>>") $(yellow "$command") $(green "<<< ...")
 eval $command

@@ -5,7 +5,11 @@
 
 ROOT=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/helpers/print.sh
+source $ROOT/print.sh
+
+source $ROOT/check-requirements.sh
+
+! checkRequirements "fzf" "gawk";
 
 JOBS=$(jobs | gawk '{
 if(match($0, /\[([0-9]+)\].*suspended  (.*)/, arr)) { printf "%s,%s\n", arr[1], arr[2] } }')
@@ -17,7 +21,7 @@ done <<<$JOBS
 
 
 if [ -n "$processes" ]; then
-  command=$(printf "%s\n" "${processes[@]}" | fzf-tmux -p 90%,60%)
+  command=$(printf "%s\n" "${processes[@]}" | fzf)
 
   process_number=$(echo "$command" | cut -d',' -f1)
   echo $(green "Getting process ") $(yellow "$process_number")

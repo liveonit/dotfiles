@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 
+ROOT=$(dirname $(readlink -f $(which "$0")))
+
+source $ROOT/check-requirements.sh
+
+! checkRequirements "kubectl";
+
+
+
 config=$(kubectl config get-contexts | awk '{print $2}' | tail -n '+2' | fzf-tmux)
 
 if [ -z "$config" ]; then exit 0; fi
 
 clear
 
-hr '─'
+$ROOT/hr '─'
 
 kubectl config use-context $config
 
-dotenv -f ~/.config/ohmyposh/.env set OHMYPOSH_KUBERNETES_CONTEXT=" $(echo $config | sed -e 's/[^_]*_[^_]*_[^_]*_//')"
+$ROOT/dotenv -f ~/.config/ohmyposh/.env set OHMYPOSH_KUBERNETES_CONTEXT=" $(echo $config | sed -e 's/[^_]*_[^_]*_[^_]*_//')"
 
 printf "\nUsing $config context\n"
 

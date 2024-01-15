@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
+ROOT=$(dirname $(readlink -f $(which "$0")))
+
+source $ROOT/check-requirements.sh
+
+! checkRequirements "curl";
+
 curl -s l2.io/ip

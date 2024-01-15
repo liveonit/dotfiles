@@ -1,0 +1,25 @@
+
+#!/usr/bin/env bash
+
+ROOT=$(dirname $(readlink -f $(which "$0")))
+source $ROOT/print.sh
+source $ROOT/check-requirements.sh
+
+! checkRequirements "tmux";
+
+tmuxSessions=$(tmux list-sessions 2> /dev/null)
+
+if [ -z "$tmuxSessions" ]
+then
+  echo $(info "There aren't sessions started")
+  exit 1
+else
+  session=$(echo "$tmuxSessions" | awk '{print $1}' | tr -d ':' |\
+  fzf \
+    --header 'Press CTRL-X to delete a session.' \
+    --bind 'ctrl-x:execute-silent(tmux kill-session -t {+})+reload(tmux list-sessions | awk '"'"'{print $1}'"'"' | tr -d ':')')
+
+  if ! tmux attach -t "=$session" 2> /dev/null; then
+    tmux switch-client -t "=$session" 2> /dev/null
+  fi
+fi
