@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-ROOT=$(dirname $(readlink -f $(which "$0")))
+FILE_DIR=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/print.sh
+source $FILE_DIR/print.sh
 
 # Script to check if a list of requirements are installed
 # Usage: check-requirements.sh <requirement1> <requirement2> ...
@@ -15,7 +15,7 @@ source $ROOT/print.sh
 checkRequirements() {
   for var in "$@"
   do
-    if ! $ROOT/has -q "$var"; then
+    if ! $FILE_DIR/has -q "$var"; then
       echo `error "$var is required and not installed"`;
       exit 1;
     fi

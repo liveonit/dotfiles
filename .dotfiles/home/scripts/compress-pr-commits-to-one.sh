@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-ROOT=$(dirname $(readlink -f $(which "$0")))
+FILE_DIR=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/print.sh
-source $ROOT/check-requirements.sh
+source $FILE_DIR/print.sh
+source $FILE_DIR/check-requirements.sh
 
 ! checkRequirements "git" "gh" "jq";
 

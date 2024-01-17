@@ -3,11 +3,11 @@
 # Get suspended process and list them in fzf-tmux, to run the script in the
 # right session we should execute the script as follow: . ./get-process.sh
 
-ROOT=$(dirname $(readlink -f $(which "$0")))
+FILE_DIR=$(dirname $(readlink -f $(which "$0")))
 
-source $ROOT/print.sh
+source $FILE_DIR/print.sh
 
-source $ROOT/check-requirements.sh
+source $FILE_DIR/check-requirements.sh
 
 ! checkRequirements "fzf" "gawk";
 
