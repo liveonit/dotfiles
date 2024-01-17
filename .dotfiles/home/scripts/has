@@ -157,7 +157,7 @@ __detect(){
     bash|zsh|fish)          __dynamic_detect--version "${command}" ;;
 
     ## VCS
-    git|hg|svn|bzr)         __dynamic_detect--version "${command}" ;;
+    git|hg|gh|svn|bzr)         __dynamic_detect--version "${command}" ;;
 
     ## Http
     curl|wget|http)         __dynamic_detect--version "${command}" ;;

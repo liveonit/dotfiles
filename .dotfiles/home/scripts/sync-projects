@@ -1,0 +1,3 @@
+
+
+aws s3 sync --delete ~/projects s3://ibarreto.projects/projects --exclude '**/*.git/*' --exclude '**/*node_modules/*'
