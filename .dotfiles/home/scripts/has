@@ -154,7 +154,7 @@ __detect(){
     # commands that need --version flag
 
     ## Shells
-    bash|zsh|fish)          __dynamic_detect--version "${command}" ;;
+    bash|zsh|fish|gum)          __dynamic_detect--version "${command}" ;;
 
     ## VCS
     git|hg|gh|svn|bzr)         __dynamic_detect--version "${command}" ;;

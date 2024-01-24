@@ -66,7 +66,7 @@ red() {
 
 # Print text in Green
 success() {
-  printf "✅ ✅ ✅ : ${FG_GREEN}${FS_REG}$@${RESET_ALL}"
+  printf "✅✅✅ : ${FG_GREEN}${FS_REG}$@${RESET_ALL}"
 }
 
 # Print text in Yellow
@@ -76,10 +76,10 @@ warn() {
 
 # Print text in Blue
 info() {
-  printf "ℹ️ ℹ️ ℹ️  : ${FG_BLUE}${FS_REG}$@${RESET_ALL}"
+  printf "ℹ️ ℹ️ ℹ️  : ${FG_BR_BLUE}${FS_REG}$@${RESET_ALL}"
 }
 
 # Print text in Red
 error() {
-  printf "❌ ❌ ❌ : ${FG_RED}${FS_REG}$@${RESET_ALL}"
+  printf "❌❌❌: ${FG_RED}${FS_REG}$@${RESET_ALL}"
 }
