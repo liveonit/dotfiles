@@ -63,6 +63,8 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 Plug 'nvim-pack/nvim-spectre'
 
+Plug 'folke/todo-comments.nvim'
+
 " Don't configure any plugin under this line.
 call plug#end()
 
