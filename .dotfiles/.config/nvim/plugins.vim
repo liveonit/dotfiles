@@ -46,7 +46,11 @@ Plug 'folke/which-key.nvim' " displays a popup with possible key bindings of the
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-lua/plenary.nvim' " required by file-browser
 Plug 'nvim-telescope/telescope-file-browser.nvim' " is a file browser extension for telescope.nvim
-Plug 'github/copilot.vim'
+
+" Plug 'github/copilot.vim'
+Plug 'zbirenbaum/copilot.lua'
+Plug 'zbirenbaum/copilot-cmp'
+
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'mfussenegger/nvim-dap'
@@ -56,7 +60,6 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'SmiteshP/nvim-navic'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
-
 
 Plug 'nvim-pack/nvim-spectre'
 

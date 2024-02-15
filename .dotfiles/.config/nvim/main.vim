@@ -100,8 +100,8 @@ let g:ftplugin_sql_omni_key = '<C-0>'
 augroup GUX
   autocmd!
   autocmd BufWritePre * :call TrimWhitespace()
-  " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx EslintFixAll
-  " autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx Prettier
+  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx EslintFixAll
+  autocmd BufWritePre *.ts,*.js,*.jsx,*.tsx Prettier
   " " Run auto-format.
   " autocmd BufWritePre *.sh lua vim.lsp.buf.format({ async = true })
   " autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })
