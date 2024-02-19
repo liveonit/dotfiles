@@ -20,7 +20,7 @@ nnoremap <silent> <leader>wq :wq<CR>
 " Close split but keep buffer
 nnoremap <silent> <leader>qs <C-w>q<CR>
 " Close buffer but keep split
-nnoremap <silent> <leader>qq :bd<CR>
+nnoremap <silent> <leader>qq :bp<bar>sp<bar>bn<bar>bd<CR>
 " Close vim without saving
 nnoremap <silent> <leader>qa :qa!<CR>
 " Save the current buffers and close vim
