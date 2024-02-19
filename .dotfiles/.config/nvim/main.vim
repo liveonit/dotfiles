@@ -11,7 +11,7 @@ set autoindent                          " Inherit indentation from previous line
 set autoread                            " Reload the file when external changes are detected
 set autowriteall                        " Work with buffers
 set backspace=indent,eol,start          " Fixes common backspace problems.
-set cc=80                               " Set a 80 column border
+set cc=120                              " Set a 120 column border
 set cindent
 set clipboard=unnamedplus               " Using system clipboard
 set cmdheight=1                         " Give more space for displaying messages

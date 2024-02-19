@@ -65,9 +65,14 @@ end
 vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua _htop_toggle()<CR>", { noremap = true, silent = true })
 
 
+local getPath = function(str, sep)
+  sep = sep or '/'
+  return str:match("(.*" .. sep .. ")")
+end
+
 function _pnpm_eslint_toggle()
   local pnpm_eslint = Terminal:new({
-    cmd = string.format("es_linter.sh %s", getPath(vim.fn.expand('%:p'))),
+    cmd = string.format("es_linter.sh \"%s\"", getPath(vim.fn.expand('%:p'))),
     direction = "float",
     close_on_exit = true,
     float_opts = {
