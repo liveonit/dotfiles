@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-FILE_DIR=$(dirname $(readlink -f $(which "$0")))
-
-source $FILE_DIR/check-requirements.sh
-
-! checkRequirements "tmux";
-
 if [ -z "${TMUX}" ]; then
 	echo "You are not inside a tmux session"
 else

@@ -62,10 +62,10 @@ vnoremap <silent> > >gv
 " noremap <left> <nop>
 " Move C-u to C-j
 " nnoremap <C-j> <C-d>zz
-nnoremap <C-j> <cmd>lua require'neoscroll'.scroll(30, true, 150)<CR>
-nnoremap <C-k> <cmd>lua require'neoscroll'.scroll(-30, true, 150)<CR>
-vnoremap <C-j> <cmd>lua require'neoscroll'.scroll(30, true, 150)<CR>
-vnoremap <C-k> <cmd>lua require'neoscroll'.scroll(-30, true, 150)<CR>
+nnoremap <C-j> <cmd>+20<CR>
+nnoremap <C-k> <cmd>-20<CR>
+vnoremap <C-j> <cmd>+20<CR>
+vnoremap <C-k> <cmd>-20<CR>
 " Configure Telescope
 nnoremap <silent> <leader>fg <cmd>lua require'telescope.builtin'.live_grep()<CR>
 nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>

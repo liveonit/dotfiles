@@ -2,10 +2,6 @@
 
 FILE_DIR=$(dirname $(readlink -f $(which "$0")))
 
-source $FILE_DIR/check-requirements.sh
-
-! checkRequirements "tmux" "fzf";
-
 if [ -z "$1" ]; then
     window=$($FILE_DIR/folders.sh)
     window_name=$(basename "$window" | tr . _)

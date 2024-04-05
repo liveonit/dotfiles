@@ -2,10 +2,6 @@
 
 FILE_DIR=$(dirname $(readlink -f $(which "$0")))
 
-source $FILE_DIR/check-requirements.sh
-
-! checkRequirements "tmux";
-
 if [ -z "$1" ]; then
     # Get new session
     folder_name=$($FILE_DIR/folders.sh)

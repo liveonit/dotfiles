@@ -24,7 +24,6 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
 Plug 'rafamadriz/friendly-snippets'
 
-Plug 'karb94/neoscroll.nvim' " a smooth scrolling neovim plugin written in lua
 Plug 'sindrets/diffview.nvim' " Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
 Plug 'nvim-lualine/lualine.nvim' " A blazing fast and easy to configure Neovim statusline written in Lua.
 Plug 'nvim-telescope/telescope.nvim' " Is a highly extendable fuzzy finder over lists.
@@ -40,7 +39,6 @@ Plug 'akinsho/bufferline.nvim', { 'tag': '*' } " A snazzy 💅 buffer line (with
 Plug 'junegunn/fzf' " fzf is a general-purpose command-line fuzzy finder.
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'gen740/SmoothCursor.nvim'
 Plug 'RRethy/vim-illuminate' " automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching
 Plug 'folke/which-key.nvim' " displays a popup with possible key bindings of the command you started typing
 Plug 'lewis6991/gitsigns.nvim'
