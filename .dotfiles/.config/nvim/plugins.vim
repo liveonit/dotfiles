@@ -46,8 +46,8 @@ Plug 'nvim-lua/plenary.nvim' " required by file-browser
 Plug 'nvim-telescope/telescope-file-browser.nvim' " is a file browser extension for telescope.nvim
 
 " Plug 'github/copilot.vim'
-Plug 'zbirenbaum/copilot.lua'
-Plug 'zbirenbaum/copilot-cmp'
+" Plug 'zbirenbaum/copilot.lua'
+" Plug 'zbirenbaum/copilot-cmp'
 
 Plug 'lukas-reineke/indent-blankline.nvim'
 
