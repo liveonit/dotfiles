@@ -22,8 +22,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 #   cp .dotfiles/home/iterm/macosItermProfiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/macosItermProfiles.json
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # === Install Xcode Developer Tools ===
-    if type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
-    test -d "${xpath}" && test -x "${xpath}" ; then
+    if xcode-select --version; then
         echo "xcode-select is already installed"
     else
         xcode-select --install
@@ -54,9 +53,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo "brew successfully installed"
   fi
 
-  python3 -m pip install --upgrade pip
-  python3 -m pip install --user setuptools
-  python3 -m pip install --user ansible
+  python3 -m pip install --break-system-packages --upgrade pip
+  python3 -m pip install --break-system-packages --user setuptools
+  python3 -m pip install --break-system-packages --user ansible
   PY_VERSION=$(python3 --version | sed 's/[[:alpha:]|(|[:space:]]//g' | sed 's/^\([0-9]*\.[0-9]*\).*$/\1/')
   export PATH="~/Library/Python/$PY_VERSION/bin:$PATH"
 

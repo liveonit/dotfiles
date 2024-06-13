@@ -62,17 +62,17 @@
       - openssh # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
       - rust
       - jandedobbeleer/oh-my-posh/oh-my-posh
-      - exa
       - ripgrep
       - fd
       - vivid
       - zk
-      - derailed/k9s/k9s
+      - k9s
       - lazygit
       - gum
       - bash-language-server
       - shfmt
       - shellcheck
+      - gnu-sed
     state: present
 
 - name: Install base/macos homebrew packages
