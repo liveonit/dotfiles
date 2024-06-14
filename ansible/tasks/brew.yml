@@ -73,6 +73,8 @@
       - shfmt
       - shellcheck
       - gnu-sed
+      - autojump
+      - ctop
     state: present
 
 - name: Install base/macos homebrew packages

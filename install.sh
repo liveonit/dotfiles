@@ -18,8 +18,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo apt install ansible
   ansible-galaxy collection install community.general
   ansible-playbook -vvv ansible/setup_ubuntu.yml --ask-become-pass
-  cp .dotfiles/home/iterm/iterm_background.jpeg /usr/share/iterm_background.jpeg
-#   cp .dotfiles/home/iterm/macosItermProfiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/macosItermProfiles.json
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # === Install Xcode Developer Tools ===
     if xcode-select --version; then
@@ -74,8 +72,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   ansible-galaxy collection install community.general
   ansible-playbook -vvv ansible/setup_mac.yml --ask-become-pass
 
-  cp .dotfiles/home/iterm/iterm_background.jpeg /Users/Shared/iterm_background.jpeg
-  cp .dotfiles/home/iterm/macosItermProfiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/macosItermProfiles.json
 else
   echo "Unsuported operating system, the OS should be Ubuntu or MacOs."
   exit 1

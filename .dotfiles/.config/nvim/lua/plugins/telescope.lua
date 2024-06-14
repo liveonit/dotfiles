@@ -1,7 +1,7 @@
 -- Telescope --
 local is_telescope_installed, telescope = pcall(require, "telescope")
-local is_telescope_actions_installed, telescope_actions = pcall(require, "telescope.actions")
-local is_trouble_installed, trouble = pcall(require, "trouble.providers.telescope")
+local is_telescope_actions_installed = pcall(require, "telescope.actions")
+local is_trouble_installed, trouble = pcall(require, "trouble.sources.telescope")
 local is_action_layout, action_layout = pcall(require, "telescope.actions.layout")
 local fb_actions = require "telescope._extensions.file_browser.actions"
 
@@ -16,8 +16,8 @@ telescope.setup({
       "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case"
     },
     mappings = {
-      i = { ["?"] = action_layout.toggle_preview, ["<C-t>"] = trouble.open_with_trouble },
-      n = { ["<C-t>"] = trouble.open_with_trouble }
+      i = { ["?"] = action_layout.toggle_preview, ["<C-t>"] = trouble.open },
+      n = { ["<C-t>"] = trouble.open }
     },
     prompt_prefix = " ",
     selection_caret = " ",

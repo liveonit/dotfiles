@@ -15,11 +15,11 @@ lsp_zero.on_attach(function(client, bufnr)
   end
 
   -- Troube mappings
-  buf_set_keymap("n", "<leader>vD", "<cmd>TroubleToggle lsp_type_definitions<CR>", opts)
-  buf_set_keymap("n", "<leader>vd", "<cmd>TroubleToggle lsp_definitions<CR>", opts)
-  buf_set_keymap("n", "<leader>vr", "<cmd>TroubleToggle lsp_references<CR>", opts)
-  buf_set_keymap("n", "<leader>vq", "<cmd>TroubleToggle quickfix<cr>", opts)
-  buf_set_keymap("n", "<leader>vt", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+  buf_set_keymap("n", "<leader>vD", "<cmd>Trouble lsp_type_definitions<CR>", opts)
+  buf_set_keymap("n", "<leader>vd", "<cmd>Trouble lsp_definitions<CR>", opts)
+  buf_set_keymap("n", "<leader>vr", "<cmd>Trouble lsp_references<CR>", opts)
+  buf_set_keymap("n", "<leader>vq", "<cmd>Trouble quickfix<cr>", opts)
+  buf_set_keymap("n", "<leader>vt", "<cmd>Trouble document_diagnostics<cr>", opts)
   -- LSP mappings
   buf_set_keymap("n", "<leader>vh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "<leader>vi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
