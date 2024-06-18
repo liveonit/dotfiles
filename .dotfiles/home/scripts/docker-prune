@@ -9,8 +9,8 @@ source $FILE_DIR/check-requirements.sh
 source $FILE_DIR/print.sh
 
 echo `info "Stopping containers"`
-if [ "`docker ps -aq`" ]; then
-  docker rm `docker ps -aq`
+if [ "`docker ps -q`" ]; then
+  docker stop `docker ps -q`
 fi
 
 echo `info "Removing containers"`
