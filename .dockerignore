@@ -1,4 +1,4 @@
 Dockerfile
 .DS_Store
 .dotfiles/.config/nvim/plugged
-
+.git
