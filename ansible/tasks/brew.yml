@@ -32,7 +32,6 @@
       - tmuxinator # Create and manage tmux sessions easily
       - urlview # URL extractor/launcher (needed for tmux-urlview)
       - watchman # Watch files and take action when they change
-      - wget # Internet file retriever
       - yarn # JavaScript package manager
       - z # Tracks most-used directories to make cd smarter
       - zsh # UNIX shell (command interpreter)
@@ -82,5 +81,6 @@
     name:
       - reattach-to-user-namespace # Reattach process (e.g., tmux) to background
       - docker-machine # Create Docker hosts locally and on cloud providers
+      - wget # Internet file retriever
     state: present
   when: ansible_distribution == 'MacOSX'

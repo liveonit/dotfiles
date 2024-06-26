@@ -3,6 +3,7 @@
     name: "{{ item }}"
     state: present
   loop:
+    - default-jre
     - xquartz
     - alacritty
     - calibre

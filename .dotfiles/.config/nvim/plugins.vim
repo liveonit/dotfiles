@@ -37,7 +37,7 @@ Plug 'tribela/vim-transparent'
 Plug 'windwp/nvim-autopairs' " A super powerful autopair plugin for Neovim that supports multiple characters.
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' } " A snazzy 💅 buffer line (with tabpage integration) for Neovim built using lua.
 Plug 'junegunn/fzf' " fzf is a general-purpose command-line fuzzy finder.
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'RRethy/vim-illuminate' " automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching
 Plug 'folke/which-key.nvim' " displays a popup with possible key bindings of the command you started typing

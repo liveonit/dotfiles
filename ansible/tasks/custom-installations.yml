@@ -1,18 +1,3 @@
-- name: check is lsd installed
-  shell: command -v lsd
-  register: lsd_exists
-  ignore_errors: yes
-
-- name: Copy lsd src
-  copy:
-    src: "{{ playbook_dir }}/installers/lsd_0.22.0_amd64.deb"
-    dest: "/tmp/lsd_0.22.0_amd64.deb"
-  when: lsd_exists is failed
-
-- name: Install lsd
-  shell: sudo dpkg -i /tmp/lsd_0.22.0_amd64.deb
-  when: lsd_exists is failed
-
 - name: Check that the $HOME/.nvm exists
   stat:
     path: $HOME/.nvm
@@ -40,4 +25,3 @@
   community.general.homebrew:
     name: "pyenv-virtualenv"
     state: present
-  when: ansible_distribution == 'MacOSX'

@@ -1,9 +1,76 @@
 - hosts: localhost
   name: Setup Ubuntu
   become: false
-  remote_user: liveonit
+  remote_user: admin
   environment:
     HOME: "/home/{{ ansible_user }}"
   tasks:
+    - name: Install apt base packages
+      ansible.builtin.include_tasks: tasks/apt.yml
+      args:
+        apply:
+          become: true
+          tags: always
+      tags:
+        - apt
+    - name: Install brew applications
+      ansible.builtin.include_tasks: tasks/brew.yml
+      args:
+        apply:
+          tags: always
+      tags:
+        - brew
+    - name: Run custom installations
+      ansible.builtin.include_tasks: tasks/custom-installations.yml
+      args:
+        apply:
+          tags: always
+      tags:
+        - custom
     - name: Install node environment and its packages
       ansible.builtin.include_tasks: tasks/node.yml
+      args:
+        apply:
+          tags: always
+      tags:
+        - node
+    - name: Install python environment and its packages
+      ansible.builtin.include_tasks: tasks/python.yml
+      args:
+        apply:
+          tags: always
+      tags:
+        - python
+    - name: Install cargo packages
+      ansible.builtin.include_tasks: tasks/cargo.yml
+      args:
+        apply:
+          become: true
+          tags: always
+      tags:
+        - cargo
+    - name: Configure zsh terminal
+      ansible.builtin.include_tasks: tasks/zsh-setup.yml
+      args:
+        apply:
+          become: true
+          tags: always
+      tags:
+        - zsh
+    - name: Link dotfiles configuration files
+      ansible.builtin.include_tasks: tasks/dotfiles.yml
+      args:
+        apply:
+          tags: always
+      tags:
+        - dotfiles
+    - name: Change user shell to zsh
+      become: true
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        shell: /usr/bin/zsh
+      args:
+        apply:
+          tags: always
+      tags:
+        - zsh_user

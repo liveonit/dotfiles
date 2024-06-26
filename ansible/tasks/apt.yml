@@ -38,4 +38,5 @@
       - nodejs
       - unzip
       - ruby-neovim
+      - wget
     state: present
