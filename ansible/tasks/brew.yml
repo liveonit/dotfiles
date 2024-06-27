@@ -3,9 +3,8 @@
     update_homebrew: true
     upgrade_all: true
 
-- name: Install base/common homebrew packages
-  community.general.homebrew:
-    name:
+- set_fact:
+    common_packages:
       - java # Install Java as dependency
       - bat # Clone of cat(1) with syntax highlighting and Git integration
       - coreutils # GNU File, Shell, and Text utilities
@@ -42,7 +41,6 @@
       - ranger # It provides a minimalistic and nice curses interface with a view on the directory hierarchy
       - pwgen # Pwgen is a small, GPL'ed password generator which creates passwords which can be easily memorized by a human.
       - oh-my-posh # Oh My Posh enables you to use the full color set of your terminal by using colors to define and render the prompt.
-      - hashicorp/tap/terraform-ls # The official Terraform language server
       - efm-langserver # General purpose Language Server
       - lua-language-server # The Lua language server provides various language features for Lua to make development easier and faster.
       - helm # Helm helps you manage Kubernetes applications — Helm Charts help you define, install, and upgrade even the most complex Kubernetes application.
@@ -69,7 +67,14 @@
       - shfmt
       - shellcheck
       - gnu-sed
-    state: present
+
+
+- name: Install homebrew packages
+  include_tasks: install-brew-package.yml
+  loop: "{{ common_packages }}"
+  loop_control:
+    loop_var: package
+
 
 - name: Install base/macos homebrew packages
   community.general.homebrew:

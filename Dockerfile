@@ -27,8 +27,8 @@ COPY ./ansible ./dotfiles/ansible
 
 WORKDIR /home/admin/dotfiles
 
-RUN ansible-playbook -vvv ansible/setup_ubuntu.yml --user=admin --tags "apt"
 RUN ansible-playbook -vvv ansible/setup_ubuntu.yml --user=admin --tags "brew"
+RUN ansible-playbook -vvv ansible/setup_ubuntu.yml --user=admin --tags "apt"
 RUN ansible-playbook -vvv ansible/setup_ubuntu.yml --user=admin --tags "custom"
 RUN ansible-playbook -vvv ansible/setup_ubuntu.yml --user=admin --tags "node"
 RUN ansible-playbook -vvv ansible/setup_ubuntu.yml --user=admin --tags "python"
