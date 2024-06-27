@@ -7,7 +7,6 @@
   community.general.homebrew:
     name:
       - java # Install Java as dependency
-      - bash # Bourne-Again SHell, a UNIX command interpreter
       - bat # Clone of cat(1) with syntax highlighting and Git integration
       - coreutils # GNU File, Shell, and Text utilities
       - curl # Get a file from an HTTP, HTTPS or FTP server
@@ -17,7 +16,6 @@
       - glow # Render markdown on the CLI
       - go # The Go programming language
       - automake
-      - docker # Pack, ship and run any application as a lightweight container
       - grex # Command-line tool for generating regular expressions
       - htop # Improved top
       - lua # Powerful, lightweight programming language
@@ -60,7 +58,6 @@
       - kubectl # Cli to interact and manage k8s clusters
       - openssh # OpenSSH is the premier connectivity tool for remote login with the SSH protocol
       - rust
-      - jandedobbeleer/oh-my-posh/oh-my-posh
       - ripgrep
       - fd
       - vivid
@@ -72,8 +69,6 @@
       - shfmt
       - shellcheck
       - gnu-sed
-      - autojump
-      - ctop
     state: present
 
 - name: Install base/macos homebrew packages
