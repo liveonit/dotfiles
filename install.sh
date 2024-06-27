@@ -10,8 +10,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if ! command -v brew &> /dev/null; then
     echo "Installing Linux/brew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.zprofile
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "export PATH=\"/home/linuxbrew/.linuxbrew/bin:$PATH\")" >> $HOME/.profile
+    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
   fi
 
   # Install ansible and add community.general module
