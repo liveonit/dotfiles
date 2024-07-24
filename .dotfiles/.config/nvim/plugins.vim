@@ -15,8 +15,6 @@ Plug 'hrsh7th/cmp-nvim-lsp' " source for neovim's built-in language server clien
 Plug 'hrsh7th/cmp-nvim-lua' " source for neovim Lua API
 Plug 'hrsh7th/cmp-path' " source for filesystem paths
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip' " lua completion source for nvim-cmp
 Plug 'hrsh7th/nvim-cmp' " A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and 'sourced'.
 Plug 'neovim/nvim-lspconfig' " Required
 Plug 'williamboman/mason.nvim'
@@ -52,8 +50,12 @@ Plug 'nvim-telescope/telescope-file-browser.nvim' " is a file browser extension 
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'jay-babu/mason-nvim-dap.nvim'
 Plug 'mxsdev/nvim-dap-vscode-js'
+
+
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'SmiteshP/nvim-navic'

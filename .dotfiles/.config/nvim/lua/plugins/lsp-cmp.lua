@@ -1,4 +1,3 @@
-local luasnip = require("luasnip")
 local navic = require("nvim-navic")
 local lsp_zero = require("lsp-zero")
 
@@ -53,6 +52,7 @@ require("mason-lspconfig").setup({
     "sqlls",
     "terraformls"
   },
+  automatic_installation = true,
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -72,7 +72,6 @@ cmp.setup({
     -- Other Sources
     { name = "nvim_lsp",                group_index = 2 },
     { name = "path",                    group_index = 2 },
-    { name = "luasnip",                 group_index = 2 },
     { name = "nvim_lua",                group_index = 2 },
     { name = 'nvim_lsp_signature_help', group_index = 2 }
   },
@@ -85,8 +84,6 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -97,8 +94,6 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
