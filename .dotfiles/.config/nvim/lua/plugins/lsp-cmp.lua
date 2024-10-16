@@ -3,32 +3,9 @@ local lsp_zero = require("lsp-zero")
 
 
 lsp_zero.on_attach(function(client, bufnr)
-  local opts = { noremap = true, silent = true }
-
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
   end
-
-  -- Troube mappings
-  buf_set_keymap("n", "<leader>vD", "<cmd>Trouble lsp_type_definitions<CR>", opts)
-  buf_set_keymap("n", "<leader>vd", "<cmd>Trouble lsp_definitions<CR>", opts)
-  buf_set_keymap("n", "<leader>vr", "<cmd>Trouble lsp_references<CR>", opts)
-  buf_set_keymap("n", "<leader>vq", "<cmd>Trouble quickfix<cr>", opts)
-  buf_set_keymap("n", "<leader>vt", "<cmd>Trouble document_diagnostics<cr>", opts)
-  -- LSP mappings
-  buf_set_keymap("n", "<leader>vh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "<leader>vi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  buf_set_keymap("n", "<leader>vf", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
-  buf_set_keymap("n", "<leader>vc", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("n", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  -- Diagnostic mappings
-  buf_set_keymap("n", "<leader>vp", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
-  buf_set_keymap("n", "<leader>vn", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
-  buf_set_keymap("n", "<C-d>", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end)
 
 require("mason").setup({})
@@ -36,7 +13,7 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "ansiblels",
     "rust_analyzer",
-    "tsserver",
+    "ts_ls",
     "bashls",
     "cssls",
     "cmake",

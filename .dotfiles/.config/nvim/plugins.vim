@@ -9,17 +9,17 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " UI theme
 Plug 'folke/trouble.nvim' " A pretty list for showing diagnostics, references, telescope results, quickfix and location lists
 
 " CMP and LSP Support
-Plug 'hrsh7th/cmp-buffer' " source for buffer words.
-Plug 'hrsh7th/cmp-cmdline' " source for vim's cmdline.
-Plug 'hrsh7th/cmp-nvim-lsp' " source for neovim's built-in language server client.
-Plug 'hrsh7th/cmp-nvim-lua' " source for neovim Lua API
-Plug 'hrsh7th/cmp-path' " source for filesystem paths
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'hrsh7th/nvim-cmp' " A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and 'sourced'.
-Plug 'neovim/nvim-lspconfig' " Required
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+Plug 'hrsh7th/cmp-buffer', { 'commit': '3022dbc9166796b644a841a02de8dd1cc1d311fa' } " source for buffer words.
+Plug 'hrsh7th/cmp-cmdline', { 'commit': 'd250c63aa13ead745e3a40f61fdd3470efde3923' } " source for vim's cmdline.
+Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': '39e2eda76828d88b773cc27a3f61d2ad782c922d' } " source for neovim's built-in language server client.
+Plug 'hrsh7th/cmp-nvim-lua', { 'commit': 'f12408bdb54c39c23e67cab726264c10db33ada8' } " source for neovim Lua API
+Plug 'hrsh7th/cmp-path', { 'commit': '91ff86cd9c29299a64f968ebb45846c485725f23' } " source for filesystem paths
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help', { 'commit': '031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7' }
+Plug 'hrsh7th/nvim-cmp', { 'commit': 'ae644feb7b67bf1ce4260c231d1d4300b19c6f30' } " A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and 'sourced'.
+Plug 'neovim/nvim-lspconfig', { 'tag': 'v1.0.0' } " Required
+Plug 'williamboman/mason.nvim', { 'tag': 'v1.10.0' }
+Plug 'williamboman/mason-lspconfig.nvim', { 'tag': 'v1.31.0' }
+Plug 'VonHeikemen/lsp-zero.nvim', { 'branch': 'v3.x'}
 Plug 'rafamadriz/friendly-snippets'
 
 Plug 'sindrets/diffview.nvim' " Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
@@ -38,7 +38,7 @@ Plug 'junegunn/fzf' " fzf is a general-purpose command-line fuzzy finder.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'RRethy/vim-illuminate' " automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching
-Plug 'folke/which-key.nvim' " displays a popup with possible key bindings of the command you started typing
+Plug 'folke/which-key.nvim', { 'tag': 'v3.13.3' } " displays a popup with possible key bindings of the command you started typing
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-lua/plenary.nvim' " required by file-browser
 Plug 'nvim-telescope/telescope-file-browser.nvim' " is a file browser extension for telescope.nvim

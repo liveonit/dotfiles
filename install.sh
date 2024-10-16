@@ -6,7 +6,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Upgrade all apt packages
   sudo apt update && sudo apt upgrade
 
-  # Install linux brew
+  # Install curl
+  if ! command -v curl &> /dev/null; then
+    sudo apt install curl
+  fi
   if ! command -v brew &> /dev/null; then
     echo "Installing Linux/brew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -76,3 +79,4 @@ else
   echo "Unsuported operating system, the OS should be Ubuntu or MacOs."
   exit 1
 fi
+

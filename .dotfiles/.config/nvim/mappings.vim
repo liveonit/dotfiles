@@ -66,20 +66,7 @@ nnoremap <C-j> <cmd>+20<CR>
 nnoremap <C-k> <cmd>-20<CR>
 vnoremap <C-j> <cmd>+20<CR>
 vnoremap <C-k> <cmd>-20<CR>
-" Configure Telescope
-nnoremap <silent> <leader>fg <cmd>lua require'telescope.builtin'.live_grep()<CR>
-nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
-nnoremap <silent> <leader>ft <cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>
-nnoremap <silent> <leader>?  <cmd>Telescope current_buffer_fuzzy_find<CR>
-" Find in specific folders or files with ripgrep
-" https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
-nnoremap <silent> <leader>fs <cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>
-" Browse files
-nnoremap <silent> <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>
-nnoremap <silent> <leader>fd <cmd>lua require'telescope.builtin'.git_files()<CR>
-nnoremap <silent> <leader>fh <cmd>lua require'telescope.builtin'.oldfiles()<CR>
-nnoremap <silent> <leader>fe <cmd>Telescope file_browser 'cwd=<C-R>=expand("%:p:h")'<CR>
-nnoremap <silent> <leader>fc <cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>
+
 " Apply quotes under the selected word
 nnoremap <silent> <leader>;q bi"<ESC>ea"<ESC>
 " Get current path
