@@ -8,7 +8,7 @@ source $FILE_DIR/check-requirements.sh
 
 ! checkRequirements "docker";
 
-echo `info "Removing images"`
+info "Removing images"
 if [ "`docker image ls -aq`" ]; then
   docker rmi -f `docker image ls -aq`;
 fi

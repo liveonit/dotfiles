@@ -1,9 +1,13 @@
 local wk = require("which-key")
+local dap = require("dap")
+local utils = require("utils")
+
 
 -- Configure Telescope to find files or find with ripgrep
 -- REF:
 --  - https://github.com/nvim-telescope/telescope.nvim
 --  - https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+-- INFO: ./telescope.lua and should be previously imported
 wk.add({
   { "<leader>f", group = "file", icon = "📁" }, -- group
   {
@@ -68,8 +72,9 @@ wk.add({
   }
 })
 
+-- Search
 wk.add({
-  { "<leader>s", group = "Search" }, -- group
+  { "<leader>s", group = "Search", icon = "🔎" }, -- group
   {
     "<leader>sp",
     '<cmd>lua require("spectre").toggle()<CR>',
@@ -90,7 +95,8 @@ wk.add({
   }
 })
 
-
+-- LSP and Trouble
+-- INFO: ./lsp-cmp.lua and ./trouble.lua should be previously imported
 wk.add({
   { "<leader>x", group = "LSP/Trouble", icon = "🛠️" }, -- group
   {
@@ -129,9 +135,24 @@ wk.add({
     desc = "Go to implementation (LSP)",
   },
   {
+    "<leader>xD",
+    "<cmd>Trouble lsp_type_definitions<CR>",
+    desc = "LSP type definitions"
+  },
+  {
+    "<leader>xd",
+    "<cmd>Trouble lsp_definitions<CR>",
+    desc = "LSP definitions"
+  },
+  {
+    "<leader>xr",
+    "<cmd>Trouble lsp_references<CR>",
+    desc = "LSP references"
+  },
+  {
     "<leader>xf",
-    "<cmd>lua vim.lsp.buf.format()<CR>",
     desc = "Format buffer (LSP)",
+    "<cmd>lua vim.lsp.buf.format()<CR>",
   },
   {
     "<leader>xc",
@@ -153,4 +174,197 @@ wk.add({
     "<cmd>lua vim.diagnostic.goto_next()<cr>",
     desc = "Go to next (diagnostic)",
   }
+})
+
+wk.add({
+  {
+    "<C-d>",
+    "<cmd>lua vim.diagnostic.open_float()<CR>",
+    desc = "Diagnostic open float"
+  }
+})
+
+
+-- Debug
+-- INFO: ./debuging.lua should be previously imported
+wk.add({
+  { "<leader>d", group = "Debug", icon = "🪲" }, -- group
+  {
+    "<leader>dc",
+    function()
+      local launch_config_dir = utils.find_ancestor_with_file("launch.json")
+      if launch_config_dir and utils.get_file_extension(vim.fn.expand("%:p")) == "ts" then
+        local launch_config = utils.read_and_parse_json_file(launch_config_dir .. "/launch.json")
+        if not (utils.table_contains_by_attribute(dap.configurations.typescript, "name", launch_config.name)) then
+          dap.configurations.typescript[#dap.configurations.typescript + 1] = launch_config
+        end
+      end
+
+      if launch_config_dir and utils.get_file_extension(vim.fn.expand("%:p")) == "js" then
+        dap.configurations.javascript[#dap.configurations.javascript + 1] = utils.read_and_parse_json_file(
+          launch_config_dir ..
+          "/launch.json")
+      end
+
+      dap.continue()
+    end,
+    desc = "Start or continue (debug)",
+  },
+  { '<leader>dj', dap.step_over, desc = "Step Over (Debug)" },
+  { '<leader>dl', dap.step_into, desc = "Step Into (Debug)" },
+  { '<leader>dh', dap.step_out, desc = "Step Out (Debug)" },
+  { '<leader>db', dap.toggle_breakpoint, desc = "Toggle Breakpoint (Debug)" },
+  {
+    '<leader>dB',
+    function()
+      require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+    end,
+    desc = "Toggle Breakpoint (Debug)"
+  }
+})
+
+
+-- Terminal
+-- INFO: ./toggleterm.lua should be previously imported
+wk.add({
+  { "<leader>t", group = "Terminal", icon = "💻" }, -- group
+  {
+    "<leader>tg",
+    "<cmd>lua open_lazygit_terminal()<CR>",
+    desc = "Open Lazygit (terminal)",
+  },
+  {
+    "<leader>tc",
+    "<cmd>lua open_htop_terminal()<CR>",
+    desc = "Open HTOP (terminal)",
+  },
+  {
+    "<leader>te",
+    "<cmd>lua open_pnpm_eslint_terminal()<CR>",
+    desc = "Execute eslint in the current buffer project and summarize result (terminal)",
+  }
+})
+
+
+-- TODO comments
+-- INFO: ./todo-comments.lua and ./telescope.lua should be previously imported
+wk.add({
+  { "<leader>c", group = "TODO comments", icon = "☎️" },
+  {
+    "<leader>cn",
+    function()
+      require("todo-comments").jump_next()
+    end,
+    desc = "Next (TODO comment)"
+  },
+  {
+    "<leader>cp",
+    function()
+      require("todo-comments").jump_prev()
+    end,
+    desc = "Previous (TODO comment)"
+  },
+  {
+    "<leader>ce",
+    function()
+      require("todo-comments").jump_next({ keywords = { "ERROR", "WARNING" } })
+    end,
+    desc = "Next error/warning (TODO comment)"
+  },
+  {
+    "<leader>ct",
+    function()
+      require("todo-comments").jump_next({ keywords = { "TODO", "FIXME" } })
+    end,
+    desc = "Next todo/fixme (TODO comment)"
+  },
+  {
+    "<leader>cf",
+    "<cmd>TodoTelescope<CR>",
+    desc = "Find todos (TODO comment - Telescope)"
+  }
+
+})
+
+
+-- ChatGPT
+wk.add({
+  { "<leader>g", group = "ChatGPT", icon = "🤖" }, -- group
+  {
+    "<leader>c",
+    "<cmd>ChatGPT<CR>",
+    desc = "Open ChatGPT",
+  },
+  {
+    "<leader>e",
+    "<cmd>ChatGPTEditWithInstructions<CR>",
+    desc = "ChatGPT - Edit with instruction",
+    mode = { "n", "v" },
+  },
+  {
+    "<leader>g",
+    "<cmd>ChatGPTRun grammar_correction<CR>",
+    desc = "ChatGPT - Grammar Correction",
+    mode = { "n", "v" },
+  },
+  {
+    "<leader>t",
+    "<cmd>ChatGPTRun translate<CR>",
+    desc = "ChatGPT - Translate",
+    mode = { "n", "v" },
+  },
+  {
+    "<leader>k",
+    "<cmd>ChatGPTRun keywords<CR>",
+    desc = "ChatGPT - Keywords",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>d",
+    "<cmd>ChatGPTRun docstring<CR>",
+    desc = "ChatGPT - Docstring",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>a",
+    "<cmd>ChatGPTRun add_tests<CR>",
+    desc = "ChatGPT - Add Tests",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>o",
+    "<cmd>ChatGPTRun optimize_code<CR>",
+    desc = "ChatGPT - Optimize Code",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>s",
+    "<cmd>ChatGPTRun summarize<CR>",
+    desc = "ChatGPT - Summarize",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>f",
+    "<cmd>ChatGPTRun fix_bugs<CR>",
+    desc = "ChatGPT - Fix Bugs",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>x",
+    "<cmd>ChatGPTRun explain_code<CR>",
+    desc = "ChatGPT - Explain Code",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>r",
+    "<cmd>ChatGPTRun roxygen_edit<CR>",
+    desc = "ChatGPT - Roxygen Edit",
+    mode = { "n", "v" }
+  },
+  {
+    "<leader>l",
+    "<cmd>ChatGPTRun code_readability_analysis<CR>",
+    desc = "ChatGPT - Code Readability Analysis",
+    mode = { "n", "v" }
+  },
 })

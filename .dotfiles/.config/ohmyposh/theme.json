@@ -1,83 +1,95 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{if .Root}}(Admin){{end}} {{.PWD}}",
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#73daca",
-          "style": "plain",
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": "{{ .UserName }}@{{ .HostName }} ",
-          "type": "session"
+          "foreground": "#73daca",
+          "type": "session",
+          "style": "plain"
         },
         {
-          "foreground": "#a9b1d6",
           "properties": {
+            "cache_duration": "none",
             "command": "pwd | sed \"s|$HOME|~|\"",
             "shell": "zsh"
           },
-          "style": "plain",
-          "type": "command"
+          "foreground": "#a9b1d6",
+          "type": "command",
+          "style": "plain"
         },
         {
-          "foreground": "#8b3030",
           "properties": {
+            "cache_duration": "none",
             "time_format": "15:04"
           },
-          "style": "diamond",
-          "template": " \u23F3 {{ .CurrentDate | date .Format }} ",
-          "type": "time"
+          "template": " \u23f3 {{ .CurrentDate | date .Format }} ",
+          "foreground": "#8b3030",
+          "type": "time",
+          "style": "diamond"
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#ffffff",
           "properties": {
+            "cache_duration": "none",
             "command": "if [ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]; then git branch --no-color --show-current; else true; fi",
             "shell": "zsh"
           },
-          "style": "plain",
           "template": "\ue709 {{ .Output }}",
-          "type": "command"
+          "foreground": "#ffffff",
+          "type": "command",
+          "style": "plain"
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "foreground": "#6CA35E",
           "powerline_symbol": "\ue0b0",
-          "style": "plain",
-          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
-          "type": "node"
+          "type": "node",
+          "style": "plain"
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "foreground": "#9d7cd8",
-          "foreground_templates": ["{{ if gt .Code 0 }}#ff007c{{ end }}"],
           "properties": {
-            "always_enabled": true
+            "always_enabled": true,
+            "cache_duration": "none"
           },
+          "template": "❯ ",
+          "foreground": "#9d7cd8",
+          "type": "exit",
           "style": "plain",
-          "template": "\u276f ",
-          "type": "exit"
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#ff007c{{ end }}"
+          ]
         }
       ],
-      "type": "prompt"
+      "newline": true
     }
   ],
-  "console_title_template": "{{if .Root}}(Admin){{end}} {{.PWD}}",
-  "version": 2
+  "version": 3
 }

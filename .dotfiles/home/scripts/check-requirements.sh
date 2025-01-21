@@ -16,7 +16,7 @@ checkRequirements() {
   for var in "$@"
   do
     if ! $FILE_DIR/has -q "$var"; then
-      echo `error "$var is required and not installed"`;
+      error "$var is required and not installed";
       exit 1;
     fi
   done

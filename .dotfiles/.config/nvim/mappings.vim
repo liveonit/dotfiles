@@ -27,8 +27,6 @@ nnoremap <silent> <leader>qa :qa!<CR>
 nnoremap <silent> <leader>qw :xa<CR>
 " Toggle the maximization of a Window
 nnoremap <silent> <leader>mh :TSBufToggle highlight<CR>
-" Shortcut to give execute permissions to a file
-nnoremap <silent> <leader>cx :!chmod +x %<CR>
 " Shortcut to source NVIM configuration
 nnoremap <leader>sc :source ~/.config/nvim/init.vim<CR>
 " Replay the last command change

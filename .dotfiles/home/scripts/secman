@@ -1,0 +1,127 @@
+#!/bin/bash
+
+FILE_DIR=$(dirname $(readlink -f $(which "$0")))
+
+source "$FILE_DIR/check-requirements.sh"
+source "$FILE_DIR/print.sh"
+
+! checkRequirements "gpg" "jq";
+
+# Set default values
+DEFAULT_GPG_USER="liveonit"
+DEFAULT_SECRETS_FILE="$HOME/$DEFAULT_GPG_USER.secrets.gpg"
+
+# Function to print the usage
+usage() {
+    echo "Usage: secman -p <secrets_file_path> -u <gpg_user_id> -a <action> -n <varname> [-v <value>]"
+        echo "  -p, --secrets_file_path   Path to the secrets file (encrypted) [default: $DEFAULT_SECRETS_FILE]"
+    echo "  -u, --gpg_user_id         GPG User ID (email or key ID) [default: $DEFAULT_GPG_USER]"
+    echo "  -a, --action              Action to perform ('get', 'set', or 'delete')"
+    echo "  -n, --varname             Name of the variable (key)"
+    echo "  -v, --value               Value to set (required for 'set' action)"
+    echo "  -c, --create-new-secret-file   Create an empty JSON secrets file at the specified path"
+    echo "      --list                    List all secrets in the specified secrets file"
+    exit 1
+}
+
+# Parse arguments
+secrets_file="$DEFAULT_SECRETS_FILE"
+gpg_user="$DEFAULT_GPG_USER"
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -p|--secrets_file_path) secrets_file="$2"; shift ;;
+        -u|--gpg_user_id) gpg_user="$2"; shift ;;
+        -a|--action) action="$2"; shift ;;
+        -n|--varname) varname="$2"; shift ;;
+        -v|--value) value="$2"; shift ;;
+        -c|--create-new-secret-file) create_new_secret_file="$2"; shift ;;
+        --list|-l) list_secrets=true ;;
+        *) error "Unknown parameter: $1"; usage ;;
+    esac
+    shift
+done
+
+# Handle --create-new-secret-file flag
+if [[ -n "$create_new_secret_file" ]]; then
+    echo "{}" | gpg --encrypt --armor --recipient "$gpg_user" > "$create_new_secret_file"
+    success "Empty encrypted secrets file created at $create_new_secret_file."
+    exit 0
+fi
+
+# Handle --list flag
+if [[ "$list_secrets" == true ]]; then
+    if [[ ! -f "$secrets_file" ]]; then
+        error "Error: Secrets file does not exist." >&2
+        exit 1
+    fi
+    secrets=$(gpg --decrypt "$secrets_file" 2>/dev/null)
+    if [[ -z "$secrets" ]]; then
+        error "Error: Failed to decrypt secrets file or file is empty." >&2
+        exit 1
+    fi
+    echo "$secrets" | jq
+    exit 0
+fi
+
+
+# Validate required arguments
+if [[ -z "$secrets_file" || -z "$gpg_user" || -z "$action" || -z "$varname" ]]; then
+    error "Error: Missing required arguments."
+    usage
+fi
+
+# Function to decrypt secrets file
+decrypt_secrets() {
+    if [[ -f "$secrets_file" ]]; then
+        gpg --decrypt "$secrets_file" 2>/dev/null
+    else
+        echo "{}"
+    fi
+}
+
+# Function to encrypt secrets file
+encrypt_secrets() {
+    local content="$1"
+    echo "$content" | gpg --encrypt --armor --recipient "$gpg_user" > "$secrets_file"
+}
+
+# Perform actions
+case "$action" in
+    set)
+        secrets=$(decrypt_secrets)
+        updated_secrets=$(echo "$secrets" | jq --arg key "$varname" --arg value "$value" '.[$key] = $value')
+        encrypt_secrets "$updated_secrets"
+        success "Secret '$varname' set successfully."
+        ;;
+    get)
+        if [[ ! -f "$secrets_file" ]]; then
+            error "Error: Secrets file does not exist." >&2
+            exit 1
+        fi
+        secrets=$(decrypt_secrets)
+        result=$(echo "$secrets" | jq -r --arg key "$varname" '.[$key] // empty')
+        if [[ -z "$result" ]]; then
+            error "Error: Secret '$varname' not found." >&2
+            exit 1
+        fi
+        echo "$result"
+        ;;
+    delete)
+        if [[ -z "$varname" ]]; then
+            error "Error: --varname is required for the 'delete' action."
+            usage
+        fi
+        if [[ ! -f "$secrets_file" ]]; then
+            error "Error: Secrets file does not exist." >&2
+            exit 1
+        fi
+        secrets=$(decrypt_secrets)
+        updated_secrets=$(echo "$secrets" | jq --arg key "$varname" 'del(.[$key])')
+        encrypt_secrets "$updated_secrets"
+        success "Secret '$varname' deleted successfully."
+        ;;
+    *)
+        error "Error: Unknown action '$action'."
+        usage
+        ;;
+esac

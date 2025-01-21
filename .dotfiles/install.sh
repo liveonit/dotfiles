@@ -3,7 +3,7 @@
 set -e
 
 # Intsall link of home files
-rm -rf ~/scripts ~/zsh ~/.tmux.conf ~/.zprofile ~/.zshrc ~/.DS_Store ~/Notes
+rm -rf ~/scripts ~/zsh ~/.tmux.conf ~/.zprofile ~/.zshrc ~/.DS_Store ~/Notes ~/liveonit.secrets.gpg
 stow -t ~ home
 
 # Install config files

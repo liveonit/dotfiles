@@ -22,7 +22,6 @@ Plug 'williamboman/mason-lspconfig.nvim', { 'tag': 'v1.31.0' }
 Plug 'VonHeikemen/lsp-zero.nvim', { 'branch': 'v3.x'}
 Plug 'rafamadriz/friendly-snippets'
 
-Plug 'sindrets/diffview.nvim' " Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
 Plug 'nvim-lualine/lualine.nvim' " A blazing fast and easy to configure Neovim statusline written in Lua.
 Plug 'nvim-telescope/telescope.nvim' " Is a highly extendable fuzzy finder over lists.
 Plug 'nvim-telescope/telescope-live-grep-args.nvim' " Live grep args picker for telescope.nvim.
@@ -64,6 +63,11 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'nvim-pack/nvim-spectre'
 
 Plug 'folke/todo-comments.nvim'
+
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'MunifTanjim/nui.nvim',
+Plug 'jackMort/ChatGPT.nvim'
 
 " Don't configure any plugin under this line.
 call plug#end()

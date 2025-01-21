@@ -11,14 +11,14 @@ source $FILE_DIR/check-requirements.sh
 COMMIT_COUNT=$(gh pr view --json commits | jq '.commits | length')
 PR_NAME=$(gh pr view --json title | jq '.title' | sed -e 's/^"//' -e 's/"$//')
 if [ -z "$COMMIT_COUNT" ] || [ -z "$PR_NAME" ]; then
-  echo `error "Could not find PR commits or PR name"`;
+  error "Could not find PR commits or PR name";
   exit 1;
 fi
-echo `info "Found $COMMIT_COUNT commits in PR: "` `yellow "$PR_NAME"`;
-echo `info "Squashing commits..."`
+blue "ℹ️ Found $COMMIT_COUNT commits in PR: "; yellow "$PR_NAME\n";
+info "Squashing commits..."
 git reset --soft HEAD~"$COMMIT_COUNT"
 git add --all
-echo `info "Committing changes..."`
+info "Committing changes..."
 git commit -m "$PR_NAME"
-echo `success "Done!"`
+success "Done!"
 

@@ -4,16 +4,20 @@ FILE_DIR=$(dirname $(readlink -f $(which "$0")))
 
 source $FILE_DIR/print.sh
 
+SERVER_USER=$(secman -a get -n DUVIMIOSO_SERVER_USER)
+SSH_KEY_PATH=$(secman -a get -n DUVIMIOSO_SERVER_SSH_KEY_PATH)
 
-IP_SERVER_LAN=192.168.1.69
-IP_SERVER_VPN=100.127.135.65
+SERVER_LAN_ADDR=$(secman -a get -n SERVER_LAN_ADDR)
+SERVER_LAN_PORT=$(secman -a get -n SERVER_LAN_PORT)
+SERVER_WAN_ADDR=$(secman -a get -n SERVER_WAN_ADDR)
+SERVER_WAN_PORT=$(secman -a get -n SERVER_WAN_PORT)
 
-if ping -c 1 $IP_SERVER_LAN &> /dev/null; then
-  echo `info "Stablishing ssh connection to liveonit@$IP_SERVER_LAN"`
-  ssh -4 -C -oObscureKeystrokeTiming=no liveonit@$IP_SERVER_LAN
-elif ping -c 1 $IP_SERVER_VPN &> /dev/null; then
-  echo `info "Stablishing ssh connection to liveonit@$IP_SERVER_VPN"`
-  ssh -4 -C -oObscureKeystrokeTiming=no liveonit@$IP_SERVER_VPN
+if nc -z $SERVER_LAN_ADDR $SERVER_LAN_PORT &> /dev/null; then
+  info "Stablishing ssh connection to $SERVER_USER@$SERVER_LAN_ADDR"
+  ssh -i $SSH_KEY_PATH -4 -C -oObscureKeystrokeTiming=no -P $SERVER_LAN_PORT liveonit@$SERVER_LAN_ADDR
+elif nc -z $SERVER_WAN_ADDR $SERVER_WAN_PORT &> /dev/null; then
+  info "Stablishing ssh connection to liveonit@$SERVER_WAN_ADDR"
+  ssh -i $SSH_KEY_PATH -4 -C -oObscureKeystrokeTiming=no $SERVER_USER@$SERVER_WAN_ADDR
 else
-  echo `error "No connection to any of the servers: $IP_SERVER_LAN nor $IP_SERVER_VPN"`
+  error "No SSH connection to the servers: $SERVER_LAN_ADDR on  PORT: $SERVER_LAN_PORT and $SERVER_WAN_ADDR on PORT: $SERVER_WAN_PORT"
 fi

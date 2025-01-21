@@ -8,21 +8,21 @@ source $FILE_DIR/check-requirements.sh
 
 source $FILE_DIR/print.sh
 
-echo `info "Stopping containers"`
+info "Stopping containers"
 if [ "`docker ps -q`" ]; then
   docker stop `docker ps -q`
 fi
 
-echo `info "Removing containers"`
+info "Removing containers"
 if [ "`docker ps -aq`" ]; then
   docker rm `docker ps -aq`
 fi
 
-echo `info "Removing volumes"`
+info "Removing volumes"
 if [ "`docker volume ls -q`" ]; then
   docker volume rm `docker volume ls -q`
 fi
 
-echo `info "Removing networks"`
+info "Removing networks"
 docker network rm `docker network ls -q`
 

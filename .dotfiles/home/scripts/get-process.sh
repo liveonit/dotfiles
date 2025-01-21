@@ -22,11 +22,9 @@ done <<<$JOBS
 
 if [ -n "$processes" ]; then
   command=$(printf "%s\n" "${processes[@]}" | fzf)
-
   process_number=$(echo "$command" | cut -d',' -f1)
-  echo $(green "Getting process ") $(yellow "$process_number")
-
+  green "Getting process "; yellow "$process_number\n"
   eval "fg %$process_number"
 else
-  echo $(yellow "There are not suspended processes")
+  warn "There are not suspended processes"
 fi

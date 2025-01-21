@@ -6,20 +6,27 @@
       "segments": [
         {
           "foreground": "#73daca",
-          "properties": {
-            "template": "{{ .UserName }} "
-          },
           "style": "plain",
+          "template": "{{ .UserName }}@{{ .HostName }} ",
           "type": "session"
         },
         {
-          "type": "command",
-          "style": "plain",
           "foreground": "#a9b1d6",
           "properties": {
-            "shell": "zsh",
-            "command": "pwd | sed \"s|$HOME|~|\" | sed 's|/branches/| $(print -P \"%F{255}פּ%f\") |'"
-          }
+            "command": "pwd | sed \"s|$HOME|~|\"",
+            "shell": "zsh"
+          },
+          "style": "plain",
+          "type": "command"
+        },
+        {
+          "foreground": "#8b3030",
+          "properties": {
+            "time_format": "15:04"
+          },
+          "style": "diamond",
+          "template": " \u23F3 {{ .CurrentDate | date .Format }} ",
+          "type": "time"
         }
       ],
       "type": "prompt"
@@ -28,14 +35,14 @@
       "alignment": "left",
       "segments": [
         {
-          "type": "command",
-          "style": "plain",
           "foreground": "#ffffff",
           "properties": {
-            "shell": "zsh",
-            "command": "if [ -d './.git' ]; then git branch --no-color --show-current; else true; fi",
-            "template": " {{ .Output }}"
-          }
+            "command": "if [ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]; then git branch --no-color --show-current; else true; fi",
+            "shell": "zsh"
+          },
+          "style": "plain",
+          "template": "\ue709 {{ .Output }}",
+          "type": "command"
         }
       ],
       "type": "prompt"
@@ -46,36 +53,9 @@
         {
           "foreground": "#6CA35E",
           "powerline_symbol": "\ue0b0",
-          "properties": {
-            "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} "
-          },
           "style": "plain",
+          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "type": "node"
-        },
-        {
-          "foreground": "#9ece6a",
-          "properties": {
-            "style": "austin",
-            "template": " {{ .FormattedMs }} "
-          },
-          "style": "plain",
-          "type": "executiontime"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "right",
-      "segments": [
-        {
-          "type": "command",
-          "foreground": "#7dcfff",
-          "style": "plain",
-          "properties": {
-            "shell": "zsh",
-            "command": "if [ ! -z $(pwd | grep Vntana) ]; then dotenv -f ~/.config/ohmyposh/.env get OHMYPOSH_KUBERNETES_CONTEXT; fi",
-            "tenplate": "{{ .Output }}"
-          }
         }
       ],
       "type": "prompt"
@@ -88,18 +68,16 @@
           "foreground": "#9d7cd8",
           "foreground_templates": ["{{ if gt .Code 0 }}#ff007c{{ end }}"],
           "properties": {
-            "always_enabled": true,
-            "template": "\u276f "
+            "always_enabled": true
           },
           "style": "plain",
+          "template": "\u276f ",
           "type": "exit"
         }
       ],
       "type": "prompt"
     }
   ],
-  "console_title": true,
-  "console_title_style": "template",
   "console_title_template": "{{if .Root}}(Admin){{end}} {{.PWD}}",
-  "version": 1
+  "version": 2
 }

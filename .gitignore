@@ -5,6 +5,5 @@ plugged
 *.sh.zwc
 .antigen
 ansible/*-log.*
-*secret*
 *.log
 node_modules

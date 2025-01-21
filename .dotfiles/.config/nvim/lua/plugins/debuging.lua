@@ -1,30 +1,5 @@
 local dap = require("dap")
-local utils = require("utils")
 
--- Set keymaps to control the debugger
-vim.keymap.set('n', '<leader>dc', function()
-  local launch_config_dir = utils.find_ancestor_with_file("launch.json")
-  if launch_config_dir and utils.get_file_extension(vim.fn.expand("%:p")) == "ts" then
-    local launch_config = utils.read_and_parse_json_file(launch_config_dir .. "/launch.json")
-    if not (utils.table_contains_by_attribute(dap.configurations.typescript, "name", launch_config.name)) then
-      dap.configurations.typescript[#dap.configurations.typescript + 1] = launch_config
-    end
-  end
-
-  if launch_config_dir and utils.get_file_extension(vim.fn.expand("%:p")) == "js" then
-    dap.configurations.javascript[#dap.configurations.javascript + 1] = utils.read_and_parse_json_file(launch_config_dir ..
-      "/launch.json")
-  end
-
-  dap.continue()
-end)
-vim.keymap.set('n', '<leader>dj', dap.step_over)
-vim.keymap.set('n', '<leader>dl', dap.step_into)
-vim.keymap.set('n', '<leader>dh', dap.step_out)
-vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
-vim.keymap.set('n', '<leader>B', function()
-  require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
-end)
 vim.fn.sign_define('DapBreakpoint', { text = '📌', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapStopped', { text = '👉', texthl = '', linehl = '', numhl = '' })
 

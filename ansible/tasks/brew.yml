@@ -67,7 +67,7 @@
       - shfmt
       - shellcheck
       - gnu-sed
-
+      - gpg
 
 - name: Install homebrew packages
   include_tasks: install-brew-package.yml
