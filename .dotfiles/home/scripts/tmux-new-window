@@ -17,4 +17,4 @@ else
     fi
 fi
 
-TERM=xterm-256color tmux select-window -t "$window_name"
+TERM=screen-256color tmux select-window -t "$window_name"

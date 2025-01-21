@@ -69,6 +69,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim',
 Plug 'jackMort/ChatGPT.nvim'
 
+Plug 'gelguy/wilder.nvim'
+
 " Don't configure any plugin under this line.
 call plug#end()
 
