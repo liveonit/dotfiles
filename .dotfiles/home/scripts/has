@@ -184,6 +184,7 @@ __detect(){
     screen)                 __dynamic_detect-v "${command}" ;;
     tmux)                   __dynamic_detect-v "${command}" ;;
     fzf|fzf-tmux)                    __dynamic_detect-v "${command}" ;;
+    eza)                    __dynamic_detect-v "${command}" ;;
     # Container runtimes
     docker|podman|kubectl)          __dynamic_detect--version "${command}" ;;
 

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+FILE_DIR=$(dirname $(readlink -f $(which "$0")))
+
+source $FILE_DIR/check-requirements.sh
+! checkRequirements eza
+
+LIST_PATH="."
+[ "$1" ] && LIST_PATH=$1
+
+SHOW_RECURSIVE_DIRECTORY_SIZE=1
+[ "$2" ] && SHOW_RECURSIVE_DIRECTORY_SIZE=$2
+
+eza -l -L $SHOW_RECURSIVE_DIRECTORY_SIZE -a --git-ignore --git --show-symlinks --header -T --time-style relative $LIST_PATH
