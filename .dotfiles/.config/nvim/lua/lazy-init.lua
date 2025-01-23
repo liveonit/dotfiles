@@ -19,6 +19,7 @@ require('lazy').setup({
     { import = 'plugins.coding.treesitter' },
     { import = 'plugins.coding.trouble' },
     { import = 'plugins.dap.core' },
+    { import = 'plugins.editor.telescope' },
     { import = 'plugins.editor.fzf' },
     { import = 'plugins.editor.gitsigns' },
     { import = 'plugins.editor.grug-far' },

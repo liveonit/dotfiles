@@ -10,6 +10,7 @@ keymap.set('n', 'sv', ':split<Return>', opts)
 
 -- Save and quit window
 vim.keymap.set('n', 'qq', ':q<Return>', { desc = 'Close window' })
+vim.keymap.set('n', '<C-q>', ':q!<Return>', { desc = 'Close window' })
 vim.keymap.set('n', '<C-s>', ':w<Return>', { desc = 'Save buffer' })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<Return>li', { desc = 'Save buffer' })
 
@@ -24,8 +25,8 @@ keymap.set('n', '<leader><tab>d', ':tabclose<Return>', opts)
 --   return ':IncRename ' .. vim.fn.expand '<cword>'
 -- end, { desc = 'LSP Rename', expr = true })
 
-vim.keymap.set('n', '<S-k>', '<cmd>-20<CR>', { desc = 'Scroll up 20 lines' })
-vim.keymap.set('n', '<S-j>', '<cmd>+20<CR>', { desc = 'Scroll down 20 lines' })
+vim.keymap.set('n', '<S-K>', '<cmd>-20<CR>', { desc = 'Scroll up 20 lines' })
+vim.keymap.set('n', '<S-J>', '<cmd>+20<CR>', { desc = 'Scroll down 20 lines' })
 
 -- Show notifications history
 keymap.set('n', '<leader>n', function()

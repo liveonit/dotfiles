@@ -89,12 +89,7 @@ return {
             { 'n', 'x' }
           )
 
-          map(
-            '<C-i>',
-            vim.lsp.buf.signature_help,
-            'Signature help',
-            { 'n', 'i' }
-          )
+          map('<c-i>', vim.lsp.buf.signature_help, 'signature help', { 'n' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.

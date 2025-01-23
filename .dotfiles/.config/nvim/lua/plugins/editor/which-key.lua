@@ -99,6 +99,12 @@ return {
         },
         {
           '<leader>t',
+          group = 'Telescope',
+          icon = { icon = ' ', color = 'green' },
+        },
+
+        {
+          '<leader>T',
           group = 'Test',
           icon = { icon = '󰙨', color = 'purple' },
         },
