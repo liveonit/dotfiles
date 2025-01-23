@@ -20,9 +20,9 @@ keymap.set('n', '<s-tab>', ':tabprev<Return>', opts)
 keymap.set('n', '<leader><tab>d', ':tabclose<Return>', opts)
 
 -- IncRename
-vim.keymap.set('n', '<leader>cr', function()
-  return ':IncRename ' .. vim.fn.expand '<cword>'
-end, { desc = 'LSP Rename', expr = true })
+-- vim.keymap.set('n', '<leader>cr', function()
+--   return ':IncRename ' .. vim.fn.expand '<cword>'
+-- end, { desc = 'LSP Rename', expr = true })
 
 vim.keymap.set('n', '<S-k>', '<cmd>-20<CR>', { desc = 'Scroll up 20 lines' })
 vim.keymap.set('n', '<S-j>', '<cmd>+20<CR>', { desc = 'Scroll down 20 lines' })

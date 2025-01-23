@@ -89,6 +89,13 @@ return {
             { 'n', 'x' }
           )
 
+          map(
+            '<C-i>',
+            vim.lsp.buf.signature_help,
+            'Signature help',
+            { 'n', 'i' }
+          )
+
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
@@ -246,7 +253,6 @@ return {
         'eslint-lsp',
         'hadolint',
         'js-debug-adapter',
-        -- 'neocmakelsp',
         'prettier',
         'prettierd',
         'pyright',
