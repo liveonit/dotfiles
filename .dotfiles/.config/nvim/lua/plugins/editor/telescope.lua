@@ -16,6 +16,20 @@ return {
           require('telescope').load_extension 'file_browser'
         end,
       },
+      {
+        'camgraff/telescope-tmux.nvim',
+        keys = {
+          {
+            '<leader>m',
+            ':Telescope tmux sessions<CR>',
+            desc = 'T[m]ux sessions - telescope',
+            silent = true,
+          },
+        },
+        config = function()
+          require('telescope').load_extension 'file_browser'
+        end,
+      },
     },
     keys = {
       {

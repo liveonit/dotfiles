@@ -1,0 +1,92 @@
+#!/bin/bash
+
+# Ensure gum and aws-cli are installed
+if ! command -v gum &> /dev/null || ! command -v aws &> /dev/null; then
+  echo "gum and aws-cli are required. Please install them before running this script."
+  exit 1
+fi
+
+# Select sync direction
+SYNC_DIRECTION=$(gum choose "Overwrite your local changes in S3" "Overwrite S3 changes in your local folder")
+
+# Initialize variables
+LOCAL_PATH=""
+REMOTE_PATH=""
+
+# Function to list and select S3 buckets
+select_bucket() {
+  BUCKETS=$(aws s3api list-buckets --query "Buckets[].Name" --output text | tr '\t' '\n')
+  if [ -z "$BUCKETS" ]; then
+    echo "No buckets found. Exiting."
+    exit 1
+  fi
+  SELECTED_BUCKET=$(echo "$BUCKETS" | gum filter --header "Select an S3 bucket")
+  if [ -z "$SELECTED_BUCKET" ]; then
+    echo "No bucket selected. Exiting."
+    exit 1
+  fi
+  echo "$SELECTED_BUCKET"
+}
+
+# Function to list and select folders within a bucket
+select_folder() {
+  CHOICE=$(gum choose "Sync the full bucket" "Select a subfolder")
+
+  if [ "$CHOICE" == "Sync the full bucket" ]; then
+    echo ""
+  else
+
+    FOLDERS=$(aws s3api list-objects-v2 --bucket "$1" --delimiter "/" --query "CommonPrefixes[].Prefix" --output text | tr '\t' '\n')
+    if [ -z "$FOLDERS" ]; then
+      echo ""
+    else
+      SELECTED_FOLDER=$(echo "$FOLDERS" | gum filter --header "Select a folder inside the bucket")
+      echo "$SELECTED_FOLDER"
+    fi
+  fi
+}
+
+if [ "$SYNC_DIRECTION" == "Overwrite your local changes in S3" ]; then
+  LOCAL_PATH=$(gum file --directory)
+  BUCKET_NAME=$(select_bucket)
+  S3_FOLDER=$(select_folder "$BUCKET_NAME")
+  REMOTE_PATH="s3://$BUCKET_NAME${S3_FOLDER:+$S3_FOLDER}"
+  SYNC_OPTIONS="--delete"
+
+elif [ "$SYNC_DIRECTION" == "Overwrite S3 changes in your local folder" ]; then
+  BUCKET_NAME=$(select_bucket)
+  S3_FOLDER=$(select_folder "$BUCKET_NAME")
+  echo "S3_FOLDER: $S3_FOLDER"
+
+  LOCAL_PATH=$(gum file --directory)
+  REMOTE_PATH="s3://$BUCKET_NAME/${S3_FOLDER:+$S3_FOLDER}"
+  echo "REMOTE_PATH: $REMOTE_PATH"
+
+  SYNC_OPTIONS="--delete"
+fi
+
+# Ask about removing files
+REMOVE_OPTION=$(gum choose "Yes" "No" --header "Remove files that were deleted in the source?")
+if [ "$REMOVE_OPTION" == "No" ]; then
+  SYNC_OPTIONS=""
+fi
+
+# Validate paths
+if [ -z "$BUCKET_NAME" ] || [ -z "$LOCAL_PATH" ]; then
+  echo "Invalid paths detected. Exiting."
+  exit 1
+fi
+
+# Run the sync command
+
+EXCLUDE_FLAGS="--exclude 'node_modules/*' --exclude '.git/*' --exclude 'dist/*' --exclude 'out/*'"
+
+echo "Running AWS S3 sync..."
+if [ "$SYNC_DIRECTION" == "Overwrite your local changes in S3" ]; then
+  aws s3 sync "$LOCAL_PATH" "$REMOTE_PATH" $SYNC_OPTIONS $EXCLUDE_FLAGS
+else
+  aws s3 sync "$REMOTE_PATH" "$LOCAL_PATH" $SYNC_OPTIONS $EXCLUDE_FLAGS
+fi
+
+echo "Sync completed successfully."
+

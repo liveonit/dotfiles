@@ -35,6 +35,11 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'olimorris/codecompanion.nvim',
+      'hrsh7th/cmp-emoji',
+      {
+        'zbirenbaum/copilot-cmp',
+        opts = {},
+      },
     },
     config = function()
       -- See `:help cmp`
@@ -112,6 +117,8 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'codecompanion' },
+          { name = 'copilot' },
+          { name = 'emoji' },
         },
       }
     end,

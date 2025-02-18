@@ -33,11 +33,10 @@ vim.opt.smartcase = true
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 300
+-- Increase mapped sequence wait time
+-- WARNING: keymappings should be well configured, if not it genearates conflicts,
+-- if they are ok it gives you more time to check key convination)
+vim.opt.timeoutlen = 10000
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true

@@ -58,12 +58,15 @@ return {
                 local position_params = vim.lsp.util.make_position_params()
                 local params = {
                   command = 'typescript.goToSourceDefinition',
-                  arguments = { position_params.textDocument.uri, position_params.position },
+                  arguments = {
+                    position_params.textDocument.uri,
+                    position_params.position,
+                  },
                 }
-                require("trouble").open({
-                  mode = "lsp_command",
+                require('trouble').open {
+                  mode = 'lsp_command',
                   params = params,
-                })
+                }
               end,
               desc = 'Goto Source Definition',
             },
@@ -74,10 +77,10 @@ return {
                   command = 'typescript.findAllFileReferences',
                   arguments = { vim.uri_from_bufnr(0) },
                 }
-                require("trouble").open({
-                  mode = "lsp_command",
+                require('trouble').open {
+                  mode = 'lsp_command',
                   params = params,
-                })
+                }
               end,
               desc = 'File References',
             },
@@ -175,7 +178,7 @@ return {
             end
           end
           local name = 'vtsls'
-          vim.api.nvim_create_autocmd("LspAttach", {
+          vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
               local buffer = args.buf ---@type number
               local client = vim.lsp.get_client_by_id(args.data.client_id)

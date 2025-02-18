@@ -1,7 +1,7 @@
-# /Users/ignaciobarreto/.config/tmuxinator/distritv.yml
+# /Users/ignaciobarreto/.config/tmuxinator/fullstack-2025.yml
 
-name: distritv
-root: ~/projects/distriTV
+name: fullstack-2025
+root: ~/projects/fullstack-2025
 on_project_start: cd services && pnpm i && cd - && docker-compose up -d --build
 windows:
   - root: vim

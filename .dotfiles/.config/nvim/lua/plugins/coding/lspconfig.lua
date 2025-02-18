@@ -82,18 +82,26 @@ return {
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map(
-            '<leader>ca',
-            vim.lsp.buf.code_action,
-            'Code Action',
-            { 'n', 'x' }
-          )
+          map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n' })
 
-          map('<c-i>', vim.lsp.buf.signature_help, 'signature help', { 'n' })
+          map(
+            '<c-i>',
+            vim.lsp.buf.signature_help,
+            'LSP signature help',
+            { 'n' }
+          )
+          map('<c-o>', vim.lsp.buf.hover, 'LSP hover', { 'n' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+
+          map(
+            '<c-d>',
+            '<cmd>lua vim.diagnostic.open_float()<CR>',
+            'Diagnostic open float',
+            { 'n', 'i' }
+          )
 
           map(']]', function()
             Snacks.words.jump(vim.v.count1)

@@ -49,14 +49,21 @@ return {
     opts = {
       strategies = {
         chat = {
-          adapter = 'copilot',
+          adapter = 'anthropic',
         },
         inline = {
-          adapter = 'copilot',
+          adapter = 'anthropic',
         },
       },
-      opts = {
-        log_level = 'DEBUG',
+
+      adapters = {
+        anthropic = function()
+          return require('codecompanion.adapters').extend('anthropic', {
+            env = {
+              api_key = 'cmd:secman -a get -n ANTHROPIC_API_KET',
+            },
+          })
+        end,
       },
     },
   },
